@@ -1,0 +1,18 @@
+/* pages/index/index.wxss */
+.experiment-itme {
+  width: 96%;
+  height: 220rpx;
+  border: 1px solid #ccc;
+  background-color: aqua;
+  margin: 0 auto;
+  font-size: 34rpx;
+  text-align: center;
+  line-height: 220rpx;
+  font-weight: 500;
+}
+.measure-sound-speed{
+  background-color: aquamarine;
+}
+.measure-low-resistance{
+  background-color:blanchedalmond;
+}

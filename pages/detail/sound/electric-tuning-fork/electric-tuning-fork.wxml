@@ -1,0 +1,44 @@
+<view class="electric-tuning-fork-detail">
+	<text class="detail-title">电动音叉产生的弦振动的测量</text>
+	<view class="input-list">
+		<block wx:for="{{inputList}}" wx:key="*this">
+			<view class="input-block">
+				<label class="input-lable" for="{{item.id}}">{{item.label}}</label>
+				<input class="input-value" id="{{item.id}}" type="digit" bindblur="changeData" placeholder="{{item.value}}" model:value="{{item.value}}"></input>
+				<text class="input-unit">{{item.unit}}</text>
+			</view>
+		</block>
+	</view>
+	<view class="table">
+		<scroll-view scroll-x style="width: 100%" class="table">
+    <text class="table-title">可编辑区域</text>
+			<block wx:for="{{table}}" wx:key="*this" wx:for-item="table" wx:for-index="row_index">
+				<view class="tr">
+					<view class="td" wx:for="{{table}}" wx:key="*this" wx:item="item" wx:for-index="col_index" data-row="{{row_index}}">
+            <input 
+            class="table-item" placeholder="{{item===0?'':item}}" type="digit" wx:if="{{row_index > 0 && col_index < 3}}" 
+            bindblur="changeData" id="table"
+            data-row="{{row_index}}"
+            data-col="{{col_index}}"
+            ></input>
+            <text wx:else>{{item===0?'':item}}</text>
+          </view>
+				</view>
+			</block>
+		</scroll-view>
+	</view>
+  <button class="calculate-btn" bindtap="calculate">点击计算</button>
+  <view class="result-detail">
+    <text>由数据可得</text>
+    <view class="from-data">
+      <text>f(平均值)={{aveFrequency}}Hz</text>
+      <text>△f={{frequencyDiff}}Hz</text>
+    </view>
+    <text>由曲线可得</text>
+    <view class="from-arc">
+      <text>k={{rate}}%</text>
+      <text>f={{}}Hz</text>
+    </view>
+  </view>
+  
+</view>

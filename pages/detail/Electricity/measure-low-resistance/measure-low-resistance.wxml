@@ -1,0 +1,67 @@
+<!--pages/detail/Electricity/measure-low-resistance/measure-low-resistance.wxml-->
+<view class="measure-low-resistance">
+  <text class="detail-title">低电阻的测量</text>
+  <view class="input-list">
+    <block wx:for="{{inputList}}" wx:key="*this">
+      <view class="input-block">
+        <label class="input-lable" for="{{item.id}}">{{item.label}}</label>
+        <input class="input-value" id="{{item.id}}" type="digit" bindblur="changeData" placeholder="请输入" model:value="{{item.value}}"></input>
+        <text class="input-unit">{{item.unit}}</text>
+      </view>
+    </block>
+  </view>
+  <text>\r</text>
+  <!-- 直径 -->
+  <view class="table" id="table-diameter">
+    <text>金属丝直径测量数据表</text>
+    <scroll-view scroll-x style="width: 100%">
+    <block wx:for="{{table_diameter}}" wx:key="*this" wx:for-item="row" wx:for-index="row_index">
+      <view class="tr">
+        <view class="td" wx:for="{{row}}" wx:key="*this" wx:item="item" wx:for-index="col_index" data-row="{{row_index}}">
+          <input
+          class="table-item" placeholder="{{item===0?'':item}}" type="digit"
+          model:value="{{item===0?'':item}}"
+          wx:if="{{row_index==1&&col_index>0}}" bindblur="changeData" id="table_diameter"
+          data-row="{{row_index}}"
+          data-col="{{col_index}}"
+          ></input>
+          <text wx:else>{{item===0?'':item}}</text>
+        </view>
+      </view>
+    </block>
+    </scroll-view>
+  </view>
+  <text>\r</text>
+  <view wx:if="{{diameter_aver!==0}}">  平均直径：{{diameter_aver}} mm.</view>
+
+  <!-- 长度 -->
+  <view class="table" id="table-length">
+    <text>金属丝长度测量数据表</text>
+    <scroll-view scroll-x style="width: 100%">
+    <block wx:for="{{table_length}}" wx:key="*this" wx:for-item="row" wx:for-index="row_index">
+      <view class="tr">
+        <view class="td" wx:for="{{row}}" wx:key="*this" wx:for-item="item" wx:for-index="col_index" data-row="{{row_index}}">
+          <input
+          class="table-item" placeholder="{{item===0?'':item}}" type="digit"
+          model:value="{{item===0?'':item}}"
+          wx:if="{{row_index>0&&row_index<4&&col_index>0}}" bindblur="changeData" id="table_length"
+          data-row="{{row_index}}"
+          data-col="{{col_index}}"
+          ></input>
+          <text wx:else>{{item===0?'':item}}</text>
+        </view>
+      </view>
+    </block>
+    </scroll-view>
+  </view>
+
+  <button class="calculate-btn" bindtap="calculate">点击计算</button>
+  
+  <view class="result-detail" hidden="{{!isResult}}">
+    <text>由数据可得\n</text>
+    <text>RN平均 = (RN正 + RN反)/2, 见上表.\n</text>
+    <text>Rx = (R3 ÷ R1)× RN平均, 见上表，注意单位.</text>
+    <text>ρ = (π × d^2 × Rx) ÷ L, 见上表，注意单位.</text>
+    <view wx:if="{{Num_data>1}}">平均密度：Σρ/{{Num_data}}={{rho_aver}} ×10^-9 Ω·M.</view>
+  </view>
+</view>

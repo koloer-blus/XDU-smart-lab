@@ -1,0 +1,57 @@
+<view class="experiment-home">
+
+	<!-- 电动音叉产生的弦振动的测量 -->
+	<view class="electric-tuning-fork experiment-itme" bindtap="toDetail"
+		data-url="/pages/detail/sound/electric-tuning-fork/electric-tuning-fork">
+		<text class="name">电动音叉产生的弦振动的测量</text>
+	</view>
+
+	<!-- 低电阻的测量 -->
+	<view class="measure-low-resistance experiment-itme" bindtap="toDetail"
+		data-url="/pages/detail/Electricity/measure-low-resistance/measure-low-resistance">
+		<text class="name" >低电阻的测量</text>
+	</view>
+
+	<!-- 音速的测量 -->
+	<view class="measure-sound-speed experiment-itme" bindtap="toDetail"
+		data-url="/pages/detail/sound/measure-sound-speed/measure-sound-speed">
+		<text class="name" >音速的测量</text>
+	</view>
+	<!-- 三线摆 -->
+	<view class="three-wire-pendulum experiment-itme" bindtap="toDetail"
+		data-url="/pages/detail/Mechanics/three-wire-pendulum/three-wire-pendulum">
+		<text class="name" >三线摆测量刚体的转动惯量</text>
+	</view>
+	<!-- 单线扭摆 -->
+	<view class="single-twist experiment-itme" bindtap="toDetail"
+		data-url="/pages/detail/Mechanics/single-twist/single-twist">
+		<text class="name" >单线扭摆</text>
+	</view>
+	<!-- 光的等厚干涉 -->
+	<view class="equal-thickness experiment-itme" bindtap="toDetail"
+		data-url="/pages/detail/light/equal-thickness/equal-thickness">
+		<text class="name" >光的等厚干涉</text>
+	</view>
+	<!--复摆测量重力加速度  -->
+	<view class="compound-pendulum experiment-itme" bindtap="toDetail"
+		data-url="/pages/detail/Mechanics/compoundPendulum/compoundPendulum">
+		<text class="name" >复摆测量重力加速度</text>
+	</view>
+	<!-- 分光计测三棱镜顶角 -->
+	<view class="measure-sound-speed experiment-itme" bindtap="toDetail"
+		data-url="/pages/detail/light/measure-angle-of-prism/measure-angle-of-prism">
+		<text class="name" >分光计测三棱镜顶角</text>
+	</view>
+
+	<!-- 迈克尔逊干涉仪测激光波长 -->
+	<view class="measure-length-of-laser experiment-itme" bindtap="toDetail"
+		data-url="/pages/detail/light/measure-length-of-laser/measure-length-of-laser">
+		<text class="name" >迈克尔逊干涉仪测激光波长</text>
+	</view>
+
+		<!-- 光栅特性研究 -->
+	<view class="grating-characteristics experiment-itme" bindtap="toDetail"
+		data-url="/pages/detail/light/grating-characteristics/grating-characteristics">
+		<text class="name" >光栅特性研究</text>
+	</view>
+</view>

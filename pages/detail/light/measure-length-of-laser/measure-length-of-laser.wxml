@@ -1,0 +1,48 @@
+<!--pages/detail/Light/measure-length-of-laser/measure-length-of-laser.wxml-->
+<view class="measure-length-of-laser">
+  <text class="detail-title">迈克尔逊干涉仪测激光波长</text>
+  <block wx:for="{{inputList}}" wx:key="*this">
+    <view class="input-block">
+      <label class="input-label" for="{{item.id}}">{{item.label}}</label>
+      <input class="input-value" id="{{item.id}}" type="digit" bindblur="changeData" placeholder="请输入" model:value="{{item.value}}"></input>
+      <text class="input-unit">{{item.unit}}</text>
+    </view>
+  </block>
+
+ <!-- 测量数据 -->
+  <text class="table-title">距离测量数据表</text>
+  <view class="table" id="table">
+    <block wx:for="{{table}}" wx:key="*this" wx:for-item="row" wx:for-index="row_index">
+      <view class="tr">
+        <view class="td" wx:for="{{row}}" wx:key="*this" wx:for-item="item" wx:for-index="col_index" data-row="{{row_index}}">
+          <input
+          class="table-item" placeholder="{{item===0?'':item}}" type="digit"
+          model:value="{{item===0?'':item}}"
+          wx:if="{{row_index>0&&col_index>0&&col_index<3}}" bindblur="changeData" id="table"
+          data-row="{{row_index}}"
+          data-col="{{col_index}}"
+          ></input>
+          <text wx:else>{{item===0?'':item}}</text>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <button class="calculate-btn" bindtap="calculate">点击计算</button>
+
+  <view class="result-detail" hidden="{{!isResult}}">
+    <view>λ平均值：{{lambda_aver}} 𝑚𝑚</view>
+    <view>绝对误差δ：{{uncertainty_absolute}} 𝑚𝑚</view>
+    <view>相对误差𝐸: {{uncertainty_relative}} %</view>
+    <view>𝑑的A类不确定度: {{d_A}} 𝑚𝑚</view>
+    <view>𝑑的B类不确定度: {{d_B}} 𝑚𝑚</view>
+    <view>𝑑的不确定度Δ𝑑: {{d_d}} 𝑚𝑚</view>
+    <view>λ的不确定度Δλ: {{d_lambda}} 𝑛𝑚</view>
+  </view>
+
+  <view class="weizhi">
+    <text>\n— · 为之工作室 · —
+    </text>
+  </view>
+
+</view>

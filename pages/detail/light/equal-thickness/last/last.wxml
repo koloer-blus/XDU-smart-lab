@@ -1,0 +1,19 @@
+<view class="electric-tuning-fork-detail">
+	<text class="detail-title">光的等厚干涉</text>
+	<view class="table">
+		<block wx:for="{{table}}" wx:key="*this" wx:for-item="table" wx:for-index="row_index">
+			<view class="tr">
+				<view class="td" wx:for="{{table}}" wx:key="*this" wx:item="item" wx:for-index="col_index" data-row="{{row_index}}">
+					<text>{{item}}</text>
+				</view>
+			</view>
+		</block>
+	</view>
+	<view class="result-block">
+		<view>Dm+5^2-Dm^2的平均值= <text>{{result.avrDm}}</text></view>
+		<view>Rm的平均值 = <text>{{result.avrR}}</text></view>
+		<view>△R(A类不确定度)=<text>{{result._Ra}}</text></view>
+		<view>B类不确定度= <text>{{result._Rb}}</text></view>
+	</view>
+	<button class="page-back" bindtap="toLastPage">返回输入</button>
+</view>

@@ -1,0 +1,30 @@
+<view class="three-wire-pendulum">
+	<text class="detail-title">单线扭摆</text>
+  <view class="table">
+		<scroll-view scroll-x style="width: 100%" class="table">
+			<block wx:for="{{table1}}" wx:key="*this" wx:for-item="table" wx:for-index="row_index">
+				<view class="tr">
+					<view class="td" wx:for="{{table}}" wx:key="*this" wx:item="item" wx:for-index="col_index" data-row="{{row_index}}">
+            <text>{{item===0?'':item}}</text>
+          </view>
+				</view>
+			</block>
+		</scroll-view>
+	</view>
+	<view class="table">
+			<block wx:for="{{table2}}" wx:key="*this" wx:for-item="table" wx:for-index="row_index">
+				<view class="tr">
+					<view class="td" wx:for="{{table}}" wx:key="*this" wx:item="item" wx:for-index="col_index" data-row="{{row_index}}">
+            <text>{{item===0?'':item}}</text>
+          </view>
+				</view>
+			</block>
+	</view>
+  <view class="result-box">
+    <view>圆台转动惯量J0=<text>{{res.J0}}kg·m^2</text></view>
+    <view>圆环转动惯量J0=<text>{{res.J1}}kg·m^2</text></view>
+    <view>J1理论值=<text>{{res._J1}}kg·m^2</text></view>
+    <view>E=<text>{{res.E}}</text></view>
+  </view>
+  <button bindtap="backUrl">返回输入</button>
+</view>

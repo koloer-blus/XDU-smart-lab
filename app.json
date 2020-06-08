@@ -1,0 +1,26 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/detail/sound/electric-tuning-fork/electric-tuning-fork",
+    "pages/detail/Electricity/measure-low-resistance/measure-low-resistance",
+    "pages/detail/sound/measure-sound-speed/measure-sound-speed",
+    "pages/detail/Mechanics/three-wire-pendulum/three-wire-pendulum",
+    "pages/detail/Mechanics/single-twist/single-twist",
+    "pages/detail/Mechanics/single-twist/result/result",
+    "pages/detail/light/equal-thickness/equal-thickness",
+    "pages/detail/light/equal-thickness/last/last",
+    "pages/detail/Mechanics/compoundPendulum/compoundPendulum",
+    "pages/detail/OtherFuction/A_Uncertainty/A_uncertainty",
+    "pages/detail/light/measure-angle-of-prism/measure-angle-of-prism",
+    "pages/detail/light/measure-length-of-laser/measure-length-of-laser",
+    "pages/detail/light/grating-characteristics/grating-characteristics"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

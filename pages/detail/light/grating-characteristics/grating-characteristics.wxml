@@ -1,0 +1,51 @@
+<!--pages/detail/Light/grating-characteristics/grating-characteristics.wxml-->
+<view class="grating-characteristics">
+  <text class="detail-title">光栅特性研究</text>
+  <block wx:for="{{inputList}}" wx:key="*this">
+    <view class="input-block">
+      <label class="input-label" for="{{item.id}}">{{item.label}}</label>
+      <input class="input-value" id="{{item.id}}" type="digit" bindblur="changeData" placeholder="请输入" model:value="{{item.value}}"></input>
+      <text class="input-unit">{{item.unit}}</text>
+    </view>
+  </block>
+
+  <text class="note">约定角度表示格式:23°02' ⇔ 23.02\n请勿输成23.2\n</text>
+  <!-- 测量数据 -->
+  <text class="table-title">测量数据表</text>
+  <view class="table" id="table">
+    <block wx:for="{{table}}" wx:key="*this" wx:for-item="row" wx:for-index="row_index">
+      <view class="tr">
+        <view class="td" wx:for="{{row}}" wx:key="*this" wx:for-item="item" wx:for-index="col_index" data-row="{{row_index}}">
+          <input
+          class="table-item" placeholder="{{item===0?'':item}}" type="digit"
+          model:value="{{item===0?'':item}}"
+          wx:if="{{row_index>0&&col_index>0&&col_index<5}}" bindblur="changeData" id="table"
+          data-row="{{row_index}}"
+          data-col="{{col_index}}"
+          ></input>
+          <text wx:else>{{item===0?'':item}}</text>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <button class="calculate-btn" bindtap="calculate">点击计算</button>
+  <view class="note" hidden="{{!isOver360}}">
+    <view>两次数据疑似越过360°刻度线,请确认.</view>
+  </view>
+  <view class="result-detail" hidden="{{!isResult}}">
+    <view>绿光平均𝛗：{{phi_aver}}</view>
+    <view>绿光𝑑1：{{d1}} x10⁻⁶ 𝑚</view>
+    <view>绿光𝑑2：{{d2}} x10⁻⁶ 𝑚</view>
+    <view>绿光𝑑3：{{d3}} x10⁻⁶ 𝑚</view>
+    <view>绿光平均𝑑_aver：{{d_aver}} x10⁻⁶ 𝑚</view>
+    <view>绿光误差Δ𝑑：{{d_delta}} x10⁻⁹ 𝑚</view>
+    <view>实验结果：{{d_aver}} x10⁻⁶ ±{{d_delta}}x10⁻⁹ 𝑚</view>
+    <view>d的相对误差：{{E_relative}}%</view>
+    <view>黄光:</view>
+    <view>黄光1波长 λ1：{{lambda_y_1}} 𝑛𝑚</view>
+    <view>黄光2波长 λ2：{{lambda_y_2}} 𝑛𝑚</view>
+  </view>
+
+
+</view>

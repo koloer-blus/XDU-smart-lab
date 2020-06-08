@@ -1,0 +1,35 @@
+<view class="electric-tuning-fork-detail">
+	<text class="detail-title">复摆测量重力加速度</text>
+  <view class="input-list">
+		<block wx:for="{{inputList}}" wx:key="*this">
+			<view class="input-block">
+				<label class="input-lable" for="{{item.id}}">{{item.label}}</label>
+				<input class="input-value" id="{{item.id}}" type="digit" bindblur="changeData" placeholder="{{item.value}}" model:value="{{item.value}}"></input>
+				<text class="input-unit">{{item.unit}}</text>
+			</view>
+		</block>
+	</view>
+	<view class="table">
+		<scroll-view scroll-x style="width: 100%" class="table">
+			<block wx:for="{{table}}" wx:key="*this" wx:for-item="table" wx:for-index="row_index">
+				<view class="tr">
+					<view class="td" wx:for="{{table}}" wx:key="*this" wx:item="item" wx:for-index="col_index" data-row="{{row_index}}">
+            <input 
+            class="table-item" placeholder="{{item===0?'':item}}" type="digit" wx:if="{{col_index >0}}" 
+            bindblur="changeData" id="table"
+            data-row="{{row_index}}"
+            data-col="{{col_index}}"
+            ></input>
+            <text wx:else>{{item===0?'':item}}</text>
+          </view>
+				</view>
+			</block>
+		</scroll-view>
+	</view>
+  <view class="result-detail">
+    <view>g测=<text>{{result._g}}</text></view>
+    <view>△g=<text>{{result.G}}</text></view>
+    <view>△E=<text>{{result.E}}</text></view>
+  </view>
+  <button class="calculate-btn" bindtap="calculate">点击计算</button>
+</view>
