@@ -11,7 +11,7 @@
  */
 function electricTuningFork({
   weight = 0,
-  gravity = 9.8,
+  gravity = 980, //换算成cm
   arcSurface = 0,
   antinode = 0,
   chordLength = 0
@@ -20,13 +20,14 @@ function electricTuningFork({
     return false
   }
   let waveLength = 2 * chordLength / antinode;
-  let frequency = (0.5 * antinode / chordLength) * Math.sqrt((weight * gravity / arcSurface));
-  let waveSpeed = waveLength * frequency;
+  let frequency = (1 / waveLength) * (Math.sqrt((weight * gravity / arcSurface)));
+  console.log((0.5 * antinode / chordLength))
+  let waveSpeed = waveLength * frequency / 100;
   return {
-    weightSqrt: Math.sqrt(weight).toFixed(6),
-    waveLength: waveLength.toFixed(6),
-    waveSpeed: waveSpeed.toFixed(6),
-    frequency: frequency.toFixed(6)
+    weightSqrt: Math.sqrt(weight).toFixed(1),
+    waveLength: waveLength.toFixed(1),
+    waveSpeed: waveSpeed.toFixed(1),
+    frequency: frequency.toFixed(2)
   }
 }
 /**
@@ -35,16 +36,17 @@ function electricTuningFork({
  * @param {Number} frequency 平均频率
  */
 function electricTuningForkSum({
-  inherentFrequency = 99.58,
+  inherentFrequency = 99.6,
   frequency = 0
 }) {
   if (inherentFrequency === 0 || frequency === 0) {
     return false
   }
+  console.log(arguments)
   let frequencyDiff = Math.abs(inherentFrequency - frequency);
   let rate = frequencyDiff / inherentFrequency * 100;
   return {
-    frequencyDiff: frequencyDiff.toFixed(6),
+    frequencyDiff: frequencyDiff.toFixed(2),
     rate: rate.toFixed(2)
   }
 }
@@ -59,12 +61,12 @@ function threeWirePendulum(arr) {
     r = Math.sqrt(3) * arr[2] / 3,
     R = Math.sqrt(3) * arr[3] / 3,
     H = arr[5],
-    T0 = arr[4],
+    T0 = arr[4] / 50,
     d = arr[6],
     D = arr[7],
-    g = 9.8,
+    g = 980,
     pie = 3.1416,
-    T = arr[8],
+    T = arr[8] / 50,
     table = arr[9],
     _arr = [];
   let res = {
@@ -77,19 +79,21 @@ function threeWirePendulum(arr) {
     let resNum = 0
     for (let j = 2; j < table[i].length - 1; ++j) {
       let item = Number(table[i][j])
+      item = Math.pow(item - Number(table[i][table[i].length - 1]), 2)
       if (i < 3) {
-        item = Math.sqrt(3) * item / 3
+        item = item / 3
       }
-      resNum += Math.pow(item - Number(table[i][table[i].length - 1]), 2)
+      resNum += item
     }
-    _arr.push(resNum / 20)
+    _arr.push(Number((resNum / 20).toFixed(6)))
   }
   console.log(_arr)
-  res.plateI0 = m0 * g * R * r * T0 * T0 / (4 * pie * pie * H).toFixed(4)
-  res.ringI = g * R * r * ((m0 + m) * T * T - m0 * T0 * T0) / (4 * pie * pie * H).toFixed(4)
-  res._ringI = Math.abs(res.ringI - 0.125 * m * (d + D) * (d + D)).toFixed(4)
-  res._plateI0 = Math.sqrt(1/(m*m) + (_arr[0] + 0.0001/3) / (r * r) + (_arr[1] + 0.0001 / 3) / (R * R) + (_arr[3] + 0.25/3) / (H*H) + _arr[6]/(T*T)) * res.plateI0
-  console.log(res)
+  res.plateI0 = Number((m0 * g * R * r * T0 * T0 / (4 * pie * pie * H)).toFixed(2))
+  // res.ringI = (g * R * r * ((m0 + m) * T * T - m0 * T0 * T0) / (4 * pie * pie * H)).toFixed(2)
+  res.ringI = Number((g * R  * r * (m * T * T) / (4 * pie * pie * H)).toFixed(2))
+  res._ringI = Math.abs(res.ringI - 0.125 * m* (d*d + D*D)).toFixed(2)
+  res._plateI0 = (Math.sqrt(100 / (m * m) + (_arr[0] + 0.01 / 3) / (r * r) + (_arr[1] + 0.01 / 3) / (R * R) + (_arr[3] + 25 / 3) / (H * H) + 2 * _arr[6] / (T * T)) * res.plateI0).toFixed(2)
+  console.log(res.ringI,0.125 * (m * (d*d + D*D)))
   return res
 }
 /**
@@ -97,27 +101,35 @@ function threeWirePendulum(arr) {
  * @param {*} arr 
  */
 function singlePendulum(arr) {
-  let T0 = arr[0]  /20,T = arr[1] /20,pie = 3.1416, l = arr[4],d=arr[5], _G = 7.9E10, m =475, R1 = arr[6], R2 = arr[7]
+  let T0 = arr[0] / 20,
+    T = arr[1] / 20,
+    pie = 3.1416,
+    l = arr[4],
+    d = arr[5],
+    _G = 7.9E10,
+    m = 475,
+    R1 = arr[6],
+    R2 = arr[7]
   let res = {
     var0: arr[0],
     var: arr[1],
     row: arr[2],
     col: arr[3],
-    J1 : 0,
+    J1: 0,
     J0: 0,
     _J1: 0,
-    F:0,
+    F: 0,
     E: 0,
     T0: T0,
     T: T,
-    J : 0
+    J: 0
   }
-  res._J1 = 0.5 * m *(R1*R1 + R2* R2)
-  res.F = Number(4 * pie * pie * res._J1 /(T *T - T0*T0)).toFixed(5)
-  res.J0 = Number(res.F * T0 * T0 /(4 * pie * pie)).toFixed(5)
-  res.J  = Number(res.F * T* T / (4 * pie*pie)).toFixed(5)
-  res.J1 = Number(res.J - res.J0).toFixed(5)
-  res.E = Number(Math.abs(res.J1 -res._J1) / res._J1).toFixed(5)
+  res._J1 = 0.5 * m * (R1 * R1 + R2 * R2)
+  res.F = Number(4 * pie * pie * res._J1 / (T * T - T0 * T0)).toFixed(2)
+  res.J0 = Number(res.F * T0 * T0 / (4 * pie * pie)).toFixed(2)
+  res.J = Number(res.F * T * T / (4 * pie * pie)).toFixed(2)
+  res.J1 = Number(res.J - res.J0).toFixed(2)
+  res.E = Number(Math.abs(res.J1 - res._J1) / res._J1).toFixed(2)
   return res
 }
 module.exports = {

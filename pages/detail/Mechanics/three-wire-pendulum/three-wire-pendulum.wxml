@@ -33,7 +33,7 @@
       <text>Io={{result.plateI0}}g·cm^2</text>
       <text>△I={{result._plateI0}}g·cm^2</text>
     </view>
-    <text>上圆盘</text>
+    <text>圆环</text>
     <view class="from-arc">
       <text>Io={{result.ringI}}g·cm^2</text>
       <text>△I={{result._ringI}}g·cm^2</text>

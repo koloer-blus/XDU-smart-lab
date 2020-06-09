@@ -29,7 +29,7 @@
   <view class="result-detail">
     <view>g测=<text>{{result._g}}</text></view>
     <view>△g=<text>{{result.G}}</text></view>
-    <view>△E=<text>{{result.E}}</text></view>
+    <view>△E=<text>{{result.E * 100}}%</text></view>
   </view>
   <button class="calculate-btn" bindtap="calculate">点击计算</button>
 </view>

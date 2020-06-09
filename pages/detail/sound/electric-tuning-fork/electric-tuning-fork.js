@@ -11,7 +11,7 @@ Page({
       data: {
         inputList: [{
             label: '弧线面密度p=',
-            value: '0.0396',
+            value: '0.00356',
             unit: 'g/cm',
             id: 'arc-area-density'
           },
@@ -24,11 +24,11 @@ Page({
         ],
         table: [
           ['砝码质量m(g)', '波腹数', '弦线长L/cm', '√m', '波长', '波速', '频率'],
-          [25, 0, 0, 0, 0, 0, 0],
-          [75, 0, 0, 0, 0, 0, 0],
-          [125, 0, 0, 0, 0, 0, 0],
-          [150, 0, 0, 0, 0, 0, 0],
-          [175, 0, 0, 0, 0, 0, 0],
+          [25, 6, 78.3, 0, 0, 0, 0],
+          [75, 5, 114.8, 0, 0, 0, 0],
+          [125, 4, 116.8, 0, 0, 0, 0],
+          [150, 3, 97, 0, 0, 0, 0],
+          [175, 2, 70.7, 0, 0, 0, 0],
         ]
       },
       changeData (e) {
@@ -58,7 +58,7 @@ Page({
         for (let i = 1; i < table.length; ++i) {
           let arg = {
             weight: Number(table[i][0]),
-            gravity: Number(this.data.inputList[1].value),
+            gravity: Number(this.data.inputList[1].value) * 100, //换算成cm/s^2
             arcSurface: Number(this.data.inputList[0].value),
             antinode: Number(table[i][1]),
             chordLength: Number(table[i][2])
@@ -84,7 +84,7 @@ Page({
             aveFrequency: (aveFrequency / frequency.length).toFixed(3)
           })
           console.log(Number(this.data.aveFrequency))
-          let res = electricTuningForkSum({inherentFrequency : 99.58,frequency : Number(this.data.aveFrequency) })
+          let res = electricTuningForkSum({inherentFrequency : 99.6,frequency : Number(this.data.aveFrequency) })
           if (res) {
             console.log(res)
             this.setData({
@@ -98,9 +98,6 @@ Page({
          * 生命周期函数--监听页面加载
          */
         onLoad: function (options) {
-          setInterval(() => {
-            calculate()
-          }, 180000)
           },
 
           /**

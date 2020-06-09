@@ -37,7 +37,7 @@
     <text>由曲线可得</text>
     <view class="from-arc">
       <text>k={{rate}}%</text>
-      <text>f={{}}Hz</text>
+      <text>f={{aveFrequency + '±' + frequencyDiff }}Hz</text>
     </view>
   </view>
   
