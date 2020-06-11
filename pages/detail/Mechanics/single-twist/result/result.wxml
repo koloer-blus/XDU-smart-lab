@@ -21,9 +21,9 @@
 			</block>
 	</view>
   <view class="result-detail">
-    <view>圆台转动惯量J0={{res.J0}}kg·m^2</view>
-    <view>圆环转动惯量J0={{res.J1}}kg·m^2</view>
-    <view>J1理论值={{res._J1}}kg·m^2</view>
+    <view>圆台转动惯量J0={{res.J0}}𝑘𝑔·𝑚²</view>
+    <view>圆环转动惯量J0={{res.J1}}𝑘𝑔·𝑚²</view>
+    <view>J1理论值={{res._J1}}𝑘𝑔·𝑚²</view>
     <view>E={{res.E}}</view>
   </view>
   <button bindtap="backUrl" class="page-jump-btn">返回输入</button>

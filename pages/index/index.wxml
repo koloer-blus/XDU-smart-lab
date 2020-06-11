@@ -54,7 +54,7 @@
 		data-url="/pages/detail/light/grating-characteristics/grating-characteristics">
 		<text class="name" >光栅特性研究</text>
 	</view>
-
+<feed-back-btn info="主页面" />
 </view>
 
 <view class="footer">

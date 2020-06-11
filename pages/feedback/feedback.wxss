@@ -34,7 +34,6 @@
   margin-top: 26rpx;
   border: 2rpx solid #76a78a;
   border-radius: 24rpx;
-  box-shadow: 4px 6px 4px #ccc;
   padding: 8rpx 16rpx;
 }
 .situtaion text {
@@ -90,7 +89,6 @@
   border-radius: 10rpx;
   height: 52rpx;
   width: 380rpx;
-  box-shadow: 4rpx 4rpx 6rpx #ccc;
   padding: 10rpx;
   box-sizing: border-box;
 }

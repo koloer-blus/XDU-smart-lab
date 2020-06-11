@@ -60,7 +60,7 @@
     <text class="detail-info">RN平均 = (RN正 + RN反)/2, 见上表.</text>
     <text class="detail-info">Rx = (R3 ÷ R1)× RN平均, 见上表，注意单位.</text>
     <text class="detail-info">ρ = (π × d^2 × Rx) ÷ L, 见上表，注意单位.</text>
-    <view wx:if="{{Num_data>1}}" class="detail-final">平均密度：Σρ/{{Num_data}}={{rho_aver}} ×10^-9 Ω·M.</view>
+    <view wx:if="{{Num_data>1}}" class="detail-final">平均密度：Σ𝛒/{{Num_data}}={{rho_aver}} ×10⁻⁹ 𝛀·𝑀.</view>
   </view>
   <feed-back-btn info="低电阻的测量" />
 </view>

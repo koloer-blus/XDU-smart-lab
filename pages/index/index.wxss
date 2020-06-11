@@ -15,6 +15,11 @@
   font-weight: 600;
   white-space: 4rpx;
 }
+feed-back-btn {
+  position: fixed;
+  bottom: 100rpx;
+  right: 40rpx;
+}
 .experiment-itme:active {
   opacity: 0.5;
   background: #7a7a7a;

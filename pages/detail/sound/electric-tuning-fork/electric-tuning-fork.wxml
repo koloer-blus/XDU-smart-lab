@@ -31,13 +31,13 @@
   <view class="result-detail">
     <text>由数据可得</text>
     <view class="from-data">
-      <text>f(平均值)={{aveFrequency}}Hz</text>
-      <text>△f={{frequencyDiff}}Hz</text>
+      <text>𝑓_平均={{aveFrequency}}𝐻𝑧</text>
+      <text>Δ𝑓={{frequencyDiff}}𝐻𝑧</text>
     </view>
     <text>由曲线可得</text>
     <view class="from-arc">
-      <text>k={{rate}}%</text>
-      <text>f={{aveFrequency + '±' + frequencyDiff }}Hz</text>
+      <text>𝑘={{rate}}%</text>
+      <text>𝑓={{aveFrequency + '±' + frequencyDiff }}𝐻𝑧</text>
     </view>
   </view>
   <feed-back-btn info="电动音叉产生的弦振动的测量" />

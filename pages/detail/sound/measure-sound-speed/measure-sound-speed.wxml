@@ -34,11 +34,11 @@
   <button class="calculate-btn" bindtap="calculate">点击计算</button>
 
   <view class="result-detail" hidden="{{!isResult}}">
-    <view>平均波长：{{lambda_aver}}mm.</view>
-    <view>实验声速：{{speed_result}}m/s.</view>
-    <view>声速误差：△v/v={{speed_wucha}}.</view>
-    <view>声速不确定度：△v={{delta_speed}}m/s.</view>
-    <view>实验结果：{{speed_result}}±{{delta_speed}}m/s.</view>
+    <view>平均波长：{{lambda_aver}}𝑚𝑚.</view>
+    <view>实验声速：{{speed_result}}𝑚/𝑠.</view>
+    <view>声速误差：Δ𝑣/𝑣={{speed_wucha}}.</view>
+    <view>声速不确定度：Δ𝑣={{delta_speed}}𝑚/𝑠.</view>
+    <view>实验结果：{{speed_result}}±{{delta_speed}}𝑚/𝑠.</view>
   </view>
 
 <feed-back-btn info="声速的测量" />

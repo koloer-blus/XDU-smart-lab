@@ -28,15 +28,15 @@
 	</view>
   <button class="calculate-btn" bindtap="calculate">点击计算</button>
   <view class="result-detail">
-    <text>下圆盘</text>
+     <text>下圆盘</text>
     <view class="from-data">
-      <text>Io={{result.plateI0}}g·cm^2</text>
-      <text>△I={{result._plateI0}}g·cm^2</text>
+      <text>𝐼₀={{result.plateI0}}𝑔·𝑐𝑚²</text>
+      <text>Δ𝐼={{result._plateI0}}𝑔·𝑐𝑚²</text>
     </view>
     <text>圆环</text>
     <view class="from-arc">
-      <text>Io={{result.ringI}}g·cm^2</text>
-      <text>△I={{result._ringI}}g·cm^2</text>
+      <text>𝐼₀={{result.ringI}}𝑔·𝑐𝑚²</text>
+      <text>Δ𝐼={{result._ringI}}𝑔·𝑐𝑚²</text>
     </view>
   </view>
   <feed-back-btn info="三线摆测量刚体的转动惯量" />

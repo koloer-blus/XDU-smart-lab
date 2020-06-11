@@ -6,39 +6,39 @@ Page({
    */
   data: {
     inputList:[{
-        label:'温度t= ',
+        label:'温度𝑡= ',
         value:'21',
         unit:'℃',
         id:'centigrade_t'
       },
       {
-        label:'频率f= ',
+        label:'频率𝑓= ',
         value:'35.211',
-        unit:'kHz',
+        unit:'𝑘𝐻𝑧',
         id:'frequency_f'
       },
       {
-        label:'温度不确定度 △t= ',
+        label:'温度不确定度 Δ𝑡= ',
         value:'0.02',
         unit:'℃',
         id:'delta_t'
       },
       {
-        label:'频率不确定度 △f= ',
+        label:'频率不确定度 Δ𝑓= ',
         value:'0.185',
-        unit:'kHz',
+        unit:'𝑘𝐻𝑧',
         id:'delta_f'
       },
       {
-        label:'波长不确定度 △λ= ',
+        label:'波长不确定度 Δλ= ',
         value:'0.017',
-        unit:'mm',
+        unit:'𝑚𝑚',
         id:'delta_lambda'
       },
       {
         label:'标准音速v_0= ',
         value:'331.45',
-        unit:'m/s',
+        unit:'𝑚/𝑠',
         id:'speed_v0'
       }
     ],
@@ -46,7 +46,7 @@ Page({
     speed_lilun:331.45,
     //table
     table:[
-      ['i','Li/mm','λi/mm'],
+      ['ᵢ','𝐿ᵢ/𝑚𝑚','λᵢ/𝑚𝑚'],
       [1,151.50,'#'],
       [2,156.32,'#'],
       [3,161.20,'#'],

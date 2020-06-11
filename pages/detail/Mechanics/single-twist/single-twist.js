@@ -5,28 +5,28 @@ Page({
    */
   data: {
     inputList1: [{
-        label: '长度：l=',
+        label: '长度：𝑙=',
         value: 9.8,
-        unit: 'mm',
+        unit: '𝑚𝑚',
         id: 'length'
       },
       {
-        label: '直径：d=',
+        label: '直径：𝑑=',
         value: 9.8,
-        unit: 'mm',
+        unit: '𝑚𝑚',
         id: 'radious'
       }
     ],
     inputList2: [{
-      label: 'R1=',
+      label: '𝑅₁=',
       value: 10,
-      unit: 'mm',
+      unit: '𝑚𝑚',
       id: 'R1'
     },
     {
-      label: 'R2=',
+      label: '𝑅₂=',
       value: 10,
-      unit: 'mm',
+      unit: '𝑚𝑚',
       id: 'R2'
     }
   ],
