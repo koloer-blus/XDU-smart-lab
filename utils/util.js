@@ -21,7 +21,6 @@ function electricTuningFork({
   }
   let waveLength = 2 * chordLength / antinode;
   let frequency = (1 / waveLength) * (Math.sqrt((weight * gravity / arcSurface)));
-  console.log((0.5 * antinode / chordLength))
   let waveSpeed = waveLength * frequency / 100;
   return {
     weightSqrt: Math.sqrt(weight).toFixed(1),

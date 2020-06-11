@@ -1,18 +1,50 @@
 /* pages/index/index.wxss */
 .experiment-itme {
-  width: 96%;
+  width: 94%;
   height: 220rpx;
   border: 1px solid #ccc;
-  background-color: aqua;
   margin: 0 auto;
-  font-size: 34rpx;
+  margin-top: 14rpx;
+  font-size: 36rpx;
   text-align: center;
   line-height: 220rpx;
   font-weight: 500;
+  border-radius: 24rpx;
+  box-shadow: 6rpx 4rpx 8rpx #ccc;
+  color: #fff;
+  font-weight: 600;
+  white-space: 4rpx;
 }
-.measure-sound-speed{
-  background-color: aquamarine;
+.experiment-itme:active {
+  opacity: 0.5;
+  background: #7a7a7a;
+  color: #fff;
 }
-.measure-low-resistance{
-  background-color:blanchedalmond;
+.experiment-itme:nth-child(4n + 1) {
+  background-color: #00b8c4;
+}
+.experiment-itme:nth-child(4n + 0) {
+  background-color: #0688c4;
+}
+.experiment-itme:nth-child(4n + 2) {
+  background-color: #6ca6fa;
+}
+.experiment-itme:nth-child(4n + 3) {
+  background-color: #3bcad2;
+}
+.experiment-itme:last-child {
+  margin-bottom: 60rpx;
+}
+.footer {
+  width: 92%;
+  text-align: center;
+  margin: 0 auto;
+  height: 30rpx;
+  line-height: 30rpx;
+  margin-bottom: 30rpx;
+}
+.footer text {
+  font-size: 28rpx;
+  font-weight: 400;
+  color: #aaa;
 }

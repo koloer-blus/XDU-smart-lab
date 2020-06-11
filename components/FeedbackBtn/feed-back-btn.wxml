@@ -1,0 +1,3 @@
+<view class="feed-back-btn" bindtap="toFeedPage">
+  <icon class="iconfont icon-wenti"></icon>
+</view>

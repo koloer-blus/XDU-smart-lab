@@ -1,79 +1,41 @@
-/* pages/detail/Light/measure-angle-of-prism/measure-angle-of-prism.wxss */
-.detail-title {
-  display: block;
-  box-sizing: border-box;
-  width: 100%;
-  text-align: center;
-  height: 44rpx;
-  font-size: 40rpx;
-  margin: 0 auto;
-  margin-bottom: 60rpx;
-}
+
+@import '../../../../style/index.wxss';
 .input-block {
-  width: 600rpx;
-  box-sizing: border-box;
-  margin: 0 auto;
-  position: relative;
-  margin-top: 16rpx;
-}
-.input-lable,
-.input-unit,
-.input-value{
-  font-size: 26rpx;
-  height: 60rpx;
-  line-height: 60rpx;
-  
-}
-.input-lable{
-  float: left;
+  height: 64rpx;
+  padding-top: 0;
 }
 .input-value {
-  text-align: center;
   color: #7c7c7e;
-  border: 1px solid rgb(211, 208, 208);
   width: 150rpx;
-  height: 50rpx;
+  height: 60rpx;
   line-height: 60rpx;
   position: absolute;
-  right: 120rpx;
-  top: 0;
+  right: 180rpx;
+  top: -10rpx;
 }
 
 .input-unit {
   position: absolute;
-  top: 0;
-  left: 500rpx;
+  top: -10rpx;
+  left: 430rpx;
 }
 .table-title {
   width: 750rpx;
-  height: 80rpx;
-  line-height: 80rpx;
   font-size: 50rpx;
   display: block; 
   text-align: center;
-}
-.table {
-  font-size: 26rpx;
-  margin-top: 30rpx;
 }
 
 .tr {
   display: flex;
   width: 200rpx;
   align-items: center;
-  border: 0rpx solid #ccc;
 }
 
 .td {
-  box-sizing: border-box;
   width: 130rpx;
   height: 100rpx;
-  justify-content: center;
-  text-align: center;
-  word-wrap: break-word;
-  flex-shrink: 0;
-  line-height: 60rpx;
-  border: 2rpx solid #ccc;
+  line-height: 100rpx;
 }
 .td:first-child {
   width: 100rpx;
@@ -84,17 +46,20 @@
 .result-detail text{
   display: block;
 }
-.calculate-btn {
+
+
+.result-detail {
+  width: 92%;
+  margin: 18rpx auto;
+  box-sizing: border-box;
+  font-size: 32rpx;
   display: block;
-  margin-top: 60rpx;
-  background-color: #379be9 ;
-  color: white;
-  font-weight: normal;
+  padding: 10rpx;
+  margin-bottom: 30rpx;
+  border:2rpx solid #aaa ;
+  border-radius: 24rpx;
+  box-shadow: 4rpx 4rpx 2rpx #ccc;
 }
-.note{
-  width: 750rpx;
-  display: block;
-  text-align: center;
-  font-size: 40rpx;
-  color: #ff0f0f;
+.result-detail view {
+  font-size: 28rpx;
 }

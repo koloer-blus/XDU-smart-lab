@@ -1,0 +1,31 @@
+<view class="feed-back-page">
+  <text class="title">建议反馈</text>
+  <view class="trouble">
+    <text>问题页面：{{info}}</text>
+  </view>
+  <view class="situtaion">
+    <text>问题场景</text>
+    <radio-group class="group" bindchange="radioChange">
+        <label class="label weui-cell weui-check__label" wx:for="{{situation}}" wx:key="*this">
+          <radio id="{{'radio-item-' +item.errType}}" value="{{item.errType}}"></radio>
+          <label class="label-text" for="{{'radio-item-' +item.errType}}">{{item.detail}}</label>
+        </label>
+        <view class="clear-bfc"></view>
+      </radio-group>
+      <view class="clear-bfc"></view>
+  </view>
+  <view class="form">
+    <textarea  class="detail" 
+    placeholder="{{suggestion.placeholeder}}" 
+    model:value="{{suggestion.value}}" 
+    show-confirm-bar
+    adjust-position
+    maxlength="-1"
+    auto-height ></textarea>
+    <view class="connection">
+      <label class="connection-label" for="connection-input">QQ号(选填)</label>
+      <input class="connection-input" id="connection-input" model:value="{{connection}}"></input>
+    </view>
+  </view>
+  <button class="calculate-btn" bindtap="calculate">提交</button>
+</view>

@@ -1,0 +1,15 @@
+@import '../../app.wxss';
+.feed-back-btn {
+  width: 80rpx;
+  height: 80rpx;
+  border: 4rpx solid #7a7a7a;
+  border-radius: 40rpx;
+  display: block;
+  box-sizing: border-box;
+  box-shadow: 8rpx 6rpx 6rpx #ccc;
+  text-align: center;
+  line-height: 80rpx;
+  z-index: 99;
+  background-color: #fff;
+  opacity: 0.8;
+}

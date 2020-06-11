@@ -1,4 +1,5 @@
 /* pages/detail/Mechanics/single-twist/single-twist.wxss */
+@import '../../../../../style/index.wxss';
 .detail-title {
   display: block;
   box-sizing: border-box;
@@ -60,27 +61,18 @@
   align-items: center;
   
 }
-.td {
+.result-detail {
+  width: 92%;
+  margin: 18rpx auto;
   box-sizing: border-box;
-  width: 154rpx;
-  height: 60rpx;
-  justify-content: center;
-  text-align: center;
-  word-wrap: break-word;
-  flex-shrink: 0;
-  line-height: 60rpx;
-  border: 2rpx solid #ccc;
-}
-.td:first-child {
-  width: 180rpx;
-}
-.result-detail text{
+  font-size: 32rpx;
   display: block;
+  padding: 10rpx;
+  margin-bottom: 30rpx;
+  border:2rpx solid #aaa ;
+  border-radius: 24rpx;
+  box-shadow: 4rpx 4rpx 2rpx #ccc;
 }
-.calculate-btn {
-  display: block;
-  margin-top: 60rpx;
-  background-color: #379be9 ;
-  color: white;
-  font-weight: normal;
+.result-detail view {
+  font-size: 28rpx;
 }

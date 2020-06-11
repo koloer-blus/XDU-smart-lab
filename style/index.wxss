@@ -1,0 +1,138 @@
+/* pages/detail/Electricity/measure-low-resistance/measure-low-resistance.wxss */
+.detail-title {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  text-align: center;
+  height: 44rpx;
+  font-size: 40rpx;
+  margin: 0 auto;
+  margin-bottom: 60rpx;
+}
+.input-block {
+  width: 600rpx;
+  box-sizing: border-box;
+  margin: 0 auto;
+  position: relative;
+  margin-top: 16rpx;
+}
+.input-lable,
+.input-unit,
+.input-value{
+  font-size: 26rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+.input-value {
+  box-sizing: border-box;
+  text-align: center;
+  border: 1px solid #aaa;
+  border-radius: 10rpx;
+  width: 160rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  margin-left: 8rpx;
+}
+.input-value:hover {
+  border: 4rpx solid #00B8C4;
+}
+.input-lable {
+  float: left;
+  margin-right: 8rpx;
+}
+.input-unit {
+  position: absolute;
+  top: 0;
+  left: 228rpx;
+  font-style: italic;
+}
+.table-title {
+  width: 490rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  background-color: #ccc;
+  display: block;
+  border: 2rpx solid #ccc;
+  text-align:center;
+}
+.table {
+  font-size: 26rpx;
+  margin-top: 30rpx;
+}
+
+.tr {
+  display: flex;
+  width: 1104rpx;
+  align-items: center;
+}
+.table-item {
+  width: 100%;
+  height: 100%;
+
+}
+.table-item:checked {
+  border: 2rpx solid #F56E3F;
+}
+.td {
+  box-sizing: border-box;
+  width: 154rpx;
+  height: 60rpx;
+  justify-content: center;
+  text-align: center;
+  word-wrap: break-word;
+  flex-shrink: 0;
+  line-height: 60rpx;
+  border: 2rpx solid #ccc;
+}
+.td:first-child {
+  width: 180rpx;
+}
+.result-detail text{
+  display: block;
+}
+.td:active {
+  background-color: #FEF78C;
+}
+.calculate-btn {
+  display: block;
+  margin-top: 60rpx;
+  background-color: #379be9 ;
+  color: white;
+  font-weight: normal;
+}
+.table-name {
+  display: block;
+  margin-left: 20rpx;
+  font-size: 28rpx;
+  margin-bottom: 16rpx;
+}
+.page-jump-btn {
+  display: block;
+  margin-top: 30rpx;
+  background-color: #F56E3F ;
+  color: white;
+  font-weight: normal;
+}
+
+input:focus {
+  border: 2rpx solid #F56E3F;
+}
+input::placeholder {
+  color: #ccc;
+}
+.note{
+  width: 750rpx;
+  display: block;
+  text-align: center;
+  font-size: 32rpx;
+  color: #ff0f0f;
+  display: block;
+  border: 1rpx solid #ccc;
+  margin-top: 26rpx;
+}
+feed-back-btn {
+  position: fixed;
+  bottom: 100rpx;
+  right: 40rpx;
+}

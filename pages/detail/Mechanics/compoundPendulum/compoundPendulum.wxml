@@ -4,7 +4,7 @@
 		<block wx:for="{{inputList}}" wx:key="*this">
 			<view class="input-block">
 				<label class="input-lable" for="{{item.id}}">{{item.label}}</label>
-				<input class="input-value" id="{{item.id}}" type="digit" bindblur="changeData" placeholder="{{item.value}}" model:value="{{item.value}}"></input>
+				<input class="input-value" id="{{item.id}}" type="digit" bindblur="changeData" placeholder="{{item.value}}"></input>
 				<text class="input-unit">{{item.unit}}</text>
 			</view>
 		</block>
@@ -27,9 +27,10 @@
 		</scroll-view>
 	</view>
   <view class="result-detail">
-    <view>g测=<text>{{result._g}}</text></view>
-    <view>△g=<text>{{result.G}}</text></view>
-    <view>△E=<text>{{result.E * 100}}%</text></view>
+    <view>g测={{result._g}}</view>
+    <view>△g={{result.G}}</view>
+    <view>△E={{result.E * 100}}%</view>
   </view>
   <button class="calculate-btn" bindtap="calculate">点击计算</button>
+	<feed-back-btn info="复摆测量重力加速度" />
 </view>

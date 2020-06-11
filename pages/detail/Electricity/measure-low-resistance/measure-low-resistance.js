@@ -46,7 +46,6 @@ Page({
   changeData(e){
 
       let value = e.detail.value, id = e.currentTarget.id
-      console.log('来自'+id+'的数据试图写入：')
       if(value === ''){
         return false
       }
@@ -56,34 +55,26 @@ Page({
         this.setData({
           [`table_diameter[${row}][${col}]`]:value
         })
-        console.log(`\t成功在[${row}][${col}]处写入 `+value)
       }
       else if(id == "table_length"){
         let row = e.currentTarget.dataset.row, col = e.currentTarget.dataset.col
         this.setData({
           [`table_length[${row}][${col}]`]:value
         })
-        console.log(`\t成功在[${row}][${col}]处写入 `+value)
       }
       else if(id === "resistance_1"){
         this.setData({
           ['inputList[0].value']: value
         })
-        console.log(`\t成功写入 `+value)
       }
       else if(id === "resistance_3"){
         this.setData({
           ['inputList[1].value']: value
         })
-        console.log(`\t成功写入 `+value)
-      }
-      else{
-        console.log('\t写入失败')
       }
   },
   calculate(){
     //表1,直径计算
-    console.log('开始计算')
     let table = this.data.table_diameter[1],sum = 0 ,n=0
     console.log(table)
     for(let i = 1;i < table.length;i++){
@@ -96,10 +87,8 @@ Page({
       
     }
     if(sum !== 0){
-      this.setData({diameter_aver : sum/n})
-      console.log('直径计算完毕：'+this.data.diameter_aver)
+      this.setData({diameter_aver : Number((sum/n).toFixed(4))})
     }else{
-      console.log('直径计算失败')
       return
     }
     //表2,长度计算
@@ -108,7 +97,6 @@ Page({
     let K = this.data.K
     K = Math.PI*this.data.diameter_aver*this.data.diameter_aver/4 
     if(!r1||!r3||!K){
-      console.log("R1 R3或直径无效.")
       return
     }else{
       console.log("K="+K)

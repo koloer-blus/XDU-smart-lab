@@ -4,21 +4,19 @@
   <block wx:for="{{inputList}}" wx:key="*this">
     <view class="input-block">
       <label class="input-label" for="{{item.id}}">{{item.label}}</label>
-      <input class="input-value" id="{{item.id}}" type="digit" bindblur="changeData" placeholder="请输入" model:value="{{item.value}}"></input>
+      <input class="input-value" id="{{item.id}}" type="digit" bindblur="changeData" placeholder="{{item.value}}"></input>
       <text class="input-unit">{{item.unit}}</text>
     </view>
   </block>
 
   <text class="note">约定角度表示格式:23°02' ⇔ 23.02\n请勿输成23.2\n</text>
   <!-- 测量数据 -->
-  <text class="table-title">角度测量数据表</text>
   <view class="table" id="table">
     <block wx:for="{{table}}" wx:key="*this" wx:for-item="row" wx:for-index="row_index">
       <view class="tr">
         <view class="td" wx:for="{{row}}" wx:key="*this" wx:for-item="item" wx:for-index="col_index" data-row="{{row_index}}">
           <input
           class="table-item" placeholder="{{item===0?'':item}}" type="digit"
-          model:value="{{item===0?'':item}}"
           wx:if="{{row_index>0&&col_index>0&&col_index<5}}" bindblur="changeData" id="table"
           data-row="{{row_index}}"
           data-col="{{col_index}}"
@@ -41,5 +39,5 @@
     <view>相对误差: {{e_relative}} %</view>
   </view>
 
-
+<feed-back-btn info="分光计测三棱镜顶角" />
 </view>

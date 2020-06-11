@@ -15,11 +15,12 @@
 		<block wx:for="{{inputList}}" wx:key="*this">
 			<view class="input-block">
 				<label class="input-lable" for="{{item.id}}">{{item.label}}</label>
-				<input class="input-value" id="{{item.id}}" type="digit" bindblur="changeData" placeholder="{{item.value}}" model:value="{{item.value}}"></input>
+				<input class="input-value" id="{{item.id}}" type="digit" bindblur="changeData" placeholder="{{item.value}}"></input>
 				<text class="input-unit">{{item.unit}}</text>
 			</view>
 		</block>
 	</view>
 	<button class="calculate-btn" bindtap="calculate">点击计算</button>
 	<button class="page-jump-btn" bindtap="toNextPage">下一页</button>
+	<feed-back-btn info="光的等厚干涉" />
 </view>

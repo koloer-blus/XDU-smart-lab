@@ -10,10 +10,11 @@
 		</block>
 	</view>
 	<view class="result-block">
-		<view>Dm+5^2-Dm^2的平均值= <text>{{result.avrDm}}</text></view>
-		<view>Rm的平均值 = <text>{{result.avrR}}</text></view>
-		<view>△R(A类不确定度)=<text>{{result._Ra}}</text></view>
-		<view>B类不确定度= <text>{{result._Rb}}</text></view>
+		<view>Dm+5^2-Dm^2的平均值= {{result.avrDm}} mm^2</view>
+		<view>Rm的平均值 = {{result.avrR}} mm</view>
+		<view>△R(A类不确定度)={{result._Ra}} mm</view>
+		<view>B类不确定度= {{result._Rb}} mm</view>
 	</view>
-	<button class="page-back" bindtap="toLastPage">返回输入</button>
+	<button class="page-jump-btn" bindtap="toLastPage">返回输入</button>
+	<feed-back-btn info="光的等厚干涉" />
 </view>

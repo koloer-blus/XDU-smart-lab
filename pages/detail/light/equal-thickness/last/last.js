@@ -24,6 +24,7 @@ Page({
     })
   },
   sysFuc: function (arr) {
+    console.log(arr)
     let count = 0,
       res = 0
     for (var i = arr.length - 1; i >= 0; i--) {
@@ -44,20 +45,20 @@ Page({
       countR = 0
     for (let i = 0; i < 5 ; ++i) {
       let m = info.arr[i+5][0] * info.arr[i+5][0] - info.arr[i][0] * info.arr[i][0]
-      let R = m / (4.5 * info.input2)
+      let R = 100000 *m / (20 * info.input2)
       this.setData({
-        [`table[${i+1}][1]`]: m,
-        [`table[${i+1}][2]`]: R
+        [`table[${i+1}][1]`]: Number(m.toFixed(3)),
+        [`table[${i+1}][2]`]: Number(R.toFixed(3))
       })
       res.push([m, R])
       countm += m
       countR += R
     }
     this.setData({
-      [`result.avrDm`]: countm / 5,
-      [`result.avrR`]: countR / 5,
-      [`result._Ra`]: this.sysFuc(res),
-      [`result._Rb`]: info.input1 * Math.sqrt(3) / 3
+      [`result.avrDm`]: (countm / 5).toFixed(3),
+      [`result.avrR`]: (countR / 5).toFixed(3),
+      [`result._Ra`]: this.sysFuc(res).toFixed(3),
+      [`result._Rb`]: (info.input1 * Math.sqrt(3) / 3).toFixed(3)
     })
   },
 

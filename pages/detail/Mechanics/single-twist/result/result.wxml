@@ -20,11 +20,12 @@
 				</view>
 			</block>
 	</view>
-  <view class="result-box">
-    <view>圆台转动惯量J0=<text>{{res.J0}}kg·m^2</text></view>
-    <view>圆环转动惯量J0=<text>{{res.J1}}kg·m^2</text></view>
-    <view>J1理论值=<text>{{res._J1}}kg·m^2</text></view>
-    <view>E=<text>{{res.E}}</text></view>
+  <view class="result-detail">
+    <view>圆台转动惯量J0={{res.J0}}kg·m^2</view>
+    <view>圆环转动惯量J0={{res.J1}}kg·m^2</view>
+    <view>J1理论值={{res._J1}}kg·m^2</view>
+    <view>E={{res.E}}</view>
   </view>
-  <button bindtap="backUrl">返回输入</button>
+  <button bindtap="backUrl" class="page-jump-btn">返回输入</button>
+	<feed-back-btn info="单线扭摆" />
 </view>

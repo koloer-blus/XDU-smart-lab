@@ -20,6 +20,14 @@ Page({
       ['③',225.22,45.20,105.07,285.07,'#'],
       ['④',218.30,38.30,40.00,278.30,'#'],
     ],
+    //备份空白表格
+    // table:[
+    //   ['序号',"θA","θB","θA'","θB'",'α_i'],
+    //   ['①',0,0,0,0,'#'],
+    //   ['②',0,0,0,0,'#'],
+    //   ['③',0,0,0,0,'#'],
+    //   ['④',0,0,0,0,'#'],
+    // ],
     //下表以秒为单位
     sec_table:[
       ['序号','θA','θB','θA`','θB`','α_i'],
@@ -90,12 +98,12 @@ Page({
     console.log("开始计算")
 
     //计算表格数据
+    this.refreshTable()
     for(var i=1;i<5;i++){
       if(Number(sec_table[i][1]&&sec_table[i][2]&&sec_table[i][3]&&sec_table[i][4])){
         let alphaA = Math.abs(sec_table[i][1]-sec_table[i][3])
         let alphaB = Math.abs(sec_table[i][2]-sec_table[i][4])
         //todo:检测是否过360
-        console.log("!!!A:"+alphaA+";B:"+alphaB)
         if(alphaA>10800){
           alphaA = 21600 - alphaA
           isOver360 = true
@@ -106,13 +114,13 @@ Page({
         }
         let alphai = (alphaA+alphaB)/4
         alpha_aver += alphai
-        console.log("A:"+alphaA+";B:"+alphaB)
-        console.log("\talpha_"+i+":"+alphai)
+        console.log("正在处理第"+i+"行,ΔθA="+alphaA+",ΔθB="+alphaB+"\talpha_"+i+":"+alphai+"是否过360:"+isOver360)
         this.setData({[`sec_table[${i}][5]`]:Number(alphai)})
         this.setData({[`table[${i}][5]`]:Number(this.sec2data(alphai))})
         this.setData({['isOver360']:isOver360})
       }
       else{
+        console.log("Error: 表格第"+i+"行出错退出")
         return 
       }
     }
@@ -126,13 +134,13 @@ Page({
     //计算不确定度
     uncertainty_A = this.Sx(sec_table[1][5],sec_table[2][5],sec_table[3][5],sec_table[4][5])
     uncertainty_A = uncertainty_A.toFixed(0)
-    console.log(uncertainty_B)
+    // console.log(uncertainty_B)
     let ua2 = uncertainty_A*uncertainty_A
     let ub2 = uncertainty_B*uncertainty_B
     // console.log(ua2+"@"+ub2)
     uncertainty_all = Math.sqrt(ua2+ub2)
     uncertainty_all = uncertainty_all.toFixed(0)
-    console.log("总误差:"+uncertainty_all)
+    // console.log("总误差:"+uncertainty_all)
     let e_relative = (uncertainty_all/(this.data2sec(alpha_aver))*100).toFixed(2)
     let ua_str = this.data2str(this.sec2data(uncertainty_A))
     let ull_str = this.data2str(this.sec2data(uncertainty_all))
@@ -157,20 +165,36 @@ Page({
     this.setData({isResult:true})
     console.log("计算完毕")
   },
+  
+  //刷新真值表
+  refreshTable(){
+    for (var i = 1;i<5;i++){
+      for(var j = 1;j<5;j++){
+        var table = this.data.table
+        var sec_value = Number(this.data2sec(table[i][j]))
+        this.setData({
+          [`sec_table[${i}][${j}]`]:sec_value
+        })
+      }
+      console.log("表格初始化完成")
+      console.log(this.data.sec_table)
+    }
 
+
+
+  },
   //真伪度数转换
   data2sec(n){
     n = Number(n)
-    var z = n.toFixed(0)
+    var z = Math.floor(n)
     var x = n-z
     if(x<0){
       z -= 1
       x += 1
     }
-    console.log('z='+z+'x='+x)
     var re = 60*z + 100*x
     re = re.toFixed(0)
-    console.log("已将伪度数:"+n+" 转换为秒数:"+re)
+    console.log("\t已将伪度数:"+n+" 转换为秒数:"+re)
     return re
   },
   sec2data(n){
@@ -183,19 +207,19 @@ Page({
     }
     var re = z + x/100
     re = re.toFixed(2)
-    console.log("已将秒数:"+n+" 转换为伪度数:"+re)
+    console.log("\t已将秒数:"+n+" 转换为伪度数:"+re)
     return re
   },
   data2str(n){
     n = Number(n)
-    var z = n.toFixed(0)
+    var z = Math.floor(n)
     var x =((n-z)*100).toFixed(0)
     if(x<0){
       z -= 1
       x += 1
     }
     var re = ''+ z + '°' + x + "'"
-    console.log("已将伪度数:"+n+" 转换为str:"+re)
+    console.log("\t已将伪度数:"+n+" 转换为str:"+re)
     return re
   },
 
@@ -208,7 +232,6 @@ Page({
         total = total + arguments[i];
     }
     var avernum = total/arguments.length
-    console.log("\t\t正在标准差计算:平均数计算完毕:"+avernum)
     //标准偏差
     var s = 0
     for(var i=0;i<n;i++)
@@ -216,10 +239,9 @@ Page({
       s += (arguments[i]-avernum)*(arguments[i]-avernum);
     }
     s = Math.sqrt(s/(n-1))
-    console.log("\t\t正在标准差计算:标准偏差计算完毕:"+s)
     //A类不确定度
     var sx = s/Math.sqrt(n)
-    console.log("\t\t正在标准差计算:A类不确定度:"+sx)
+    console.log("\tSx:平均数:"+avernum+"\tA类不确定度:"+sx)
     return sx
   },
 

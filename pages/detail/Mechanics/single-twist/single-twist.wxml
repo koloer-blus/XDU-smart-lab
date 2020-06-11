@@ -19,12 +19,12 @@
 			</block>
 		</scroll-view>
 	</view>
-	<view class="input-list">
+	<view class="input-list input-list1">
   <text>弹簧钢丝（扭丝）测量</text>
 		<block wx:for="{{inputList1}}" wx:key="*this">
 			<view class="input-block">
 				<label class="input-lable" for="{{item.id}}">{{item.label}}</label>
-				<input class="input-value" id="{{item.id}}" type="digit" bindblur="changeData" placeholder="{{item.value}}" model:value="{{item.value}}"></input>
+				<input class="input-value" id="{{item.id}}" type="digit" bindblur="changeData" placeholder="{{item.value}}"></input>
 				<text class="input-unit">{{item.unit}}</text>
 			</view>
 		</block>
@@ -44,16 +44,16 @@
 				</view>
 			</block>
 	</view>
-  <view class="input-list">
+  <view class="input-list input-list2">
   <text>圆环内外径测量</text>
 		<block wx:for="{{inputList2}}" wx:key="*this">
 			<view class="input-block">
 				<label class="input-lable" for="{{item.id}}">{{item.label}}</label>
-				<input class="input-value" id="{{item.id}}" type="digit" bindblur="changeData" placeholder="{{item.value}}" model:value="{{item.value}}"></input>
+				<input class="input-value" id="{{item.id}}" type="digit" bindblur="changeData" placeholder="{{item.value}}"></input>
 				<text class="input-unit">{{item.unit}}</text>
 			</view>
 		</block>
 	</view>
   <button class="calculate-btn" bindtap="calculate">点击计算</button>
-
+<feed-back-btn info="单线扭摆" />
 </view>
