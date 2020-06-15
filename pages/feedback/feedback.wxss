@@ -92,3 +92,21 @@
   padding: 10rpx;
   box-sizing: border-box;
 }
+.tiggle {
+  width: 160rpx;
+  font-size: 24rpx;
+  text-align: center;
+  box-sizing: border-box;
+  height: 120rpx;
+  background-color: #aaa;
+  color: #fff;
+  position: absolute;
+  line-height: 120rpx;
+  left: 45%;
+  top: 45%;
+  border-radius: 24rpx;
+  border: 2rpx solid #fff;
+}
+.feed-back-page {
+  position: relative;
+}

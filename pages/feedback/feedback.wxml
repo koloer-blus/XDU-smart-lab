@@ -3,11 +3,14 @@
   <view class="trouble">
     <text>问题页面：{{info}}</text>
   </view>
+  <view class="tiggle" wx:if="{{tiggleInfo}}">
+    提交成功
+  </view>
   <view class="situtaion">
     <text>问题场景</text>
     <radio-group class="group" bindchange="radioChange">
         <label class="label weui-cell weui-check__label" wx:for="{{situation}}" wx:key="*this">
-          <radio id="{{'radio-item-' +item.errType}}" value="{{item.errType}}"></radio>
+          <radio id="{{'radio-item-' +item.errType}}" value="{{item.detail}}"></radio>
           <label class="label-text" for="{{'radio-item-' +item.errType}}">{{item.detail}}</label>
         </label>
         <view class="clear-bfc"></view>
@@ -27,5 +30,5 @@
       <input class="connection-input" id="connection-input" model:value="{{connection}}"></input>
     </view>
   </view>
-  <button class="calculate-btn" bindtap="calculate">提交</button>
+  <button class="calculate-btn" bindtap="toSubmit">提交</button>
 </view>
