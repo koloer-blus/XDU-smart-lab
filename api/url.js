@@ -1,4 +1,4 @@
-const baseUrl = 'http://smartlab.117503445.top:8007'
+const baseUrl = 'https://smartlab.backend.117503445.top/api'
 const feedBack = '/feedback'
 
 module.exports = {

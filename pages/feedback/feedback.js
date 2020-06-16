@@ -27,6 +27,7 @@ Page({
         detail: '建议'
       }
     ],
+    infoMsg: '提交成功',
     suggestion: {
       placeholeder: '描述一下您的问题或是宝贵意见',
       value: ''
@@ -35,19 +36,31 @@ Page({
     tiggleInfo: false,
     connection: ''
   },
+  update(e) {
+    this.setData({
+      [`suggestion.value`]:e.detail.value
+    })
+  },
   radioChange(e) {
     this.setData({
       type: e.detail.value
     })
   },
-  change(res) {
+  async change(res) {
     console.log(res)
-    this.setData({
-      tiggleInfo: true
-    })
+    if(res.statusCode === 201) {
+      await this.setData({
+        res: res,
+        tiggleInfo: true,
+        infoMsg: '提交成功'
+      })
+    }
     setTimeout(() => {
       this.setData({
-        tiggleInfo: false
+        tiggleInfo: false,
+      })
+      wx.navigateBack({
+        complete: (res) => {},
       })
     },3000)
   },
@@ -57,7 +70,21 @@ Page({
       content: this.data.suggestion.value,
       contactInfo: this.data.connection
     }
-    let res = httpReq(url.feedBack.URL, url.feedBack.method, data,this.change )
+    for(let item in data) {
+      if(data[item] === '') {
+          this.setData({
+            tiggleInfo: true,
+            infoMsg: '信息未补全'
+          })
+          setTimeout(() => {
+            this.setData({
+              tiggleInfo: false,
+            })
+          },3000)
+        return false
+      }
+    }
+    httpReq(url.feedBack.URL, url.feedBack.method, data,this.change )
   },
   /**
    * 生命周期函数--监听页面加载

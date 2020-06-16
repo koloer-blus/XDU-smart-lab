@@ -4,7 +4,7 @@
     <text>问题页面：{{info}}</text>
   </view>
   <view class="tiggle" wx:if="{{tiggleInfo}}">
-    提交成功
+    {{infoMsg}}
   </view>
   <view class="situtaion">
     <text>问题场景</text>
@@ -20,7 +20,7 @@
   <view class="form">
     <textarea  class="detail" 
     placeholder="{{suggestion.placeholeder}}" 
-    model:value="{{suggestion.value}}" 
+    bindblur="update" 
     show-confirm-bar
     adjust-position
     maxlength="-1"
@@ -31,4 +31,11 @@
     </view>
   </view>
   <button class="calculate-btn" bindtap="toSubmit">提交</button>
+  <!-- <view>
+    <text>
+      data:{{res.errMsg}},
+      header: {{res.header.Location}},
+      statuscode: {{res.statusCode}}
+    </text>
+  </view> -->
 </view>

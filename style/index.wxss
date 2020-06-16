@@ -114,7 +114,11 @@
   color: white;
   font-weight: normal;
 }
-
+button:active {
+  background-color: #aaa;
+  color: #fff;
+  opacity: 0.5;  
+}
 input:focus {
   border: 2rpx solid #F56E3F;
 }
