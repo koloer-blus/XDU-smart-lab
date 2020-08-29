@@ -54,7 +54,6 @@ function electricTuningForkSum({
  * @param {*} arr 数组数据
  */
 function threeWirePendulum(arr) {
-  console.log(arr)
   let m0 = arr[0],
     m = arr[1],
     r = Math.sqrt(3) * arr[2] / 3,

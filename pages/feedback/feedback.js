@@ -46,10 +46,10 @@ Page({
       type: e.detail.value
     })
   },
-  async change(res) {
+  change(res) {
     console.log(res)
     if(res.statusCode === 201) {
-      await this.setData({
+      this.setData({
         res: res,
         tiggleInfo: true,
         infoMsg: '提交成功'
@@ -68,8 +68,9 @@ Page({
     let data = {
       type: this.data.type,
       content: this.data.suggestion.value,
-      contactInfo: this.data.connection
+      contactInfo: this.data.connection || 0
     }
+    console.log(data)
     for(let item in data) {
       if(data[item] === '') {
           this.setData({
@@ -84,6 +85,7 @@ Page({
         return false
       }
     }
+    console.log(data)
     httpReq(url.feedBack.URL, url.feedBack.method, data,this.change )
   },
   /**
