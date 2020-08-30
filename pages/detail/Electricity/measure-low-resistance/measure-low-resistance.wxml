@@ -63,4 +63,6 @@
     <view wx:if="{{Num_data>1}}" class="detail-final">平均密度：Σ𝛒/{{Num_data}}={{rho_aver}} ×10⁻⁹ 𝛀·𝑀.</view>
   </view>
   <feed-back-btn info="低电阻的测量" />
+
 </view>
+<wizz_footer/>

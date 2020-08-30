@@ -1,0 +1,4 @@
+<!--components/wizz_footer/wizz_footer.wxml-->
+<view class="footer" bindtap="toWizzInfoPage">
+	<text>—— 为之工作室 ——</text>
+</view>

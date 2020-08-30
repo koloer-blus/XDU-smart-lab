@@ -24,3 +24,5 @@
 	<button class="page-jump-btn" bindtap="toNextPage">下一页</button>
 	<feed-back-btn info="光的等厚干涉" />
 </view>
+
+<wizz_footer/>

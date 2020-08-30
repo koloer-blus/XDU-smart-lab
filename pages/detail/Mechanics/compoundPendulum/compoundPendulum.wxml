@@ -34,3 +34,5 @@
   <button class="calculate-btn" bindtap="calculate">点击计算</button>
 	<feed-back-btn info="复摆测量重力加速度" />
 </view>
+
+<wizz_footer/>

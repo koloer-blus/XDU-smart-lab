@@ -30,28 +30,27 @@ Page({
       ['𝑅ₙ正/𝛀',0.00558,0.00775,0.01000,0.01224,0.01446,0.01670,0.01891,0.02127],
       ['𝑅ₙ反/𝛀',0.00565,0.00787,0.01150,0.01236,0.01466,0.01686,0.01916,0.02139],
       ['𝑅ₙ平均/𝛀','#','#','#','#','#','#','#','#'],
-      ['𝑅x/×10⁻³ 𝛀','#','#','#','#','#','#','#','#'],
-      ['𝛒 /×10⁻⁹ 𝛀·𝑀','#','#','#','#','#','#','#','#']
+      ['𝑅ₓ/×10⁻³ 𝛀','#','#','#','#','#','#','#','#'],
+      ['𝛒 /×10⁻⁸ 𝛀·𝑀','#','#','#','#','#','#','#','#']
     ],
     //参数
-    diameter_aver:0,
-    rho_aver: 0,
-    K:0, //K是一个中间系数
-    Num_data:0,   //表2的有效数据
+    diameter_aver:0,  //直径平均值
+    rho_aver: 0,      //R_x平均值
+    K:0,              //K是一个中间系数,pi*d^2/4
+    Num_data:0,       //表2的有效数据
 
     //其他控件
     isResult:false,  
   },
   //函数
   changeData(e){
-
       let value = e.detail.value, id = e.currentTarget.id
       if(value === ''){
         return false
       }
       if(id == "table_diameter"){
         let row = e.currentTarget.dataset.row, col = e.currentTarget.dataset.col
-        let table_diameter = this.data.table_diameter
+        // let table_diameter = this.data.table_diameter
         this.setData({
           [`table_diameter[${row}][${col}]`]:value
         })
@@ -73,24 +72,25 @@ Page({
         })
       }
   },
+
   calculate(){
+    this.setData({isResult:false})
     //表1,直径计算
     let table = this.data.table_diameter[1],sum = 0 ,n=0
-    console.log(table)
+    console.log('直径数据表:'+table)
     for(let i = 1;i < table.length;i++){
       let tmp = Number(table[i])
-      
       if(tmp!==0){
         sum += tmp
         n++
       }
-      
     }
     if(sum !== 0){
       this.setData({diameter_aver : Number((sum/n).toFixed(4))})
     }else{
       return
     }
+
     //表2,长度计算
         //预备工作
     let r1 = this.data.inputList[0].value,r3 = this.data.inputList[1].value
@@ -101,22 +101,19 @@ Page({
     }else{
       console.log("K="+K)
     }//计算K 并检查r1r3是否到位
-    this.setData({isResult:false})
         //正式处理表格
     table = this.data.table_length
     n = 0,sum = 0
-    console.log(table)
-    console.log(table[1][8])
+    console.log('长度表:'+table)
+    // console.log(table[1][8])
     for(let i = 1;i<table[0].length;i++){
-      
       if(Number(table[1][i])&&Number(table[2][i])&&Number(table[3][i])){
         let v1 = (Number(table[2][i])+Number(table[3][i]))/2
         let v2 = Number(v1) * r1 / r3 * 1000
-        let v3 = Number(v2) * K * 0.000001 / Number(table[1][i]) *1000 * 1000000
-        v1 = v1.toFixed(4)
-        v2 = v2.toFixed(4)
+        let v3 = Number(v2) * K / Number(table[1][i]) *100
+        v1 = v1.toFixed(6)
+        v2 = v2.toFixed(2)
         v3 = v3.toFixed(4)
-        console.log(v1,v2,v3)
         this.setData({
           [`table_length[4][${i}]`] : v1,
           [`table_length[5][${i}]`] : v2,
@@ -125,7 +122,7 @@ Page({
         n++
         sum += Number(v3)
         this.setData({isResult:true})
-        console.log(`第${i}列数据处理完毕`)
+        console.log(`第${i}列数据处理完毕:`+v1,v2,v3)
       }
     }
     if(!Boolean(this.data.isResult)){

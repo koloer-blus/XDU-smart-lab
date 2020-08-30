@@ -42,3 +42,5 @@
   </view>
   <feed-back-btn info="电动音叉产生的弦振动的测量" />
 </view>
+
+<wizz_footer/>

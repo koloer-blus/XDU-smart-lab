@@ -57,6 +57,4 @@
 <feed-back-btn info="主页面" />
 </view>
 
-<view class="footer">
-	<text>—— 为之工作室 ——</text>
-</view>
+<wizz_footer/>

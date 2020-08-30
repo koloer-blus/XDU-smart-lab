@@ -29,3 +29,4 @@
   <button bindtap="backUrl" class="page-jump-btn">返回输入</button>
 	<feed-back-btn info="单线扭摆" />
 </view>
+<wizz_footer/>

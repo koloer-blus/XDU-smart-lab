@@ -29,3 +29,16 @@
   content: "\e704";
 }
 
+/* .footer {
+  width: 92%;
+  text-align: center;
+  margin: 0 auto;
+  height: 30rpx;
+  line-height: 30rpx;
+  margin-bottom: 30rpx;
+}
+.footer text {
+  font-size: 28rpx;
+  font-weight: 400;
+  color: #aaa;
+} */

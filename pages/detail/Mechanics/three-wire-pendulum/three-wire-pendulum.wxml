@@ -41,3 +41,5 @@
   </view>
   <feed-back-btn info="三线摆测量刚体的转动惯量" />
 </view>
+
+<wizz_footer/>

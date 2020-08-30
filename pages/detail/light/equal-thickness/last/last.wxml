@@ -18,3 +18,5 @@
 	<button class="page-jump-btn" bindtap="toLastPage">返回输入</button>
 	<feed-back-btn info="光的等厚干涉" />
 </view>
+
+<wizz_footer/>

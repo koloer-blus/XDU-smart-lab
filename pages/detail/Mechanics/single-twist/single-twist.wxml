@@ -57,3 +57,5 @@
   <button class="calculate-btn" bindtap="calculate">点击计算</button>
 <feed-back-btn info="单线扭摆" />
 </view>
+
+<wizz_footer/>

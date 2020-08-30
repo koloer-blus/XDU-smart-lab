@@ -13,7 +13,8 @@
     "pages/detail/light/measure-angle-of-prism/measure-angle-of-prism",
     "pages/detail/light/measure-length-of-laser/measure-length-of-laser",
     "pages/detail/light/grating-characteristics/grating-characteristics",
-    "pages/feedback/feedback"
+    "pages/feedback/feedback",
+    "pages/wizzInfo/wizzInfo"
   ],
   "window": {
     "backgroundTextStyle": "light",
