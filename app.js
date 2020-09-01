@@ -12,7 +12,8 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        httpReq(getId.URL, 'POST', {
+        console.log(res.code)
+        httpReq(getId.URL, getId.method, {
           code: res.code
         }, (res) => {
           wx.setStorageSync('openid', res.data.openid)
