@@ -35,7 +35,8 @@ Page({
     ],
     //参数
     diameter_aver:0,  //直径平均值
-    rho_aver: 0,      //R_x平均值
+    rho_aver: 0,      //rho平均值
+    rho_sx:0,         //rho误差
     K:0,              //K是一个中间系数,pi*d^2/4
     Num_data:0,       //表2的有效数据
 
@@ -109,10 +110,10 @@ Page({
     for(let i = 1;i<table[0].length;i++){
       if(Number(table[1][i])&&Number(table[2][i])&&Number(table[3][i])){
         let v1 = (Number(table[2][i])+Number(table[3][i]))/2
-        let v2 = Number(v1) * r1 / r3 * 1000
+        let v2 = Number(v1) * r3 / r1 * 1000
         let v3 = Number(v2) * K / Number(table[1][i]) *100
-        v1 = v1.toFixed(6)
-        v2 = v2.toFixed(2)
+        v1 = v1.toFixed(5)
+        v2 = v2.toFixed(3)
         v3 = v3.toFixed(4)
         this.setData({
           [`table_length[4][${i}]`] : v1,
@@ -129,14 +130,43 @@ Page({
       console.log("表2中没有数据")
       return
     }
+    // console.log(table[6].slice(1,))
+    var sx = this.Sx(table[6].slice(1,))
     console.log(sum+'@'+n)
     this.setData({
       K : K,
       Num_data : n,
-      rho_aver : (sum/n).toFixed(4)
+      rho_aver : (sum/n).toFixed(2),
+      rho_sx : sx
     })
     console.log("计算完毕,ρ="+this.data.rho_aver)
-    console.log(this.data.isResult)
+    console.log('偏差='+this.data.rho_sx)
+  },
+
+  Sx(){
+    var data = arguments[0]
+    var n = data.length
+    console.log(data,n,data[0])
+    //算数平均数
+    var total = 0;
+    for (var i = 0; i < n; i = i + 1) {
+        total = total + Number(data[i]);
+        console.log(total)
+    }
+    var avernum = total/data.length
+    console.log("\t\t正在标准差计算:平均数计算完毕:"+avernum)
+    //标准偏差
+    var s = 0
+    for(var i=0;i<n;i++)
+    {
+      s += (data[i]-avernum)*(data[i]-avernum);
+    }
+    s = Math.sqrt(s/(n-1))
+    console.log("\t\t正在标准差计算:标准偏差计算完毕:"+s)
+    //A类不确定度
+    var sx = s/Math.sqrt(n)
+    console.log("\t\t正在标准差计算:A类不确定度:"+sx)
+    return sx
   },
   /**
    * 生命周期函数--监听页面加载

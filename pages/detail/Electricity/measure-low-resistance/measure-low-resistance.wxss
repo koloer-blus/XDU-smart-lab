@@ -9,6 +9,7 @@
   padding: 20rpx;
   margin-top: 36rpx;
   margin-bottom: 40rpx;
+  box-shadow: 4rpx 4rpx 2rpx #ccc;
 }
 .detail-title-res {
   text-align: center;
