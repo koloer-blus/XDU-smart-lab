@@ -1,6 +1,6 @@
 <!--pages/detail/Light/measure-angle-of-prism/measure-angle-of-prism.wxml-->
 <view class="measure-angle-of-prism">
-  <text class="detail-title">分光计测三棱镜顶角</text>
+  <text class="detail-title">{{title}}</text>
   <block wx:for="{{inputList}}" wx:key="*this">
     <view class="input-block">
       <label class="input-label" for="{{item.id}}">{{item.label}}</label>

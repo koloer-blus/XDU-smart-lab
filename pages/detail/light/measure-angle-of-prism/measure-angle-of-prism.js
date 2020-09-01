@@ -1,3 +1,9 @@
+const {
+  httpReq
+} = require('../../../../api/http')
+const {
+  behaviorLog
+} = require('../../../../api/url')
 // pages/detail/Light/measure-angle-of-prism/measure-angle-of-prism.js
 Page({
 
@@ -5,6 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    title: '分光计测三棱镜顶角',
     inputList:[{
       label:'仪器不确定度Δ𝘉= ',
       value:1,
@@ -87,6 +94,11 @@ Page({
 
   //计算
   calculate(){
+    httpReq(behaviorLog.URL, behaviorLog.method, {
+      page: this.data.title,
+      control: '点击计算',
+      openid:wx.getStorageSync('openid') || 'false'
+    })
     let uncertainty_A 
     let uncertainty_B = this.data.inputList[0].value
     let uncertainty_all
@@ -249,7 +261,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    httpReq(behaviorLog.URL, behaviorLog.method, {
+      page: '首页',
+      control: this.data.title,
+      openid:wx.getStorageSync('openid') || 'false'
+    })
   },
 
   /**

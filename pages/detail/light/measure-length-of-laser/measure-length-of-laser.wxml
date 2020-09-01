@@ -1,6 +1,6 @@
 <!--pages/detail/Light/measure-length-of-laser/measure-length-of-laser.wxml-->
 <view class="measure-length-of-laser">
-  <text class="detail-title">迈克尔逊干涉仪测激光波长</text>
+  <text class="detail-title">{{title}}</text>
   <block wx:for="{{inputList}}" wx:key="*this">
     <view class="input-block">
       <label class="input-label" for="{{item.id}}">{{item.label}}</label>

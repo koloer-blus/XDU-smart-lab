@@ -1,3 +1,5 @@
+const {httpReq} = require('./api/http')
+const {getId} = require('./api/url')
 //app.js
 App({
   onLaunch: function () {
@@ -6,12 +8,17 @@ App({
     // logs.unshift(Date.now())
     // wx.setStorageSync('logs', logs)
 
-    // // 登录
-    // wx.login({
-    //   success: res => {
-    //     // 发送 res.code 到后台换取 openId, sessionKey, unionId
-    //   }
-    // })
+    // 登录
+    wx.login({
+      success: res => {
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        httpReq(getId.URL, 'POST', {
+          code: res.code
+        }, (res) => {
+          wx.setStorageSync('openid', res.data.openid)
+        })
+      }
+    })
     // // 获取用户信息
     // wx.getSetting({
     //   success: res => {

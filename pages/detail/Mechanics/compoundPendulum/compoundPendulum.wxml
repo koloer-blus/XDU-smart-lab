@@ -1,5 +1,5 @@
 <view class="electric-tuning-fork-detail">
-	<text class="detail-title">复摆测量重力加速度</text>
+	<text class="detail-title">{{title}}</text>
   <view class="input-list">
 		<block wx:for="{{inputList}}" wx:key="*this">
 			<view class="input-block">

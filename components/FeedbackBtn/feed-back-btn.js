@@ -1,3 +1,5 @@
+const {httpReq} = require('../../api/http')
+const {behaviorLog} = require('../../api/url')
 // components/FeedbackBtn/feed-back-btn.js
 Component({
   /**
@@ -21,6 +23,11 @@ Component({
    */
   methods: {
     toFeedPage () {
+      httpReq(behaviorLog.URL, behaviorLog.method, {
+        page: this.data.info,
+        control: '反馈',
+        openid:wx.getStorageSync('openid') || 'false'
+      })
       wx.navigateTo({
         url: '/pages/feedback/feedback?info=' + this.data.info,
       })

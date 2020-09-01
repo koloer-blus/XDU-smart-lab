@@ -1,3 +1,9 @@
+const {
+  httpReq
+} = require('../../../../api/http')
+const {
+  behaviorLog
+} = require('../../../../api/url')
 // pages/detail/sound/measure-sound-speed/measure-sound-speed.js
 Page({
 
@@ -5,6 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    title: '声速的测量',
     inputList:[{
         label:'温度𝑡= ',
         value:'21',
@@ -132,6 +139,11 @@ Page({
     
   },
   calculate(){
+    httpReq(behaviorLog.URL , behaviorLog.method, {
+      page: this.data.title,
+      control: '点击计算',
+      openid:wx.getStorageSync('openid') || 'false'
+    })
     let temperature_T = this.data.temperature_T
     let speed_lilun = this.data.speed_lilun
     let table = this.data.table
@@ -218,7 +230,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    httpReq(behaviorLog.URL , behaviorLog.method, {
+      page: '首页',
+      control: this.data.title,
+      openid:wx.getStorageSync('openid') || 'false'
+    })
   },
 
   /**

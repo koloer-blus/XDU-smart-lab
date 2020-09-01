@@ -3,12 +3,18 @@ const {
   electricTuningFork,
   electricTuningForkSum
 } = require('../../../../utils/util')
-
+const {
+  httpReq
+} = require('../../../../api/http')
+const {
+  behaviorLog
+} = require('../../../../api/url')
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    title: '复摆测量重力加速度',
     inputList: [{
       label: '圆心位置x1=',
       value: '3.2',
@@ -65,6 +71,11 @@ Page({
     }
   },
   calculate() {
+    httpReq(behaviorLog.URL, behaviorLog.method, {
+      page: this.data.title,
+      control: '点击计算',
+      openid:wx.getStorageSync('openid') || 'false'
+    })
     let table = this.data.table,  T = [],  h= []
     for(let i = 0, row = table.length; i< row-1; ++i) {
       for(let j = 1,col = table[i].length ; j <col; ++j) {
@@ -94,7 +105,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    httpReq(behaviorLog.URL, behaviorLog.method, {
+      page: '首页',
+      control: this.data.title,
+      openid:wx.getStorageSync('openid') || 'false'
+    })
   },
 
   /**

@@ -1,5 +1,7 @@
 
-function httpRequest(url,method,data, callBack) {
+function httpRequest(url,method,data, callBack = (res) => {
+  console.log(res)
+}) {
   wx.request({
     url: url, 
     method: method,
@@ -11,7 +13,7 @@ function httpRequest(url,method,data, callBack) {
      callBack(res)
     },
     complete (res) {
-      console.log(res, 'ok')
+      console.log('ok')
     }
   })
 }

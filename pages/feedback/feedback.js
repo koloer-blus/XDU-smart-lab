@@ -68,7 +68,8 @@ Page({
     let data = {
       type: this.data.type,
       content: this.data.suggestion.value,
-      contactInfo: this.data.connection || 0
+      contactInfo: this.data.connection || 0,
+      openid:wx.getStorageSync('openid') || 'false'
     }
     console.log(data)
     for(let item in data) {

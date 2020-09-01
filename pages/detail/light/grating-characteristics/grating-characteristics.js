@@ -1,3 +1,9 @@
+const {
+  httpReq
+} = require('../../../../api/http')
+const {
+  behaviorLog
+} = require('../../../../api/url')
 // pages/detail/Light/grating-characteristics/grating-characteristics.js
 Page({
 
@@ -5,6 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    title: '光栅特性研究',
     inputList:[{
       label:'谱线的平均波长 λ= ',
       value:546.1,
@@ -101,7 +108,12 @@ Page({
    * 计算
    */
     calculate(){
-        console.log("开始计算!")
+      httpReq(behaviorLog.URL, behaviorLog.method, {
+        page: '首页',
+        control: this.data.title,
+        openid:wx.getStorageSync('openid') || 'false'
+      })
+        // console.log("开始计算!")
         let lambda_0 = this.data.inputList[0].value //nm
         let u_yi = this.data.uncertainty_yi_rad //rad
 
@@ -155,22 +167,22 @@ Page({
             return
           }
         }
-        console.log("表格处理完毕:")
-        console.log(table)
-        console.log("xianzai:"+phi_aver)
+        // console.log("表格处理完毕:")
+        // console.log(table)
+        // console.log("xianzai:"+phi_aver)
         //一般数据处理
         phi_aver = (Number(phi_aver/3)).toFixed(2)    //rad
-        console.log("phi_aver处理完毕rad:"+phi_aver)
+        // console.log("phi_aver处理完毕rad:"+phi_aver)
         d_aver = (Number(d1)+Number(d2)+Number(d3))/3
         d_aver = Number(d_aver).toFixed(2)  //nm
-        console.log("d_aver处理完毕nm:"+d_aver)
+        // console.log("d_aver处理完毕nm:"+d_aver)
         var db = Number(Number(u_yi) / Math.tan(phi_aver*Math.PI/180))
         var da = this.Sx(Number(d1),Number(d2),Number(d3))
-        console.log(da+'!'+da)
+        // console.log(da+'!'+da)
         d_delta = Number(Math.sqrt(da*da+db*db)).toFixed(2)
         E_relative = (d_delta/d_aver).toFixed(4)
-        console.log("E_relative处理完毕:"+E_relative)
-        console.log("d_delta处理完毕nm:"+d_delta)
+        // console.log("E_relative处理完毕:"+E_relative)
+        // /console.log("d_delta处理完毕nm:"+d_delta)
         
 
         //黄光
@@ -304,7 +316,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    httpReq(behaviorLog.URL, behaviorLog.method, {
+      page: '首页',
+      control: this.data.title,
+      openid:wx.getStorageSync('openid') || 'false'
+    })
   },
 
   /**

@@ -1,3 +1,5 @@
+const {httpReq} = require('../../../../api/http')
+const {behaviorLog} = require('../../../../api/url')
 // pages/detail/Electricity/measure-low-resistance/measure-low-resistance.js
 Page({
 
@@ -6,6 +8,7 @@ Page({
    */
   data: {
     //R1&R3
+    title: '低电阻的测量',
     inputList:[{
       label:'𝑅₁= ',
       value:'1000',
@@ -75,6 +78,11 @@ Page({
   },
 
   calculate(){
+    httpReq(behaviorLog.URL, behaviorLog.method, {
+      page: this.data.title,
+      control: '点击计算',
+      openid:wx.getStorageSync('openid') || 'false'
+    })
     this.setData({isResult:false})
     //表1,直径计算
     let table = this.data.table_diameter[1],sum = 0 ,n=0
@@ -132,15 +140,15 @@ Page({
     }
     // console.log(table[6].slice(1,))
     var sx = this.Sx(table[6].slice(1,))
-    console.log(sum+'@'+n)
+    // console.log(sum+'@'+n)
     this.setData({
       K : K,
       Num_data : n,
       rho_aver : (sum/n).toFixed(2),
       rho_sx : sx
     })
-    console.log("计算完毕,ρ="+this.data.rho_aver)
-    console.log('偏差='+this.data.rho_sx)
+    // console.log("计算完毕,ρ="+this.data.rho_aver)
+    // console.log('偏差='+this.data.rho_sx)
   },
 
   Sx(){
@@ -172,7 +180,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    httpReq(behaviorLog.URL, behaviorLog.method, {
+      page: '首页',
+      control: this.data.title,
+      openid:wx.getStorageSync('openid') || 'false'
+    })
   },
 
   /**

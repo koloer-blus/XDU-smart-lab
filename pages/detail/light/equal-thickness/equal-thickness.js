@@ -1,13 +1,17 @@
 // pages/detail/sound/electric-tuning-fork/electric-tuning-fork.js
 const {
-
-} = require('../../../../utils/util')
+  httpReq
+} = require('../../../../api/http')
+const {
+  behaviorLog
+} = require('../../../../api/url')
 
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    title: '光的等厚干涉',
     inputList: [{
       label: '𝚫仪=',
       value: 0.004,
@@ -61,6 +65,11 @@ Page({
     
   },
   calculate() {
+    httpReq(behaviorLog.URL, behaviorLog.method, {
+      page: this.data.title,
+      control: '点击计算',
+      openid:wx.getStorageSync('openid') || 'false'
+    })
     let table = this.data.table,
       aveFrequency = 0
     for (let i = 1; i < table.length; ++i) {
@@ -75,6 +84,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   toNextPage() {
+    httpReq(behaviorLog.URL, behaviorLog.method, {
+      page: this.data.title,
+      control: '下一页',
+      openid:wx.getStorageSync('openid') || 'false'
+    })
     let data = {
       arr:[],
       input1 : this.data.inputList[0].value,
@@ -87,7 +101,13 @@ Page({
       url: '/pages/detail/light/equal-thickness/last/last?data=' + JSON.stringify(data),
     })
   },
-  onLoad: function (options) {},
+  onLoad: function (options) {
+    httpReq(behaviorLog.URL, behaviorLog.method, {
+      page: '首页',
+      control: this.data.title,
+      openid:wx.getStorageSync('openid') || 'false'
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

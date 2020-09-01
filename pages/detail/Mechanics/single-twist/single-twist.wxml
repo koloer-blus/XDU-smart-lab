@@ -1,5 +1,5 @@
 <view class="three-wire-pendulum">
-	<text class="detail-title">单线扭摆</text>
+	<text class="detail-title">{{title}}</text>
   <view class="table">
   <text>振动周期测量</text>
   <text>单位：秒</text>

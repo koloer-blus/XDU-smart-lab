@@ -1,6 +1,6 @@
 <!--pages/detail/Electricity/measure-low-resistance/measure-low-resistance.wxml-->
 <view class="measure-low-resistance">
-  <text class="detail-title">低电阻的测量</text>
+  <text class="detail-title">{{title}}</text>
   <view class="input-list">
     <block wx:for="{{inputList}}" wx:key="*this">
       <view class="input-block">

@@ -1,6 +1,6 @@
 <!--pages/detail/Light/grating-characteristics/grating-characteristics.wxml-->
 <view class="grating-characteristics">
-  <text class="detail-title">光栅特性研究</text>
+  <text class="detail-title">{{title}}</text>
   <block wx:for="{{inputList}}" wx:key="*this">
     <view class="input-block">
       <label class="input-label" for="{{item.id}}">{{item.label}}</label>

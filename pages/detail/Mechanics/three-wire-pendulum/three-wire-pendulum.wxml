@@ -1,5 +1,5 @@
 <view class="three-wire-pendulum">
-	<text class="detail-title">三线摆测量刚体的转动惯量</text>
+	<text class="detail-title">{{title}}</text>
 	<view class="input-list">
 		<block wx:for="{{inputList}}" wx:key="*this">
 			<view class="input-block">

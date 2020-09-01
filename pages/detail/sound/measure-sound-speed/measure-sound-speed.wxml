@@ -1,6 +1,6 @@
 <!--pages/detail/sound/measure-sound-speed/measure-sound-speed.wxml-->
 <view class="measure-sound-speed">
-  <text class="detail-title">声速的测量</text>
+  <text class="detail-title">{{title}}</text>
   <block wx:for="{{inputList}}" wx:key="*this">
     <view class="input-block">
       <label class="input-label" for="{{item.id}}">{{item.label}}</label>

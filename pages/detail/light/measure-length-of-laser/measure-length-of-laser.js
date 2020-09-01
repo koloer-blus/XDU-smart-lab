@@ -1,3 +1,9 @@
+const {
+  httpReq
+} = require('../../../../api/http')
+const {
+  behaviorLog
+} = require('../../../../api/url')
 // pages/detail/Light/measure-length-of-laser/measure-length-of-laser.js
 Page({
 
@@ -5,6 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    title: '迈克尔逊干涉仪测激光波长',
     inputList:[{
       label:'仪器不确定度Δ仪= ',
       value:0.0001,
@@ -100,6 +107,11 @@ Page({
 
   //计算
   calculate(){
+    httpReq(behaviorLog.URL, behaviorLog.method, {
+      page: this.data.title,
+      control: '点击计算',
+      openid:wx.getStorageSync('openid') || 'false'
+    })
     console.log("开始计算!")
     let d_yi = this.data.inputList[0].value
     let N = this.data.inputList[1].value
@@ -192,7 +204,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    httpReq(behaviorLog.URL, behaviorLog.method, {
+      page: '首页',
+      control: this.data.title,
+      openid:wx.getStorageSync('openid') || 'false'
+    })
   },
 
   /**
