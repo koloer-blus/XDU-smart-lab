@@ -1,5 +1,7 @@
-@import '../../../../style/index.wxss';
+/* @import '../../../../style/index.wxss'; */
+@import '../../../../style/detail.wxss';
 
+/* 
 .input-block:nth-child(1) .input-unit {
   position: absolute;
   top: 0;
@@ -24,4 +26,4 @@
 }
 .result-detail view {
   font-size: 28rpx;
-}
+} */

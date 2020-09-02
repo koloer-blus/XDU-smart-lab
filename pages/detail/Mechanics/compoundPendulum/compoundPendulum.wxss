@@ -1,11 +1,12 @@
 /* pages/detail/Mechanics/single-twist/single-twist.wxss */
-@import '../../../../style/index.wxss';
+@import '../../../../style/detail.wxss';
+/* @import '../../../../style/index.wxss'; */
 
-.input-unit {
+/* .input-unit {
   position: absolute;
   top: 0;
   left: 320rpx;
-}
+} */
 
 
 .tr {
@@ -17,7 +18,7 @@
   height: 80rpx;
   line-height: 80rpx;
 }
-.result-detail {
+/* .result-detail {
   width: 92%;
   margin: 18rpx auto;
   box-sizing: border-box;
@@ -31,4 +32,4 @@
 }
 .result-detail view {
   font-size: 28rpx;
-}
+} */

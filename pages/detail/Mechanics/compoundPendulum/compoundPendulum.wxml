@@ -26,7 +26,7 @@
 			</block>
 		</scroll-view>
 	</view>
-  <view class="result-detail">
+  <view class="result-detail" hidden="{{!isResult}}">
     <view>g测={{result._g}}</view>
     <view>△g={{result.G}}</view>
     <view>△E={{result.E * 100}}%</view>

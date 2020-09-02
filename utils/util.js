@@ -128,8 +128,9 @@ function singlePendulum(arr) {
   res.J = Number(res.F * T * T / (4 * pie * pie)).toFixed(2)
   res.J1 = Number(res.J - res.J0).toFixed(2)
   res.E = Number(Math.abs(res.J1 - res._J1) / res._J1).toFixed(2)
-  return res
+  return res 
 }
+
 module.exports = {
   electricTuningFork,
   electricTuningForkSum,

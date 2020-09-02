@@ -1,6 +1,6 @@
-
-@import '../../../../style/index.wxss';
-.input-block {
+@import '../../../../style/detail.wxss';
+/* @import '../../../../style/index.wxss'; */
+/* .input-block {
   height: 64rpx;
   padding-top: 0;
 }
@@ -18,13 +18,13 @@
   position: absolute;
   top: -10rpx;
   left: 430rpx;
-}
-.table-title {
+} */
+/* .table-title {
   width: 750rpx;
   font-size: 50rpx;
   display: block; 
   text-align: center;
-}
+} */
 
 .tr {
   display: flex;
@@ -47,7 +47,7 @@
   display: block;
 }
 
-
+/* 
 .result-detail {
   width: 92%;
   margin: 18rpx auto;
@@ -62,4 +62,4 @@
 }
 .result-detail view {
   font-size: 28rpx;
-}
+} */

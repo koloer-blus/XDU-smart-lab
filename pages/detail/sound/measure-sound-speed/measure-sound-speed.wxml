@@ -14,7 +14,7 @@
  </view>
   <text>\r</text>
   <!-- 声速数据 -->
-  <text>声速测量数据表</text>
+  <text class="table-title">声速测量数据表</text>
   <view class="table" id="table">
     <block wx:for="{{table}}" wx:key="*this" wx:for-item="row" wx:for-index="row_index">
       <view class="tr">

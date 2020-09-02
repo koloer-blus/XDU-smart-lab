@@ -27,7 +27,7 @@
 		</scroll-view>
 	</view>
   <button class="calculate-btn" bindtap="calculate">点击计算</button>
-  <view class="result-detail">
+  <view class="result-detail" hidden="{{!isResult}}">
      <text>下圆盘</text>
     <view class="from-data">
       <text>𝐼₀={{result.plateI0}}𝑔·𝑐𝑚²</text>

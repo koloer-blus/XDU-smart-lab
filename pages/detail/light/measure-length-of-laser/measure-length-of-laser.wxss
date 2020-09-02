@@ -1,5 +1,6 @@
-@import '../../../../style/index.wxss';
-
+@import '../../../../style/detail.wxss';
+/* @import '../../../../style/index.wxss'; */
+/* 
 .input-lable{
   float: left;
 }
@@ -26,7 +27,8 @@
   height: 80rpx;
   line-height: 80rpx;
   font-size: 50rpx;
-}
+} */
+
 .tr {
   display: flex;
   width: 200rpx;
@@ -49,7 +51,7 @@
 .table-item{
   height: 100rpx;
 }
-.result-detail text{
+/* .result-detail text{
   display: block;
 }
 
@@ -67,4 +69,4 @@
 }
 .result-detail view {
   font-size: 28rpx;
-}
+} */
