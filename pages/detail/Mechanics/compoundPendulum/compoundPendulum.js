@@ -33,7 +33,8 @@ Page({
       ['周期7', 11.820, 11.725, 11.665, 11.717, 11.833, 12.238, 12.909, 14.021, 16.035],
       ['周期8', 11.823, 11.726, 11.665, 11.714, 11.829, 12.233, 12.910, 14.008, 16.036],
       ['平均周期', 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    ]
+    ],
+    isResult : false
   },
   changeData(e) {
     let table = "table", CircleCenter = "CircleCenter"
@@ -100,6 +101,7 @@ Page({
     this.setData({
       result: res
     })
+    this.setData({isResult:true})
   },
   /**
    * 生命周期函数--监听页面加载

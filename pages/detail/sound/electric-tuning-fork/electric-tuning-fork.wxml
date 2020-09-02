@@ -11,7 +11,7 @@
 	</view>
 	<view class="table">
 		<scroll-view scroll-x style="width: 100%" class="table">
-    <text class="table-title">可编辑区域</text>
+    <text class="table-title">数据记录表</text>
 			<block wx:for="{{table}}" wx:key="*this" wx:for-item="table" wx:for-index="row_index">
 				<view class="tr">
 					<view class="td" wx:for="{{table}}" wx:key="*this" wx:item="item" wx:for-index="col_index" data-row="{{row_index}}">
@@ -28,7 +28,8 @@
 		</scroll-view>
 	</view>
   <button class="calculate-btn" bindtap="calculate">点击计算</button>
-  <view class="result-detail">
+  
+  <view class="result-detail" hidden="{{!isResult}}">
     <text>由数据可得</text>
     <view class="from-data">
       <text>𝑓_平均={{aveFrequency}}𝐻𝑧</text>

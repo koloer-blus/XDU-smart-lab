@@ -35,7 +35,8 @@ Page({
       [125, 4, 116.8, 0, 0, 0, 0],
       [150, 3, 97, 0, 0, 0, 0],
       [175, 2, 70.7, 0, 0, 0, 0],
-    ]
+    ],
+    isResult:false
   },
   changeData(e) {
     let arcSurface = "arc-area-density",
@@ -113,6 +114,7 @@ Page({
         })
       }
     }
+    this.setData({isResult:true})
   },
   /**
    * 生命周期函数--监听页面加载

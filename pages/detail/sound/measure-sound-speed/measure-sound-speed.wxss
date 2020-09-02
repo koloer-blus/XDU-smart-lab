@@ -1,5 +1,6 @@
-@import '../../../../style/index.wxss';
-
+/* @import '../../../../style/index.wxss'; */
+@import '../../../../style/detail.wxss';
+/* 
 .input-value {
   position: absolute;
   top: -6rpx;
@@ -46,7 +47,7 @@
 }
 .result-detail view {
   font-size: 28rpx;
-}
+} */
 
 .td {
   box-sizing: border-box;
