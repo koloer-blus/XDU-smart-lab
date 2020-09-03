@@ -15,7 +15,7 @@
 				<view class="tr">
 					<view class="td" wx:for="{{table}}" wx:key="*this" wx:item="item" wx:for-index="col_index" data-row="{{row_index}}">
             <input 
-            class="table-item" placeholder="{{item===0?'':item}}" type="digit" wx:if="{{col_index >0}}" 
+            class="table-item" placeholder="{{item===0?'':item}}" type="digit" wx:if="{{col_index >0&&row_index<9}}" 
             bindblur="changeData" id="table"
             data-row="{{row_index}}"
             data-col="{{col_index}}"

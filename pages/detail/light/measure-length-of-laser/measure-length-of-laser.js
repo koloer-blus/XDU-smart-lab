@@ -1,10 +1,15 @@
+// pages/detail/Light/measure-length-of-laser/measure-length-of-laser.js
 const {
   httpReq
 } = require('../../../../api/http')
 const {
   behaviorLog
 } = require('../../../../api/url')
-// pages/detail/Light/measure-length-of-laser/measure-length-of-laser.js
+const {
+  getAverage,
+  getUncertainty_A,
+  getUncertainty,
+} = require('../../../../utils/common')
 Page({
 
   /**
@@ -58,7 +63,6 @@ Page({
     //结果
     lambda_aver:0,    //λ平均
     d_A:0,  //B类不确定度
-    d_B:0,  //A类不确定度
     d_d:0,  //总不确定度(▲d)
     d_lambda:0, //lambda不确定度
     uncertainty_absolute:0,
@@ -119,7 +123,7 @@ Page({
     
     let table = this.data.table
     let lambda_aver = 0
-    let d_A = 0,d_B = 0,d_d = 0,d_lambda = 0
+    let d_A = 0,d_d = 0,d_lambda = 0
     let u_a = 0,u_r = 0
     let isResult=false
 
@@ -140,66 +144,34 @@ Page({
       }
     }
     console.log("表格处理完毕:"+table)
-    console.log("xianzai:"+lambda_aver)
     //一般数据处理
-    lambda_aver = Number(lambda_aver/8).toFixed(2)
-    d_A = (this.Sx(Number(table[1][3]),Number(table[2][3]),Number(table[3][3]),Number(table[4][3]),Number(table[5][3]),Number(table[6][3]),Number(table[7][3]),Number(table[8][3]))).toFixed(6)
-    // Number(table[1][3]),Number(table[2][3]),Number(table[3][3]),Number(table[4][3]),Number(table[5][3]),Number(table[6][3]),Number(table[7][3]),Number(table[8][3])
-    d_B = (d_yi/(Math.sqrt(3))).toFixed(6)
-    d_d = (Math.sqrt(d_A*d_A+d_B*d_B)).toFixed(6)
-    d_lambda = 2*d_d/N*1000000
-    u_a = Math.abs(lambda_aver-lambda_0)
+    var data = new Array()
+    for (let index = 1; index < 9; index++) {
+      data[index-1] = table[index][4];
+    }
+    lambda_aver = Number(getAverage(data))
+    data = new Array()
+    for (let index = 1; index < 9; index++) {
+      data[index-1] = table[index][3];
+    }
+    d_A = Number(getUncertainty_A(data))
+    d_d = Number(getUncertainty(d_A,d_yi))
+    d_lambda = 2* d_d *1000000
+    u_a = Math.abs(lambda_aver-lambda_0).toFixed(3)
     u_r = (u_a / lambda_0 * 100).toFixed(2)
 
     //更新数据
     this.setData({["lambda_aver"]:lambda_aver})
-    console.log("lambda_aver 已更新:"+this.data.lambda_aver)
-    
     this.setData({["d_A"]:d_A})
-    console.log("d_A 已更新:"+this.data.d_A)
-    
-    this.setData({["d_B"]:d_B})
-    console.log("d_B 已更新:"+this.data.d_B)
-    
     this.setData({["d_d"]:d_d})
-    console.log("d_d 已更新:"+this.data.d_d)
-  
     this.setData({["d_lambda"]:d_lambda})
-    console.log("d_lambda 已更新:"+this.data.d_lambda)
-
     this.setData({["uncertainty_absolute"]:u_a})
-    console.log("uncertainty_absolute 已更新:"+this.data.uncertainty_absolute)
-
     this.setData({["uncertainty_relative"]:u_r})
-    console.log("uncertainty_relative 已更新:"+this.data.uncertainty_relative)
-
     this.setData({["isResult"]:true})
     console.log("计算完毕!")
   },
 
-  //计算A类不确定度
-  Sx(){
-    var n = arguments.length
-    //算数平均数
-    var total = 0;
-    for (var i = 0; i < n; i = i + 1) {
-        total = total + arguments[i];
-    }
-    var avernum = total/arguments.length
-    // console.log("\t\t正在标准差计算:平均数计算完毕:"+avernum)
-    //标准偏差
-    var s = 0
-    for(var i=0;i<n;i++)
-    {
-      s += (arguments[i]-avernum)*(arguments[i]-avernum);
-    }
-    s = Math.sqrt(s/(n-1))
-    // console.log("\t\t正在标准差计算:标准偏差计算完毕:"+s)
-    //A类不确定度
-    var sx = s/Math.sqrt(n)
-    console.log("\tA类不确定度计算完毕:"+sx)
-    return sx
-  },
+  
   /**
    * 生命周期函数--监听页面加载
    */

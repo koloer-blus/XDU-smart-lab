@@ -1,6 +1,12 @@
+// pages/detail/Electricity/measure-low-resistance/measure-low-resistance.js
 const {httpReq} = require('../../../../api/http')
 const {behaviorLog} = require('../../../../api/url')
-// pages/detail/Electricity/measure-low-resistance/measure-low-resistance.js
+const {
+  getAverage,
+  getUncertainty_A,
+  getUncertainty,
+} = require('../../../../utils/common')
+
 Page({
 
   /**
@@ -12,13 +18,13 @@ Page({
     inputList:[{
       label:'𝑅₁= ',
       value:'1000',
-      unit:'𝛀',
+      unit:' 𝛀',
       id:'resistance_1'
     },
     {  
       label:'𝑅₃= ',
       value:'100',
-      unit:'𝛀',
+      unit:' 𝛀',
       id:'resistance_3'
     }],
     //table_diameter
@@ -38,6 +44,9 @@ Page({
     ],
     //参数
     diameter_aver:0,  //直径平均值
+    Un_d:0,           //直径误差
+    Un_A_d:0,
+    Un_A_Rx:0,
     rho_aver: 0,      //rho平均值
     rho_sx:0,         //rho误差
     K:0,              //K是一个中间系数,pi*d^2/4
@@ -54,7 +63,6 @@ Page({
       }
       if(id == "table_diameter"){
         let row = e.currentTarget.dataset.row, col = e.currentTarget.dataset.col
-        // let table_diameter = this.data.table_diameter
         this.setData({
           [`table_diameter[${row}][${col}]`]:value
         })
@@ -83,19 +91,15 @@ Page({
       control: '点击计算',
       openid:wx.getStorageSync('openid') || 'false'
     })
+
     this.setData({isResult:false})
+
     //表1,直径计算
     let table = this.data.table_diameter[1],sum = 0 ,n=0
     console.log('直径数据表:'+table)
-    for(let i = 1;i < table.length;i++){
-      let tmp = Number(table[i])
-      if(tmp!==0){
-        sum += tmp
-        n++
-      }
-    }
-    if(sum !== 0){
-      this.setData({diameter_aver : Number((sum/n).toFixed(4))})
+    var aver_d = Number(getAverage(table.slice(1,)))
+    if(aver_d !== 0){
+      this.setData({diameter_aver : aver_d})
     }else{
       return
     }
@@ -138,44 +142,31 @@ Page({
       console.log("表2中没有数据")
       return
     }
-    // console.log(table[6].slice(1,))
-    var sx = this.Sx(table[6].slice(1,))
+
+    var aver_Rx = Number(getAverage(table[5].slice(1,)))
+    var aver_rho = Number(getAverage(table[6].slice(1,)))
+
+    /* 不确定度 */
+    var Un_A_d = Number(getUncertainty_A(this.data.table_diameter[1].slice(1,)))
+    var Un_d = Number(getUncertainty(Un_A_d, 0.001))
+    var Un_A_Rx = Number(getUncertainty_A(table[5].slice(1,)))
+    var Un_rho = Math.sqrt(4*(Math.pow(Un_d/aver_d,2)) + Math.pow(Un_A_Rx/aver_Rx,2)) * aver_rho
+    Un_rho = Un_rho.toFixed(6)
+    console.log(aver_rho)
     // console.log(sum+'@'+n)
     this.setData({
       K : K,
       Num_data : n,
-      rho_aver : (sum/n).toFixed(2),
-      rho_sx : sx
+      rho_aver : aver_rho,
+      rho_sx : Un_rho,
+      Un_d : Un_d,
+      Un_A_d: Un_A_d,
+      Un_A_Rx : Un_A_Rx
     })
     // console.log("计算完毕,ρ="+this.data.rho_aver)
     // console.log('偏差='+this.data.rho_sx)
   },
 
-  Sx(){
-    var data = arguments[0]
-    var n = data.length
-    console.log(data,n,data[0])
-    //算数平均数
-    var total = 0;
-    for (var i = 0; i < n; i = i + 1) {
-        total = total + Number(data[i]);
-        console.log(total)
-    }
-    var avernum = total/data.length
-    console.log("\t\t正在标准差计算:平均数计算完毕:"+avernum)
-    //标准偏差
-    var s = 0
-    for(var i=0;i<n;i++)
-    {
-      s += (data[i]-avernum)*(data[i]-avernum);
-    }
-    s = Math.sqrt(s/(n-1))
-    console.log("\t\t正在标准差计算:标准偏差计算完毕:"+s)
-    //A类不确定度
-    var sx = s/Math.sqrt(n)
-    console.log("\t\t正在标准差计算:A类不确定度:"+sx)
-    return sx
-  },
   /**
    * 生命周期函数--监听页面加载
    */
