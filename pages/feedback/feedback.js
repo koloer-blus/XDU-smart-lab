@@ -87,8 +87,7 @@ Page({
         return false
       }
     }
-    console.log(data)
-    httpReq(url.feedBack.URL, url.feedBack.method, data,this.change )
+    httpReq(url.feedBack.sURL, url.feedBack.method, data,this.change )
   },
   /**
    * 生命周期函数--监听页面加载
