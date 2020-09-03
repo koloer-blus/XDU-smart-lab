@@ -2,7 +2,9 @@
 const {
   httpReq
 } = require('../../api/http')
-const url = require('../../api/url')
+const {
+  feedBack
+} = require('../../api/url')
 Page({
 
   /**
@@ -47,7 +49,7 @@ Page({
     })
   },
   change(res) {
-    console.log(res)
+    console.log('res:',res)
     if(res.statusCode === 201) {
       this.setData({
         res: res,
@@ -68,11 +70,10 @@ Page({
     let data = {
       type: this.data.type,
       content: this.data.suggestion.value,
-      contactInfo: this.data.connection || 0,
+      contactInfo: this.data.connection || '00000000',
       openid:wx.getStorageSync('openid') || 'false',
       page: this.data.info    
     }
-    console.log(data)
     for(let item in data) {
       if(data[item] === '') {
           this.setData({
@@ -87,7 +88,7 @@ Page({
         return false
       }
     }
-    httpReq(url.feedBack.sURL, url.feedBack.method, data,this.change )
+    httpReq(feedBack.URL, feedBack.method, data,this.change )
   },
   /**
    * 生命周期函数--监听页面加载
