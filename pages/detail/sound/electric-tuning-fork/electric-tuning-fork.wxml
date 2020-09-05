@@ -11,12 +11,12 @@
 	</view>
 	<view class="table">
 		<scroll-view scroll-x style="width: 100%" class="table">
-    <text class="table-title">数据记录表</text>
+    <text class="table-title">电动音叉振动频率测量数据表</text>
 			<block wx:for="{{table}}" wx:key="*this" wx:for-item="table" wx:for-index="row_index">
 				<view class="tr">
 					<view class="td" wx:for="{{table}}" wx:key="*this" wx:item="item" wx:for-index="col_index" data-row="{{row_index}}">
             <input 
-            class="table-item" placeholder="{{item===0?'':item}}" type="digit" wx:if="{{row_index > 0 && col_index < 3}}" 
+            class="table-item" placeholder="{{item===0?'':item}}" type="digit" wx:if="{{row_index > 0 && col_index === 2}}" 
             bindblur="changeData" id="table"
             data-row="{{row_index}}"
             data-col="{{col_index}}"
@@ -28,18 +28,11 @@
 		</scroll-view>
 	</view>
   <button class="calculate-btn" bindtap="calculate">点击计算</button>
-  
   <view class="result-detail" hidden="{{!isResult}}">
-    <text>由数据可得</text>
-    <view class="from-data">
-      <text>𝑓_平均={{aveFrequency}}𝐻𝑧</text>
-      <text>Δ𝑓={{frequencyDiff}}𝐻𝑧</text>
-    </view>
-    <text>由曲线可得</text>
-    <view class="from-arc">
-      <text>𝑘={{rate}}%</text>
-      <text>𝑓={{aveFrequency + '±' + frequencyDiff }}𝐻𝑧</text>
-    </view>
+    <view>平均频率: 𝑓<sub>average</sub>={{aveFrequency}} 𝐻𝑧</view>
+    <view>频率误差: Δ𝑓={{frequencyDiff}} 𝐻𝑧</view>
+    <view>实验结果: 𝑓={{aveFrequency + '±' + frequencyDiff }} 𝐻𝑧</view>
+    <view>相对误差: 𝐸=Δ𝑓/𝑓₀={{rate}} %</view>
   </view>
   <feed-back-btn info="电动音叉产生的弦振动的测量" />
 </view>

@@ -1,3 +1,4 @@
+// pages/detail/sound/measure-sound-speed-water/measure-sound-speed-water.js
 const {
   httpReq
 } = require('../../../../api/http')
@@ -9,14 +10,13 @@ const {
   getUncertainty_A,
   getUncertainty,
 } = require('../../../../utils/common')
-// pages/detail/sound/measure-sound-speed/measure-sound-speed.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    title: '空气中声速的测量',
+    title: '水中声速的测量',
     inputList:[{
         label:'室温𝑡= ',
         value:'21',
@@ -25,7 +25,7 @@ Page({
       },
       {
         label:'频率𝑓= ',
-        value:'35.211',
+        value:'37',
         unit:'𝑘𝐻𝑧',
         id:'frequency_f'
       },
@@ -45,18 +45,16 @@ Page({
     //table
     table:[
       ['ᵢ','𝐿ᵢ/𝑚𝑚','λᵢ/𝑚𝑚'],
-      [1,151.50,'#'],
-      [2,156.32,'#'],
-      [3,161.20,'#'],
-      [4,165.94,'#'],
-      [5,171.22,'#'],
-      [6,176.18,'#'],
-      [7,181.02,'无数据'],
-      [8,186.24,'无数据'],
-      [9,191.10,'无数据'],
-      [10,196.26,'无数据'],
-      [11,201.04,'无数据'],
-      [12,205.88,'无数据'],
+      [1,87.00,'#'],
+      [2,101.74,'#'],
+      [3,125.06,'#'],
+      [4,146.72,'#'],
+      [5,170.50,'#'],
+      [6,197.76,'无数据'],
+      [7,225.142,'无数据'],
+      [8,251.176,'无数据'],
+      [9,282.10,'无数据'],
+      [10,310.26,'无数据'],
     ],
 
     temperature_T:273.15,
@@ -142,9 +140,9 @@ Page({
     console.log('\t室温理论速度'+this.data.speed_lilun)
 
     //表格处理
-    for(let i=1;i<7;i++){
-      if(Number(table[i][1])&&Number(table[i+6][1])){
-        let tmp = 1/3*(Math.abs(Number(table[i+6][1])-Number(table[i][1])))
+    for(let i=1;i<6;i++){
+      if(Number(table[i][1])&&Number(table[i+5][1])){
+        let tmp = 2/5*(Math.abs(Number(table[i+5][1])-Number(table[i][1])))
         tmp = tmp.toFixed(4)
         console.log("\tlambda_"+i+":"+tmp)
         this.setData({[`table[${i}][2]`]:Number(tmp)})
@@ -155,7 +153,7 @@ Page({
     //--------结果处理
     //lambda_aver
     var data = new Array()
-    for (let index = 1; index < 7; index++) {
+    for (let index = 1; index < 6; index++) {
       data[index-1] = table[index][2];
     }
     var lambda_aver=Number(getAverage(data))
@@ -231,6 +229,7 @@ Page({
       this.setData({isResult:true})
       console.log("全部计算完毕")
     },
+
   /**
    * 生命周期函数--监听页面加载
    */

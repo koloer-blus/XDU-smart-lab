@@ -163,3 +163,13 @@ feed-back-btn {
   display: block;
   box-sizing: border-box;
 }
+/* 上标与下标 */
+sup{
+  font-size: 10px;
+  vertical-align:text-top;
+}
+sub{
+  font-size: 10px;
+  vertical-align:text-bottom;
+  font-style: oblique;
+}

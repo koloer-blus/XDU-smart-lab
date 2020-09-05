@@ -16,7 +16,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    title: '迈克尔逊干涉仪测激光波长',
+    title: '激光波长的测量',
     inputList:[{
       label:'仪器不确定度Δ仪= ',
       value:0.0001,
@@ -116,7 +116,7 @@ Page({
       control: '点击计算',
       openid:wx.getStorageSync('openid') || 'false'
     })
-    console.log("开始计算!")
+    console.log("开始计算!") 
     let d_yi = this.data.inputList[0].value
     let N = this.data.inputList[1].value
     let lambda_0 = this.data.inputList[2].value
@@ -156,7 +156,7 @@ Page({
     }
     d_A = Number(getUncertainty_A(data))
     d_d = Number(getUncertainty(d_A,d_yi))
-    d_lambda = 2* d_d *1000000
+    d_lambda = 2* d_d *1000000 / N
     u_a = Math.abs(lambda_aver-lambda_0).toFixed(3)
     u_r = (u_a / lambda_0 * 100).toFixed(2)
 

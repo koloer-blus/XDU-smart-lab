@@ -14,7 +14,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    title: '电动音叉产生的弦振动的测量',
+    title: '音叉振动频率的测量',
     inputList: [{
         label: '弧线面密度𝝆=',
         value: '0.00356',
@@ -26,15 +26,21 @@ Page({
         value: '9.8',
         unit: '𝑚/𝑠²',
         id: 'acceleration-of-gravity'
+      },
+      {
+        label: '音叉频率标准值𝑓₀=',
+        value: '100',
+        unit: '𝐻𝑧',
+        id: 'frequency_0'
       }
     ],
     table: [
       ['砝码质量𝑚/𝑔', '波腹数', '弦线长L/𝑐𝑚', '√𝑚', '波长', '波速', '频率'],
-      [25, 6, 78.3, 0, 0, 0, 0],
-      [75, 5, 114.8, 0, 0, 0, 0],
-      [125, 4, 116.8, 0, 0, 0, 0],
-      [150, 3, 97, 0, 0, 0, 0],
-      [175, 2, 70.7, 0, 0, 0, 0],
+      [25,  6,  78.3,  '#', '#','#','#'],
+      [75,  5,  114.8, '#', '#','#','#'],
+      [125, 4,  116.8, '#', '#','#','#'],
+      [150, 3,  97,    '#', '#','#','#'],
+      [175, 2,  70.7,  '#', '#','#','#'],
     ],
     isResult:false
   },
@@ -58,9 +64,13 @@ Page({
       this.setData({
         ['inputList[0].value']: value
       })
-    } else {
+    } else if (id === gravity){
       this.setData({
         ['inputList[1].value']: value
+      })
+    } else if (id === 'frequency_0'){
+      this.setData({
+        ['inputList[2].value']: value
       })
     }
   },
@@ -103,7 +113,7 @@ Page({
       })
       console.log(Number(this.data.aveFrequency))
       let res = electricTuningForkSum({
-        inherentFrequency: 99.6,
+        inherentFrequency: Number(this.data.inputList[2].value),
         frequency: Number(this.data.aveFrequency)
       })
       if (res) {

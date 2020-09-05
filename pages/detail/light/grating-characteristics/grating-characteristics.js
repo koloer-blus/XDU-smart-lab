@@ -11,7 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    title: '光栅特性研究',
+    title: '光栅光谱的测量',
     inputList:[{
       label:'谱线的平均波长 λ= ',
       value:546.1,

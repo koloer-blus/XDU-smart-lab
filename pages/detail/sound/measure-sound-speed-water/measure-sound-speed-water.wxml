@@ -1,5 +1,5 @@
-<!--pages/detail/sound/measure-sound-speed/measure-sound-speed.wxml-->
-<view class="measure-sound-speed">
+<!--pages/detail/sound/measure-sound-speed-water/measure-sound-speed-water.wxml-->
+<view class="measure-sound-speed-water">
   <text class="detail-title">{{title}}</text>
   <block wx:for="{{inputList}}" wx:key="*this">
     <view class="input-block">
@@ -31,8 +31,8 @@
 
   <view class="result-detail" hidden="{{!isResult}}">
     <view>当前开尔文温度：𝑇={{temperature_T}} 𝐾.</view>
-    <view>当前理论声速：𝑣₀={{speed_lilun}}𝑚/𝑠.</view>
-    <!-- <view>距离A类不确定度：{{Un_L_A}}𝑚𝑚.</view> -->
+    <!-- <view>当前理论声速：𝑣₀={{speed_lilun}}𝑚/𝑠.</view> -->
+    <!-- <view>距z离A类不确定度：{{Un_L_A}}𝑚𝑚.</view> -->
     <!-- <view>距离综合不确定度：{{Un_lambda}}𝑚𝑚.</view> -->
     <view>平均波长：𝜆<sub>average</sub>={{lambda_aver}}𝑚𝑚.</view>
     <view>波长不确定度：Δ𝜆={{Un_lambda}}𝑚𝑚.</view>
@@ -40,7 +40,7 @@
     <view>声速相对不确定度 Δ𝑣/𝑣={{Un_v_relative}}𝑚/𝑠.</view>
     <view>声速误差: Δ𝑣={{Un_v}}𝑚/𝑠.</view>
     <view>实验结果：𝑣={{speed_result}} ± {{Un_v}}𝑚/𝑠.</view>
-    <view>相对误差：𝐸={{speed_wucha_relative}}.</view>
+    <!-- <view>相对误差：𝐸={{speed_wucha_relative}}.</view> -->
   </view>
 
 <feed-back-btn info="声速的测量" />

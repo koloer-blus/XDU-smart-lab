@@ -14,7 +14,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    title: '复摆测量重力加速度',
+    title: '重力加速度的测量',
+    // 复摆测量重力加速度
     inputList: [{
       label: '圆心位置x1=',
       value: '3.2',

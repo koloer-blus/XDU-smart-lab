@@ -1,0 +1,13 @@
+/* pages/detail/sound/measure-sound-speed-water/measure-sound-speed-water.wxss */
+@import '../../../../style/detail.wxss';
+.td {
+  box-sizing: border-box;
+  width: 272rpx;
+  height: 60rpx;
+  justify-content: center;
+  text-align: center;
+  word-wrap: break-word;
+  flex-shrink: 0;
+  line-height: 60rpx;
+  border: 2rpx solid #ccc;
+}
