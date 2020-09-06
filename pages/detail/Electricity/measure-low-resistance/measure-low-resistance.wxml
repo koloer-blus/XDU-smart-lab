@@ -15,12 +15,14 @@
   <view class="table" id="table-diameter">
     <text class="table-title">金属丝直径测量数据表</text>
     <scroll-view scroll-x style="width: 100%">
-    <block wx:for="{{table_diameter}}" wx:key="*this" wx:for-item="row" wx:for-index="row_index">
+    <block wx:for="{{table_diameter}}" wx:key="*this" 
+    wx:for-item="row" wx:for-index="row_index">
       <view class="tr">
         <view class="td" wx:for="{{row}}" wx:key="*this" wx:item="item" wx:for-index="col_index" data-row="{{row_index}}">
           <input
           class="table-item" placeholder="{{item===0?'':item}}" type="digit"
-          wx:if="{{row_index==1&&col_index>0}}" bindblur="changeData" id="table_diameter"
+          wx:if="{{row_index==1&&col_index>0}}" 
+          bindblur="changeData" id="table_diameter"
           data-row="{{row_index}}"
           data-col="{{col_index}}"
           ></input>
@@ -61,7 +63,7 @@
     <text class="detail-info">平均直径：{{diameter_aver}} ± {{Un_d}} mm</text>
     <text class="detail-info">直径的A类不确定度：{{Un_A_d}} mm</text>
     <text class="detail-info">𝑅ₓ的A类不确定度：{{Un_A_Rx}} ×10⁻³ 𝛀</text>
-    <view wx:if="{{Num_data>1}}" class="detail-info">平均密度：( {{rho_aver}} ± {{rho_sx}} )×10⁻⁹ 𝛀·𝑀.</view>
+    <view wx:if="{{Num_data>1}}" class="detail-info">平均电阻率：( {{rho_aver}} ± {{rho_sx}} )×10⁻⁹ 𝛀·𝑀.</view>
   </view>
   
   <feed-back-btn info="低电阻的测量" />

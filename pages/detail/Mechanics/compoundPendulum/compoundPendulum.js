@@ -17,24 +17,30 @@ Page({
     title: '重力加速度的测量',
     // 复摆测量重力加速度
     inputList: [{
-      label: '圆心位置x1=',
-      value: '3.2',
-      unit: 'cm（需输入）',
+      label: '质心位置=',
+      value: '7.06',
+      unit: ' 𝑐𝑚(填入绝对值即可)',
       id: 'CircleCenter'
     }
   ],
     table: [
-      ['位置/cm', 17.5, 15.5, 13.5, 11.5, 9.5, 7.5, 5.5, 3.5, 1.5],
-      ['周期1', 11.812, 11.712, 11.689, 11.741, 11.925, 12.267, 12.931, 14.063, 16.057],
-      ['周期2', 11.820,11.723, 11.683, 11.732, 11.906, 12.259, 12.925, 14.034, 16.049],
-      ['周期3', 11.821, 11.725, 11.677, 11.734, 11.893, 12.254, 12.919, 14.051, 16.046],
-      ['周期4', 11.823, 11.726, 11.674, 11.727, 11.882, 12.250, 12.915, 14.044, 16.044],
-      ['周期5', 11.821, 11.727, 11.671, 11.725, 11.866, 12.246, 12.914, 14.039, 16.041],
-      ['周期6', 11.823, 11.726, 11.670, 11.724, 11.850, 12.240, 12.911, 14.052, 16.028],
-      ['周期7', 11.820, 11.725, 11.665, 11.717, 11.833, 12.238, 12.909, 14.021, 16.035],
-      ['周期8', 11.823, 11.726, 11.665, 11.714, 11.829, 12.233, 12.910, 14.008, 16.036],
-      ['平均周期', '#','#','#','#','#','#','#','#'],
+      ['序号', '①','②','③','④','⑤','⑥','⑦','⑧','⑨'],
+      ['支点位置/𝑐𝑚', 18.00,15.98,13.97,12.00,10.02,7.98,5.99,4.00,2.03],
+      ['10周期1',13.09,12.66,12.9,12.94,12.97,12.91,13.64,14.10,15.13],
+      ['10周期2', 12.82,12.94,12.85,12.90,13.03,13.23,13.60,14.09,15.47],
+      ['10周期3', 13.04,12.83,12.62,12.97,13.03,13.00,13.47,13.81,15.34],
+      ['10周期4', 13.09,12.88,12.87,13.15,13.00,13.03,13.62,14.07,15.54],
+      ['10周期5', 12.97,12.37,12.91,13.00,13.04,13.00,13.59,14.01,15.44],
+      ['10周期6', 13.07,12.56,13.00,12.97,13.06,13.04,13.79,14.16,15.28],
+      ['10周期7', 13.07,12.76,12.80,12.85,13.00,13.06,13.50,14.01,15.03],
+      ['10周期8', 13.03,12.67,12.94,12.75,13.03,13.00,13.53,14.22,15.20],
+      ['单周期平均', '#','#','#','#','#','#','#','#'],
+      ['𝘩/𝑐𝑚', '#','#','#','#','#','#','#','#'],
     ],
+    g_lilun:9.797,
+    g_result:0,
+    Un_g:0,         //绝对误差
+    Un_g_relative:0,
     isResult : false
   },
   changeData(e) {
@@ -57,51 +63,74 @@ Page({
       })
     }
   },
-  calculG: function (t,h) {
-    let _h = Number(this.data.inputList[0].value), g =  9.797,pie = 3.1415, Gi = 0
-    h.forEach((value,index) => {
-      h[index] = Math.abs(_h + value)
-    })
-    Gi = (4 * Math.pow(pie,2) * (h[0]* h[0] - h[8] * h[8]) / (h[0] * Math.pow(t[0],2) - h[8] * Math.pow(t[8],2)))
-    let _g = Gi
-    let G = Math.abs(_g - g)
-    let E = G / g
-    return {
-      _g: _g.toFixed(3),
-      G: G.toFixed(3),
-      E: E.toFixed(5)
-    }
-  },
+
+  // calculG: function (t,h) {
+  //   let _h = Number(this.data.inputList[0].value), g =  9.797,pie = 3.1415, Gi = 0
+  //   h.forEach((value,index) => {
+  //     h[index] = Math.abs(_h + value)
+  //   })
+  //   Gi = (4 * Math.pow(pie,2) * (h[0]* h[0] - h[8] * h[8]) / (h[0] * Math.pow(t[0],2) - h[8] * Math.pow(t[8],2)))
+  //   let _g = Gi
+  //   let G = Math.abs(_g - g)
+  //   let E = G / g
+  //   return {
+  //     _g: _g.toFixed(3),
+  //     G: G.toFixed(3),
+  //     E: E.toFixed(5)
+  //   }
+  // },
   calculate() {
     httpReq(behaviorLog.URL, behaviorLog.method, {
       page: this.data.title,
       control: '点击计算',
       openid:wx.getStorageSync('openid') || 'false'
     })
-    let table = this.data.table,  T = [],  h= []
-    for(let i = 0, row = table.length; i< row-1; ++i) {
-      for(let j = 1,col = table[i].length ; j <col; ++j) {
-        let item = Number(table[i][j])
-        if (i === 1 ) {
-          T.push(item)
-        } else if(i === 0) {
-          h.push(item)
-        } else {
-          T[j-1] += item
-        }
+
+    var zhixinPos = this.data.inputList[0].value
+    var table = this.data.table
+    var g_lilun = this.data.g_lilun
+    var g_result = 0
+    var Un_g = 0
+    var Un_g_relative = ''
+
+
+    // 表格处理
+    for (let i = 1; i < 10; i++) {
+      //h
+      table[11][i] = Number(zhixinPos) + Number(table[1][i])
+      let h_tmp_str = table[11][i].toFixed(3)
+      this.setData({ [`table[11][${i}]`]:h_tmp_str})
+      table[11][i] /= 100
+      // console.log(table)
+      // console.log(zhixinPos)
+      //周期
+      let sum_zhouqi = 0
+      for(let j = 2;j<10;j++){
+        sum_zhouqi+=Number(table[j][i])
       }
+      table[10][i] = sum_zhouqi/80
+      let single_zhouqi_str = table[10][i].toFixed(3)
+      console.log(single_zhouqi_str)
+      this.setData({[`table[10][${i}]`]:single_zhouqi_str})
     }
-    let that = this
-    T.forEach((value,index) => {
-      T[index] = (value / 8).toFixed(3)
-      that.setData({
-        [`table[${table.length - 1}][${index+1}]`]:T[index]
-      })
-    })
-    let res = this.calculG(T,h)
-    this.setData({
-      result: res
-    })
+
+    // 其他计算
+    var h9 = Number(table[11][9])
+    var h1 = Number(table[11][1])
+    var T9 = Number(table[10][9])
+    var T1 = Number(table[10][1])
+    console.log(h1,h9,T1,T9)
+    g_result = 4 * Math.pow(3.1415926,2) * (h1*h1 - h9*h9) / (h1*T1*T1 - h9*T9*T9)
+    Un_g = Math.abs(g_result-g_lilun)
+    Un_g_relative = ((Un_g/g_lilun) * 100).toFixed(2) + ' %'
+
+    // 装载
+    this.setData({g_lilun:g_lilun})
+    g_result = g_result.toFixed(3)
+    this.setData({g_result:g_result})
+    Un_g = Un_g.toFixed(3)
+    this.setData({Un_g:Un_g})
+    this.setData({Un_g_relative:Un_g_relative})
     this.setData({isResult:true})
   },
   /**

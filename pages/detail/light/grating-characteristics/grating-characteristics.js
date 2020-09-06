@@ -4,6 +4,11 @@ const {
 const {
   behaviorLog
 } = require('../../../../api/url')
+const {
+  getAverage,
+  getUncertainty_A,
+  getUncertainty,
+} = require('../../../../utils/common')
 // pages/detail/Light/grating-characteristics/grating-characteristics.js
 Page({
 
@@ -13,7 +18,7 @@ Page({
   data: {
     title: '光栅光谱的测量',
     inputList:[{
-      label:'谱线的平均波长 λ= ',
+      label:'绿色谱线波长 𝜆= ',
       value:546.1,
       unit:"𝑛𝑚",
       id:'lambda_0'
@@ -22,7 +27,7 @@ Page({
       label:'仪器不确定度= ',
       value:1,
       unit:"分",
-      id:'uncertainty_yi'
+      id:'Un_YQ'
     }],
     //记录表
     // table:[
@@ -43,16 +48,17 @@ Page({
     ],
 
     //其他数据
-    uncertainty_yi_rad:0.000214,  //仪器不确定度  rad 
+    Un_YQ_rad:0.000291,  //仪器不确定度  rad 
     //中间数据
     phi_aver:0,  //绿光的平均phi
     d1:0,       //绿光的d(lambda/sinphi)
     d2:0,       //绿光的d(lambda/sinphi)
     d3:0,       //绿光的d(lambda/sinphi)
-    d_aver:0,   //绿光的d
-    d_delta:0,  // 绿光的d误差
+    d_aver:0,   //绿光的d平均
+    Un_d_relative:0, //相对不确定度
+    Un_d:0,  // 绿光的d误差
     //结果
-    E_relative:0,   //相对不确定度
+    // Un_d_relative:0,   //相对不确定度
     //黄光
     lambda_y_1:0,   //黄光1 波长
     lambda_y_2:0,   //黄光2 波长
@@ -87,17 +93,17 @@ Page({
       
       console.log(`\t成功写入lambda_0 `+this.data.inputList[0].value)
     }
-    else if(id === "uncertainty_yi"){
+    else if(id === "Un_YQ"){
       this.setData({
         ['inputList[1].value']: value
       })
-      var tmp = value * 0.000214
-      tmp = tmp.toFixed(6)
+      var tmp = value * 0.000291
+      tmp = Number(tmp.toFixed(6))
       this.setData({
-        ['uncertainty_yi_rad']: tmp
+        ['Un_YQ_rad']: tmp
       })
-      console.log(`\t成功写入uncertainty_yi `+this.data.inputList[1].value)
-      console.log(`\t成功写入uncertainty_yi_rad`+this.data.uncertainty_yi_rad)
+      console.log(`\t成功写入Un_YQ `+this.data.inputList[1].value)
+      console.log(`\t成功写入Un_YQ_rad`+this.data.Un_YQ_rad)
     }
 },
 
@@ -113,23 +119,23 @@ Page({
         control: this.data.title,
         openid:wx.getStorageSync('openid') || 'false'
       })
-        // console.log("开始计算!")
+        console.log("开始计算!")
         let lambda_0 = this.data.inputList[0].value //nm
-        let u_yi = this.data.uncertainty_yi_rad //rad
+        let Un_YQ_rad = this.data.Un_YQ_rad //rad
 
         let table = this.data.table
 
         let phi_aver = 0
         let d1 = 0, d2 = 0, d3 = 0
         let d_aver = 0
-        let d_delta = 0
-        let E_relative = 0
+        let Un_d = 0
+        let Un_d_relative = 0
 
         let lambda_y_1 = 0
         let lambda_y_2 = 0
 
         let isResult=false
-
+ 
         //处理表格
         for(var i=1;i<6;i++){
           if (Number(table[i][1])&&Number(table[i][2])&&Number(table[i][3])&&Number(table[i][4])) {
@@ -138,58 +144,57 @@ Page({
             let t3_rad = this.data2rad(table[i][3])
             let t4_rad = this.data2rad(table[i][4])
             //计算求和
-            var phi_tmp = Number((Math.abs(t1_rad-t3_rad)+Math.abs(t4_rad-t2_rad)) / 4)
+            var phi_tmp_ave = Number((Math.abs(t1_rad-t3_rad)+Math.abs(t4_rad-t2_rad)) / 4)
             if (i>2) {
-              phi_aver = Number(phi_tmp.toFixed(4)) + Number(phi_aver)
+              phi_aver = Number(phi_tmp_ave.toFixed(4)) + Number(phi_aver)
               console.log("求和"+phi_aver)
               if (i===3){
-                d1 = Number(lambda_0/Math.sin(phi_tmp*Math.PI/180)).toFixed(2)
+                d1 = Number(lambda_0/Math.sin(phi_tmp_ave*Math.PI/180)).toFixed(2)
+                d_aver += Number(d1)
                 console.log("d1刚出炉"+d1)
               }
               if (i===4){
-                d2 = Number(lambda_0/Math.sin(phi_tmp*Math.PI/180)).toFixed(2)
+                d2 = Number(lambda_0/Math.sin(phi_tmp_ave*Math.PI/180)).toFixed(2)
+                d_aver += Number(d2)
                 console.log("d2刚出炉"+d2)
               }
               if (i===5){
-                d3 = Number(lambda_0/Math.sin(phi_tmp*Math.PI/180)).toFixed(2)
+                d3 = Number(lambda_0/Math.sin(phi_tmp_ave*Math.PI/180)).toFixed(2)
+                d_aver += Number(d3)
                 console.log("d3刚出炉"+d3)
               }
             }
             //结果入表
-            phi_tmp = (Number( this.rad2data(phi_tmp) )).toFixed(2)
-            table[i][5] = Number(phi_tmp)
+            phi_tmp_ave = (Number( this.rad2data(phi_tmp_ave) )).toFixed(2)
+            table[i][5] = Number(phi_tmp_ave)
             // var phi_str = this.rad2str(table[i][5])
             this.setData({[`table[${i}][5]`]:table[i][5]})
             console.log("\t表格第"+i+"行已更新"+this.data.table[i][5])
           }
           else{
-            this.setData({['isResult']:isResult})
+            this.setData({['isResult']:false})
             return
           }
         }
-        // console.log("表格处理完毕:")
-        // console.log(table)
-        // console.log("xianzai:"+phi_aver)
         //一般数据处理
         phi_aver = (Number(phi_aver/3)).toFixed(2)    //rad
-        // console.log("phi_aver处理完毕rad:"+phi_aver)
-        d_aver = (Number(d1)+Number(d2)+Number(d3))/3
-        d_aver = Number(d_aver).toFixed(2)  //nm
-        // console.log("d_aver处理完毕nm:"+d_aver)
-        var db = Number(Number(u_yi) / Math.tan(phi_aver*Math.PI/180))
-        var da = this.Sx(Number(d1),Number(d2),Number(d3))
-        // console.log(da+'!'+da)
-        d_delta = Number(Math.sqrt(da*da+db*db)).toFixed(2)
-        E_relative = (d_delta/d_aver).toFixed(4)
-        // console.log("E_relative处理完毕:"+E_relative)
-        // /console.log("d_delta处理完毕nm:"+d_delta)
-        
 
+        // lambda的处理
+        var data = new Array()
+        for (let index = 3; index < 6; index++) {
+          data[index-1] = table[index][5];
+        }
+        var Un_phi_A = getUncertainty_A(data)
+        var Un_phi = getUncertainty(Un_phi_A,Un_YQ_rad)
+
+        // 绿光d的处理
+        d_aver = Number((d1+d2+d3)/3).toFixed(2)  //nm
+        Un_d_relative = Number(Number(Un_phi) / Math.tan(phi_aver*Math.PI/180))
+        Un_d = Un_d_relative * Number(d_aver)
+        
         //黄光
         let phi1_y_rad = this.data2rad(Number(table[1][5]))
         let phi2_y_rad = this.data2rad(Number(table[2][5]))
-        console.log("y1"+phi1_y_rad+'@'+Math.sin(phi1_y_rad*Math.PI/180))
-        console.log("y2"+phi2_y_rad+'@'+Math.sin(phi2_y_rad*Math.PI/180))
         var sin1 = Math.sin(phi1_y_rad*Math.PI/180)
         var sin2 = Math.sin(phi2_y_rad*Math.PI/180)
         lambda_y_1 = d_aver * Math.sin(phi1_y_rad*Math.PI/180)
@@ -198,8 +203,8 @@ Page({
         console.log("y2l"+lambda_y_2)
         //更新数据
         //phi rad
-        phi_tmp = Number(this.rad2data(phi_aver)).toFixed(2)
-        var phi_str = this.rad2str(phi_tmp)
+        phi_tmp_ave = Number(this.rad2data(phi_aver)).toFixed(2)
+        var phi_str = this.rad2str(phi_tmp_ave)
         this.setData({["phi_aver"]:phi_str})
         console.log("phi_aver 已更新:"+this.data.phi_aver)
         //todo: 字符串
@@ -216,13 +221,13 @@ Page({
         d_aver = (Number(d_aver/1000)).toFixed(2)   //mm
         this.setData({["d_aver"]:d_aver})
         console.log("d_aver 已更新:"+this.data.d_aver)
-        d_delta = (Number(d_delta)).toFixed(1)   //mm
-        this.setData({["d_delta"]:d_delta})
-        console.log("d_delta 已更新:"+this.data.d_delta)
+        Un_d = (Number(Un_d)).toFixed(1)   //mm
+        this.setData({["Un_d"]:Un_d})
+        console.log("Un_d 已更新:"+this.data.Un_d)
         //相对误差
-        var E_relative_tmp = (E_relative*100).toFixed(2)
-        this.setData({["E_relative"]:E_relative_tmp})
-        console.log("E_relative 已更新:"+this.data.E_relative)
+        var Un_d_relative_tmp = (Un_d_relative*100).toFixed(2)
+        this.setData({["Un_d_relative"]:Un_d_relative_tmp})
+        console.log("Un_d_relative 已更新:"+this.data.Un_d_relative)
         //黄光波长
         lambda_y_1 = lambda_y_1.toFixed(2)
         this.setData({["lambda_y_1"]:lambda_y_1})   

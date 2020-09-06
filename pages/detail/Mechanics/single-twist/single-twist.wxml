@@ -1,61 +1,73 @@
 <view class="three-wire-pendulum">
 	<text class="detail-title">{{title}}</text>
-  <view class="table">
-  <text>振动周期测量</text>
-  <text>单位：秒</text>
-		<scroll-view scroll-x style="width: 100%" class="table">
-			<block wx:for="{{table1}}" wx:key="*this" wx:for-item="table" wx:for-index="row_index">
-				<view class="tr">
-					<view class="td" wx:for="{{table}}" wx:key="*this" wx:item="item" wx:for-index="col_index" data-row="{{row_index}}">
-            <input 
-            class="table-item" placeholder="{{item===0?'':item}}" type="digit" wx:if="{{row_index > 0 && col_index > 0 }}" 
-            bindblur="changeData" id="table1"
-            data-row="{{row_index}}"
-            data-col="{{col_index}}"
-            ></input>
-            <text wx:else>{{item===0?'':item}}</text>
-          </view>
-				</view>
-			</block>
-		</scroll-view>
+	<!-- 参数测量 -->
+	<view class="input-list">
+    <block wx:for="{{inputList}}" wx:key="*this">
+      <view class="input-block">
+        <label class="input-lable" for="{{item.id}}">{{item.label}}</label>
+        <input class="input-value" id="{{item.id}}" type="digit" bindblur="changeData" placeholder="{{item.value}}"></input>
+        <text class="input-unit">{{item.unit}}</text>
+      </view>
+    </block>
+  </view>
+	<!-- 振动周期表格 -->
+  <view class="table" id="table-cycle">
+		<text class="table-title">振动周期测量</text>
+    <scroll-view scroll-x style="width: 100%">
+    <block wx:for="{{table_cycle}}" wx:key="*this" 
+    wx:for-item="row" wx:for-index="row_index">
+      <view class="tr">
+        <view class="td" wx:for="{{row}}" wx:key="*this" wx:item="item" wx:for-index="col_index" data-row="{{row_index}}">
+          <input
+          class="table-item" placeholder="{{item===0?'':item}}" type="digit"
+          wx:if="{{row_index>0&&col_index>0&&col_index<6}}" 
+          bindblur="changeData" id="table-cycle"
+          data-row="{{row_index}}"
+          data-col="{{col_index}}"
+          ></input>
+          <text wx:else>{{item===0?'':item}}</text>
+        </view>
+      </view>
+    </block>
+    </scroll-view>
 	</view>
-	<view class="input-list input-list1">
-  <text>弹簧钢丝（扭丝）测量</text>
-		<block wx:for="{{inputList1}}" wx:key="*this">
-			<view class="input-block">
-				<label class="input-lable" for="{{item.id}}">{{item.label}}</label>
-				<input class="input-value" id="{{item.id}}" type="digit" bindblur="changeData" placeholder="{{item.value}}"></input>
-				<text class="input-unit">{{item.unit}}</text>
-			</view>
-		</block>
+	<!-- 直径表格 -->
+	<view class="table" id="table-diameter">
+	  <text class="table-title">弹簧钢丝（扭丝）测量</text>
+    <scroll-view scroll-x style="w  idth: 100%">
+    <block wx:for="{{table_diameter}}" wx:key="*this" 
+    wx:for-item="row" wx:for-index="row_index">
+      <view class="tr">
+        <view class="td" wx:for="{{row}}" wx:key="*this" wx:item="item" wx:for-index="col_index" data-row="{{row_index}}">
+          <input
+          class="table-item" placeholder="{{item===0?'':item}}" type="digit"
+          wx:if="{{row_index>0&&col_index>0&&col_index<4}}" 
+          bindblur="changeData" id="table-diameter"
+          data-row="{{row_index}}"
+          data-col="{{col_index}}"
+          ></input>
+          <text wx:else>{{item===0?'':item}}</text>
+        </view>
+      </view>
+    </block>
+    </scroll-view>
 	</view>
-	<view class="table">
-			<block wx:for="{{table2}}" wx:key="*this" wx:for-item="table" wx:for-index="row_index">
-				<view class="tr">
-					<view class="td" wx:for="{{table}}" wx:key="*this" wx:item="item" wx:for-index="col_index" data-row="{{row_index}}">
-            <input 
-            class="table-item" placeholder="{{item===0?'':item}}" type="digit" wx:if="{{row_index > 0 && col_index >0}}" 
-            bindblur="changeData" id="table2"
-            data-row="{{row_index}}"
-            data-col="{{col_index}}"
-            ></input>
-            <text wx:else>{{item===0?'':item}}</text>
-          </view>
-				</view>
-			</block>
-	</view>
-  <view class="input-list input-list2">
-  <text>圆环内外径测量</text>
-		<block wx:for="{{inputList2}}" wx:key="*this">
-			<view class="input-block">
-				<label class="input-lable" for="{{item.id}}">{{item.label}}</label>
-				<input class="input-value" id="{{item.id}}" type="digit" bindblur="changeData" placeholder="{{item.value}}"></input>
-				<text class="input-unit">{{item.unit}}</text>
-			</view>
-		</block>
-	</view>
+  
+  <!-- 功能性按钮 -->
   <button class="calculate-btn" bindtap="calculate">点击计算</button>
-<feed-back-btn info="单线扭摆" />
-</view>
+  
+  <!-- 结果 -->
+  <view class="result-detail" hidden="{{!isResult}}">
+    <view>直径: 𝑑={{d_average}} 𝑚𝑚</view>
+    <view>扭转模量: 𝐹={{F}} ×10<sup>-4</sup> 𝑁·𝑚⁴</view>
+    <view>摆盘转动惯量: 𝐽₀={{J_0}} ×10<sup>-4</sup> 𝑘𝑔·𝑚²</view>
+    <view>摆+环转动惯量: 𝐽={{J}} ×10<sup>-4</sup> 𝑘𝑔·𝑚²</view>
+    <view>圆环转动惯量: 𝐽₁={{J_result}} ×10<sup>-4</sup> 𝑘𝑔·𝑚²</view>
+    <view>𝐽₁理论值: {{J_lilun}} ×10<sup>-4</sup> 𝑘𝑔·𝑚²</view>
+    <view>相对误差: 𝐸={{Un_J1_relative}}</view>
+	</view>
 
-<wizz_footer/>
+	<feed-back-btn info="单线扭摆" />
+
+	<wizz_footer/>
+</view>

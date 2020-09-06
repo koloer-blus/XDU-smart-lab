@@ -1,6 +1,8 @@
 /* pages/detail/Mechanics/single-twist/single-twist.wxss */
-@import '../../../../style/index.wxss';
-.input-lable {
+/* @import '../../../../style/index.wxss'; */
+@import '../../../../style/detail.wxss';
+
+/* .input-lable {
   float: left;
 }
 .input-list2 .input-unit {
@@ -13,9 +15,26 @@
   position: absolute;
   top: 0;
   left: 300rpx;
-}
+} */
 
 .tr {
   display: flex;
   width: 640rpx;
+}
+.td {
+  box-sizing: border-box;
+  width: 154rpx;
+  height: 60rpx;
+  justify-content: center;
+  text-align: center;
+  word-wrap: break-word;
+  flex-shrink: 0;
+  line-height: 60rpx;
+  border: 2rpx solid #ccc;
+}
+.td:first-child {
+  width: 200rpx;
+}
+.td:active {
+  background-color: #FEF78C;
 }

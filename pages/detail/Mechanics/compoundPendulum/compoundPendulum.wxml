@@ -15,7 +15,7 @@
 				<view class="tr">
 					<view class="td" wx:for="{{table}}" wx:key="*this" wx:item="item" wx:for-index="col_index" data-row="{{row_index}}">
             <input 
-            class="table-item" placeholder="{{item===0?'':item}}" type="digit" wx:if="{{col_index >0&&row_index<9}}" 
+            class="table-item" placeholder="{{item===0?'':item}}" type="digit" wx:if="{{col_index >0&&row_index<10&&row_index>0}}" 
             bindblur="changeData" id="table"
             data-row="{{row_index}}"
             data-col="{{col_index}}"
@@ -27,9 +27,10 @@
 		</scroll-view>
 	</view>
   <view class="result-detail" hidden="{{!isResult}}">
-    <view>g测={{result._g}}</view>
-    <view>△g={{result.G}}</view>
-    <view>△E={{result.E * 100}}%</view>
+    <view>西安理论重力加速度: 𝘨₀= {{g_lilun}}</view>
+    <view>实验测得重力加速度: 𝘨 = {{g_result}}</view>
+    <view>绝对误差: Δ𝘨 = {{Un_g}}</view>
+    <view>相对误差: 𝐸=Δ𝘨/𝘨₀= {{Un_g_relative}}</view>
   </view>
   <button class="calculate-btn" bindtap="calculate">点击计算</button>
 	<feed-back-btn info="复摆测量重力加速度" />
