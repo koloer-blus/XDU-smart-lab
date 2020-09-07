@@ -15,7 +15,7 @@
 				<view class="tr">
 					<view class="td" wx:for="{{table}}" wx:key="*this" wx:item="item" wx:for-index="col_index" data-row="{{row_index}}">
             <input 
-            class="table-item" placeholder="{{item===0?'':item}}" type="digit" wx:if="{{row_index > 0 && col_index > 1 && col_index != 7}}" 
+            class="table-item" placeholder="{{item===0?'':item}}" type="digit" wx:if="{{row_index !=0 &&row_index !=3 &&row_index != 5 &&row_index != 7 &&row_index != 11  && col_index > 1 && col_index != 7}}" 
             bindblur="changeData" id="table"
             data-row="{{row_index}}"
             data-col="{{col_index}}"
@@ -28,16 +28,13 @@
 	</view>
   <button class="calculate-btn" bindtap="calculate">点击计算</button>
   <view class="result-detail" hidden="{{!isResult}}">
-     <text>下圆盘</text>
-    <view class="from-data">
-      <text>𝐼₀={{result.plateI0}}𝑔·𝑐𝑚²</text>
-      <text>Δ𝐼={{result._plateI0}}𝑔·𝑐𝑚²</text>
-    </view>
-    <text>圆环</text>
-    <view class="from-arc">
-      <text>𝐼₀={{result.ringI}}𝑔·𝑐𝑚²</text>
-      <text>Δ𝐼={{result._ringI}}𝑔·𝑐𝑚²</text>
-    </view>
+    <text class="detail-info">圆盘转动惯量：𝐼₀={{I_0_result}} 𝑔·𝑐𝑚²</text>
+    <text class="detail-info">圆盘相对不确定度：Δ𝐼/𝐼₀={{Un_I_0_relative}}</text>
+    <text class="detail-info">圆盘不确定度：Δ𝐼₀={{Un_I_0}} 𝑔·𝑐𝑚²</text>
+    <text class="detail-info">圆环转动惯量：𝐼={{I_result}} 𝑔·𝑐𝑚²</text>
+    <text class="detail-info">圆环理论转动惯量：𝐼<sub>理论</sub>={{I_lilun}} 𝑔·𝑐𝑚²</text>
+    <text class="detail-info">圆环转动惯量误差：Δ𝐼={{I_wucha}} 𝑔·𝑐𝑚²</text>
+    
   </view>
   <feed-back-btn info="三线摆测量刚体的转动惯量" />
 </view>

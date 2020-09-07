@@ -1,6 +1,10 @@
 /* @import '../../../../style/index.wxss'; */
 @import '../../../../style/detail.wxss';
 
+.td:nth-child(2) {
+  display: flex;
+  width: 220rpx;
+}
 /* 
 .input-block:nth-child(1) .input-unit {
   position: absolute;

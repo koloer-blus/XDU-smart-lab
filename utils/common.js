@@ -38,7 +38,7 @@ function getUncertainty_A(arg) {
 
 /* 求整体不确定度 */
 function getUncertainty(Uncertainty_A, Uncertainty_YQ) {
-  var sum = Math.pow(Uncertainty_A,2) + Math.pow(Uncertainty_YQ,2)/3
+  var sum = Math.pow(Uncertainty_A,2) + Math.pow(Uncertainty_YQ,2)/6
   var re = Math.sqrt(sum)
   return re.toFixed(6)
 }

@@ -60,8 +60,8 @@
   
   <!-- 结果 -->
   <view class="result-detail" hidden="{{!isResult}}">
-    <text class="detail-info">平均直径：{{diameter_aver}} ± {{Un_d}} mm</text>
-    <text class="detail-info">直径的A类不确定度：{{Un_A_d}} mm</text>
+    <text class="detail-info">平均直径：{{diameter_aver}} ± {{Un_d}} 𝑚𝑚</text>
+    <text class="detail-info">直径的A类不确定度：{{Un_A_d}} 𝑚𝑚</text>
     <text class="detail-info">𝑅ₓ的A类不确定度：{{Un_A_Rx}} ×10⁻³ 𝛀</text>
     <view wx:if="{{Num_data>1}}" class="detail-info">平均电阻率：( {{rho_aver}} ± {{rho_sx}} )×10⁻⁹ 𝛀·𝑀.</view>
   </view>

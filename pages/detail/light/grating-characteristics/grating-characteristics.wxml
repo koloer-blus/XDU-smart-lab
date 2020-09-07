@@ -11,6 +11,7 @@
 
   <text class="note">约定角度表示格式:23°02' ⇔ 23.02\n请勿输成23.2\n</text>
   <!-- 测量数据 -->
+  
   <view class="table" id="table">
     <block wx:for="{{table}}" wx:key="*this" wx:for-item="row" wx:for-index="row_index">
       <view class="tr">

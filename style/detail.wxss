@@ -111,6 +111,7 @@
 .td:first-child {
   width: 180rpx;
 }
+
 .td:active {
   background-color: #FEF78C;
 }
