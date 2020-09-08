@@ -33,8 +33,8 @@
   </view>
   <view class="result-detail" hidden="{{!isResult}}">
     <view>平均角度：{{alpha_aver_str}}</view>
-    <view>A类不确定度：{{uncertainty_A_str}}'</view>
-    <view>总不确定度={{uncertainty_all_str}}'</view>
+    <view>A类不确定度：{{uncertainty_A_str}}</view>
+    <view>总不确定度={{uncertainty_all_str}}</view>
     <view>实验结果：{{alpha_aver_str}}±{{uncertainty_all_str}}</view>
     <view>相对误差: {{e_relative}} %</view>
   </view>

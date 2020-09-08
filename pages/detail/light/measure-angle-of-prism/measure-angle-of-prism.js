@@ -1,10 +1,15 @@
+// pages/detail/Light/measure-angle-of-prism/measure-angle-of-prism.js
 const {
   httpReq
 } = require('../../../../api/http')
 const {
   behaviorLog
 } = require('../../../../api/url')
-// pages/detail/Light/measure-angle-of-prism/measure-angle-of-prism.js
+const {
+  getAverage,
+  getUncertainty_A,
+  getUncertainty,
+} = require('../../../../utils/common')
 Page({
 
   /**
@@ -28,13 +33,13 @@ Page({
       ['④',218.30,38.30,40.00,278.30,'#'],
     ],
     //备份空白表格
-    // table:[
-    //   ['序号',"θA","θB","θA'","θB'",'α_i'],
-    //   ['①',0,0,0,0,'#'],
-    //   ['②',0,0,0,0,'#'],
-    //   ['③',0,0,0,0,'#'],
-    //   ['④',0,0,0,0,'#'],
-    // ],
+    table_zero:[
+      ['序号',"θA","θB","θA'","θB'",'α_i'],
+      ['①',0,0,0,0,'#'],
+      ['②',0,0,0,0,'#'],
+      ['③',0,0,0,0,'#'],
+      ['④',0,0,0,0,'#'],
+    ],
     //下表以秒为单位
     sec_table:[
       ['序号',"𝜽𝘈","𝜽𝘉","𝜽𝘈'","𝜽𝘉'",'αᵢ'],
@@ -115,7 +120,7 @@ Page({
       if(Number(sec_table[i][1]&&sec_table[i][2]&&sec_table[i][3]&&sec_table[i][4])){
         let alphaA = Math.abs(sec_table[i][1]-sec_table[i][3])
         let alphaB = Math.abs(sec_table[i][2]-sec_table[i][4])
-        //todo:检测是否过360
+        //检测是否过360
         if(alphaA>10800){
           alphaA = 21600 - alphaA
           isOver360 = true
@@ -137,6 +142,11 @@ Page({
       }
     }
     alpha_aver = this.sec2data(alpha_aver/4)
+    // var data = new Array()
+    // for (let index = 1; index < 5; index++) {
+    //   data[index-1] = table[index][5];
+    // }
+    // alpha_aver = this.sec2data(Number(getAverage(data)))
     let alpha_aver_str = this.data2str(alpha_aver)
     this.setData({['alpha_aver']:Number(alpha_aver)})
     this.setData({['alpha_aver_str']:alpha_aver_str})

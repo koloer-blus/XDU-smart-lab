@@ -30,6 +30,8 @@
 	<!-- 结果 -->
 	<view class="result-detail" hidden="{{!isResult}}">
     <text class="detail-info">𝐷²ₘ-𝐷²ₘ₋₅平均值：{{DD_2_ave}} 𝑚𝑚²</text>
+    <!-- <text class="detail-info">𝐷²ₘ-𝐷²ₘ₋₅A类不确定度：{{Un_x_A}} 𝑚𝑚²</text> -->
+    <!-- <text class="detail-info">R综合不确定度：{{Un_R}} 𝑚𝑚²</text> -->
     <text class="detail-info">曲率半径：𝑅={{R}} 𝑚</text>
   </view>
 

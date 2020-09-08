@@ -5,7 +5,11 @@ const {
 const {
   behaviorLog
 } = require('../../../../api/url')
-
+const {
+  getAverage,
+  getUncertainty_A,
+  getUncertainty,
+} = require('../../../../utils/common')
 Page({
   /**
    * 页面的初始数据
@@ -117,7 +121,14 @@ Page({
     // console.log(DD_2_ave)
     var R = DD_2_ave/(4 * 5 * Number(lambda * 0.001)) //乘0.001是单位换算
     // TODO: 不确定度的计算...
-    var Un_YQ = this.data.inputList[0].value
+    var Un_YQ = this.data.inputList[0].value * Math.sqrt(3)
+    var data = new Array()
+    for(let i = 1;i<6;i++){
+      data[i-1] = table[i][4]
+    }
+    var Un_x_A = getUncertainty_A(data)
+    var Un_x = getUncertainty(Un_x_A,Un_YQ)
+    var Un_R = Un_x / (4*5*lambda)
     
 
     // 装载
@@ -125,6 +136,8 @@ Page({
     this.setData({DD_2_ave:DD_2_ave_str})
     var R_str = R.toFixed(3)
     this.setData({R:R_str})
+    this.setData({Un_x_A:Un_x_A})
+    this.setData({Un_R:Un_R})
     this.setData({isResult:true})
   },
   /**

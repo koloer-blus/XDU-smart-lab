@@ -4,7 +4,7 @@
   text-align: center;
   margin: 0 auto;
   /* height: 30rpx; */
-  line-height: 70rpx;
+  line-height: 140rpx;
   /* margin-bottom: 30rpx; */
 }
 .footer text {
