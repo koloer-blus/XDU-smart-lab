@@ -6,29 +6,19 @@
 	"setting": {
 		"urlCheck": true,
 		"es6": true,
-		"enhance": true,
 		"postcss": true,
 		"preloadBackgroundData": false,
 		"minified": true,
 		"newFeature": true,
-		"coverView": true,
 		"autoAudits": false,
+		"coverView": true,
 		"showShadowRootInWxmlPanel": true,
-		"scopeDataCheck": false,
-		"checkInvalidKey": true,
-		"checkSiteMap": true,
-		"uploadWithSourceMap": true,
-		"babelSetting": {
-			"ignore": [],
-			"disablePlugins": [],
-			"outputPath": ""
-		},
-		"nodeModules": true
+		"scopeDataCheck": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.11.0",
-	"appid": "wx680fe076e292bb20",
-	"projectname": "smart%E5%AE%9E%E9%AA%8C%E5%AE%A4",
+	"libVersion": "2.12.2",
+	"appid": "wx471b49ed1926ab7a",
+	"projectname": "XDU%E7%89%A9%E7%90%86%E5%AE%9E%E9%AA%8C%E5%8A%A9%E6%89%8B",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
