@@ -20,30 +20,48 @@ Page({
       id: 'input1'
     }, {
       label: 'λ=',
-      value: 0.004,
-      unit: '',
+      value: 589.3,
+      unit: ' nm',
       id: 'input2'
     }],
     table: [
+      ['级数/𝑘', '左', '右', '𝐷ₘ/𝑚𝑚', '𝐷²ₘ','𝐷²ₘ-𝐷²ₘ₋₅'],
+      [20, 19.987,27.138,'#','#','#'],
+      [19, 20.069,27.061,'#','#','#'],
+      [18, 20.153,26.971,'#','#','#'],
+      [17, 20.251,26.866,'#','#','#'],
+      [16, 20.348,26.783,'#','#','#'],
+      [15, 20.421,26.685,'#','#','无数据'],
+      [14, 20.523,26.595,'#','#','无数据'],
+      [13, 20.625,26.487,'#','#','无数据'],
+      [12, 20.728,26.379,'#','#','无数据'],
+      [11, 20.831,26.268,'#','#','无数据']
+    ],
+    table_zero: [
       ['级数/𝑘', '左', '右', '𝐷ₘ/𝑚𝑚', '𝐷ₘ²'],
-      [20, 0, 0, 0, 0, ],
-      [19, 0, 0, 0, 0],
-      [18, 0, 0, 0, 0],
-      [17, 0, 0, 0, 0],
-      [16, 0, 0, 0, 0],
-      [15, 0, 0, 0, 0],
-      [14, 0, 0, 0, 0],
-      [13, 0, 0, 0, 0],
-      [12, 0, 0, 0, 0],
-      [11, 0, 0, 0, 0],
-    ]
+      [20, 0,0,'#','#','#'],
+      [19, 0,0,'#','#','#'],
+      [18, 0,0,'#','#','#'],
+      [17, 0,0,'#','#','#'],
+      [16, 0,0,'#','#','#'],
+      [15, 0,0,'#','#','无数据'],
+      [14, 0,0,'#','#','无数据'],
+      [13, 0,0,'#','#','无数据'],
+      [12, 0,0,'#','#','无数据'],
+      [11, 0,0,'#','#','无数据']
+    ],
+    DD_2_ave:0,
+    R:0,
+    Un_R:0,
+
+    isResult:false
   },
   changeData(e) {
     let input1 = "input1",
       input2 = "input2",
       table = "table"
 
-    let value = e.detail.value,
+    let value = Number(e.detail.value),
       id = e.currentTarget.id
     if (value === '') {
       return false
@@ -73,13 +91,41 @@ Page({
     })
     let table = this.data.table,
       aveFrequency = 0
+    var DD_2_cha_sum = 0;     //就是最后一列那玩意
     for (let i = 1; i < table.length; ++i) {
       let item = (table[i][2] - table[i][1])
+      table[i][3] = item
+      table[i][3] = Math.pow(item,2)
       this.setData({
         [`table[${i}][3]`]: Number(item.toFixed(3)),
         [`table[${i}][4]`]: Number((item * item).toFixed(3)),
       })
     }
+    for (let i = 1;i<6;++i){
+      let item = Number(table[i][4] - table[i+5][4])
+      DD_2_cha_sum += item
+      // console.log(DD_2_cha_sum)
+      this.setData({
+        [`table[${i}][5]`]: Number(item.toFixed(3))
+      })
+    }
+
+
+    // 其他计算
+    var lambda = this.data.inputList[1].value
+    var DD_2_ave = DD_2_cha_sum/5
+    // console.log(DD_2_ave)
+    var R = DD_2_ave/(4 * 5 * Number(lambda * 0.001)) //乘0.001是单位换算
+    // TODO: 不确定度的计算...
+    var Un_YQ = this.data.inputList[0].value
+    
+
+    // 装载
+    var DD_2_ave_str = DD_2_ave.toFixed(3)
+    this.setData({DD_2_ave:DD_2_ave_str})
+    var R_str = R.toFixed(3)
+    this.setData({R:R_str})
+    this.setData({isResult:true})
   },
   /**
    * 生命周期函数--监听页面加载

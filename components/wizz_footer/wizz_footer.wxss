@@ -3,9 +3,9 @@
   width: 92%;
   text-align: center;
   margin: 0 auto;
-  height: 30rpx;
-  line-height: 40rpx;
-  margin-bottom: 30rpx;
+  /* height: 30rpx; */
+  line-height: 70rpx;
+  /* margin-bottom: 30rpx; */
 }
 .footer text {
   font-size: 28rpx;

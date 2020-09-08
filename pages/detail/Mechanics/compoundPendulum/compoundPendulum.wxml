@@ -26,13 +26,13 @@
 			</block>
 		</scroll-view>
 	</view>
+  <button class="calculate-btn" bindtap="calculate">点击计算</button>
   <view class="result-detail" hidden="{{!isResult}}">
     <view>西安理论重力加速度: 𝘨₀= {{g_lilun}}</view>
     <view>实验测得重力加速度: 𝘨 = {{g_result}}</view>
     <view>绝对误差: Δ𝘨 = {{Un_g}}</view>
     <view>相对误差: 𝐸=Δ𝘨/𝘨₀= {{Un_g_relative}}</view>
   </view>
-  <button class="calculate-btn" bindtap="calculate">点击计算</button>
 	<feed-back-btn info="复摆测量重力加速度" />
 </view>
 

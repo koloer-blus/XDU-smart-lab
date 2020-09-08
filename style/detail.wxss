@@ -151,7 +151,7 @@ feed-back-btn {
   font-size: 32rpx;
   display: block;
   padding: 10rpx;
-  margin-bottom: 30rpx;
+  margin-bottom: 0rpx;
   border:2rpx solid #aaa ;
   border-radius: 24rpx;
   box-shadow: 4rpx 4rpx 2rpx #ccc;

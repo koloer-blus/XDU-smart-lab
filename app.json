@@ -20,7 +20,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "物理实验室",
+    "navigationBarTitleText": "XDU物理实验小助手",
     "navigationBarTextStyle": "black"
   },
   "style": "v2",

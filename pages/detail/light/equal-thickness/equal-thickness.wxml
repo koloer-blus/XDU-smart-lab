@@ -1,16 +1,6 @@
 <view class="electric-tuning-fork-detail">
 	<text class="detail-title">{{title}}</text>
-	<view class="table">
-		<text class="table-title">可编辑区域</text>
-		<block wx:for="{{table}}" wx:key="*this" wx:for-item="table" wx:for-index="row_index">
-			<view class="tr">
-				<view class="td" wx:for="{{table}}" wx:key="*this" wx:item="item" wx:for-index="col_index" data-row="{{row_index}}">
-					<input class="table-item" placeholder="{{item===0?'':item}}" type="digit" wx:if="{{row_index > 0 && col_index<3 && col_index > 0}}" bindblur="changeData" id="table" data-row="{{row_index}}" data-col="{{col_index}}"></input>
-					<text wx:else>{{item===0?'':item}}</text>
-				</view>
-			</view>
-		</block>
-	</view>
+	
 	<view class="input-list">
 		<block wx:for="{{inputList}}" wx:key="*this">
 			<view class="input-block">
@@ -20,8 +10,29 @@
 			</view>
 		</block>
 	</view>
+
+	<view class="table">
+		<text class="table-title">实验数据表格</text>
+		<scroll-view scroll-x style="width: 100%">
+		<block wx:for="{{table}}" wx:key="*this" wx:for-item="table" wx:for-index="row_index">
+			<view class="tr">
+				<view class="td" wx:for="{{table}}" wx:key="*this" wx:item="item" wx:for-index="col_index" data-row="{{row_index}}">
+					<input class="table-item" placeholder="{{item===0?'':item}}" type="digit" wx:if="{{row_index > 0 && col_index<3 && col_index > 0}}" bindblur="changeData" id="table" data-row="{{row_index}}" data-col="{{col_index}}"></input>
+					<text wx:else>{{item===0?'':item}}</text>
+				</view>
+			</view>
+		</block>
+		</scroll-view>
+	</view>
+
 	<button class="calculate-btn" bindtap="calculate">点击计算</button>
-	<button class="page-jump-btn" bindtap="toNextPage">下一页</button>
+	<!-- <button class="page-jump-btn" bindtap="toNextPage">下一页</button> -->
+	<!-- 结果 -->
+	<view class="result-detail" hidden="{{!isResult}}">
+    <text class="detail-info">𝐷²ₘ-𝐷²ₘ₋₅平均值：{{DD_2_ave}} 𝑚𝑚²</text>
+    <text class="detail-info">曲率半径：𝑅={{R}} 𝑚</text>
+  </view>
+
 	<feed-back-btn info="光的等厚干涉" />
 </view>
 

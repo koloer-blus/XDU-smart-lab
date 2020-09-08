@@ -1,6 +1,7 @@
-@import '../../../../style/index.wxss';
+/* @import '../../../../style/index.wxss'; */
+@import '../../../../style/detail.wxss';
 
-.table {
+/* .table {
   margin: 0 auto;
   width: 80%;
   margin-top: 30rpx;
@@ -10,12 +11,12 @@
   width: 334rpx;
   line-height: 50rpx;
   font-size: 24rpx;
-}
+} */
 .tr {
   width: 80%;
 }
 .td {
-  width: 112rpx;
+  width: 150rpx;
   height: 60rpx;
 }
 .td:first-child {
