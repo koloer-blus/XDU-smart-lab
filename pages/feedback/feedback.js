@@ -50,7 +50,7 @@ Page({
   },
   change(res) {
     console.log('res:',res)
-    if(res.statusCode === 201) {
+    if(res.statusCode === 200) {
       this.setData({
         res: res,
         tiggleInfo: true,
@@ -61,17 +61,14 @@ Page({
       this.setData({
         tiggleInfo: false,
       })
-      wx.navigateBack({
-        complete: (res) => {},
-      })
     },3000)
   },
   toSubmit() {
     let data = {
       type: this.data.type,
       content: this.data.suggestion.value,
-      contactInfo: this.data.connection || '00000000',
-      openid:wx.getStorageSync('openid') || 'false',
+      contactInfo: this.data.connection || 'null',
+      openid:wx.getStorageSync('openid') || 'null',
       page: this.data.info    
     }
     for(let item in data) {

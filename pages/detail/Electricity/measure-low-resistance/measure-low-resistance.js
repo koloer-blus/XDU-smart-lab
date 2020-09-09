@@ -75,9 +75,6 @@ Page({
   },
   changeData(e){
       let value = e.detail.value, id = e.currentTarget.id
-      if(value === ''){
-        return false
-      }
       if(id == "table_diameter"){
         let row = e.currentTarget.dataset.row, col = e.currentTarget.dataset.col
         this.setData({
