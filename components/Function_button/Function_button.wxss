@@ -1,0 +1,17 @@
+/* components/Function_button/Function_button.wxss */
+
+.calculate-btn {
+  display: block;
+  margin-top: 60rpx;
+  background-color: #379be9 ;
+  color: white;
+  font-weight: normal;
+}
+
+
+
+button:active {
+  background-color: #aaa;
+  color: #fff;
+  opacity: 0.5;  
+}

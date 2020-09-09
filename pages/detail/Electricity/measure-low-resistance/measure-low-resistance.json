@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "feed-back-btn":"../../../../components/FeedbackBtn/feed-back-btn",
-    "wizz_footer":"../../../../components/wizz_footer/wizz_footer"
+    "wizz_footer":"../../../../components/wizz_footer/wizz_footer",
+    "Function_button":"../../../../components/Function_button/Function_button"
   }
 }

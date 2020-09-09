@@ -15,7 +15,8 @@
     "pages/detail/light/grating-characteristics/grating-characteristics",
     "pages/feedback/feedback",
     "pages/wizzInfo/wizzInfo",
-    "pages/detail/sound/measure-sound-speed-water/measure-sound-speed-water"
+    "pages/detail/sound/measure-sound-speed-water/measure-sound-speed-water",
+    "components/Function_button/Function_button"
   ],
   "window": {
     "backgroundTextStyle": "light",

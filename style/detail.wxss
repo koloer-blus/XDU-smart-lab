@@ -117,8 +117,28 @@
 }
 
 /* 功能性按钮 */
-.calculate-btn {
+.fuction-btn {
+  display: flex;
+  justify-content: space-between;
+
+}
+.clearData-btn {
+  width: min-content;
+  size: 500rpx;
+  order: 0;
+  flex-grow: 0;
   display: block;
+  width: 30px;
+  margin-top: 60rpx;
+  background-color: #f59a23 ;
+  color: white;
+  font-weight: normal;
+}
+.calculate-btn {
+  flex-grow: 0;
+  display: block;
+  order: 1;
+  width: 40%;
   margin-top: 60rpx;
   background-color: #379be9 ;
   color: white;

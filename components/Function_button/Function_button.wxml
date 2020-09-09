@@ -1,0 +1,2 @@
+<!--components/Function_button/Function_button.wxml-->
+<button class="calculate-btn" bindtap="calculate">点击计算</button>

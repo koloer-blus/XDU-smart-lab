@@ -72,6 +72,11 @@ Page({
   clearData(e){
     this.setData({table_length:this.data.table_length_zero})
     this.setData({table_diameter:this.data.table_diameter_zero})
+    var tmp_inputList = this.data.inputList
+    for(let i=0;i<tmp_inputList.length;i++){
+      tmp_inputList[i].value=0
+    }
+    this.setData({inputList:tmp_inputList})
   },
   changeData(e){
       let value = e.detail.value, id = e.currentTarget.id
