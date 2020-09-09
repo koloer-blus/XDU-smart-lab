@@ -1,14 +1,16 @@
-@import '../../app.wxss';
+
 .feed-back-btn {
-  width: 80rpx;
-  height: 80rpx;
+  width: 100rpx;
+  height: 100rpx;
   border: 4rpx solid #7a7a7a;
-  border-radius: 40rpx;
+  border-radius: 50rpx;
   display: block;
   box-sizing: border-box;
-  text-align: center;
-  line-height: 80rpx;
   z-index: 99;
   background-color: #fff;
   opacity: 0.8;
+  padding-top: 5px;
+  font-size: 28rpx;
+  text-align: center;
+  word-break:break-all;
 }

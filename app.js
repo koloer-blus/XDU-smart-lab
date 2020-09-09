@@ -16,6 +16,7 @@ App({
         httpReq(getId.URL, getId.method, {
           code: res.code
         }, (res) => {
+          console.log(res)
           wx.setStorageSync('openid', res.data.openid)
         })
       }
