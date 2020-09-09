@@ -9,7 +9,7 @@
     </view>
   </block>
 
-  <text class="note">约定角度表示格式:23°02' ⇔ 23.02\n请勿输成23.2\n</text>
+  <text class="note">约定角度表示格式:23°02' ⇔ 23.02\n请勿输成23.2 (23°20')\n</text>
   <!-- 测量数据 -->
   <view class="table" id="table">
     <block wx:for="{{table}}" wx:key="*this" wx:for-item="row" wx:for-index="row_index">
@@ -29,7 +29,7 @@
 
   <button class="calculate-btn" bindtap="calculate">点击计算</button>
   <view class="note" hidden="{{!isOver360}}">
-    <view>两次数据疑似越过360°刻度线,请确认.</view>
+  <view>两次数据疑似越过360°刻度线,已修正</view>
   </view>
   <view class="result-detail" hidden="{{!isResult}}">
     <view>平均角度：{{alpha_aver_str}}</view>

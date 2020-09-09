@@ -65,11 +65,14 @@ Page({
       input2 = "input2",
       table = "table"
 
-    let value = Number(e.detail.value),
+    let value = e.detail.value,
       id = e.currentTarget.id
+    console.log(value)
     if (value === '') {
       return false
     }
+    value = Number(value)
+    console.log(value)
     if (id === table) {
       let row = e.currentTarget.dataset.row,
         col = e.currentTarget.dataset.col
@@ -122,13 +125,17 @@ Page({
     var R = DD_2_ave/(4 * 5 * Number(lambda * 0.001)) //乘0.001是单位换算
     // TODO: 不确定度的计算...
     var Un_YQ = this.data.inputList[0].value * Math.sqrt(3)
-    var data = new Array()
+    // 这里的X表示最后一列,但计算的公式很奇怪
+    var Un_x_A = 0
     for(let i = 1;i<6;i++){
-      data[i-1] = table[i][4]
+      Un_x_A += Math.pow(table[i][5]-DD_2_ave,2)
+      console.log(Un_x_A)
     }
-    var Un_x_A = getUncertainty_A(data)
-    var Un_x = getUncertainty(Un_x_A,Un_YQ)
-    var Un_R = Un_x / (4*5*lambda)
+    Un_x_A = Math.sqrt(Un_x_A/5)
+    var Un_x = Math.sqrt(Math.pow(Un_x_A,2)+Math.pow(Un_YQ,2))
+    // console.log(Un_x)
+    var Un_R = Un_x / (4*5*lambda) * 1000000  // lambda是nm 转为毫米
+    // console.log(Un_R)
     
 
     // 装载
@@ -136,8 +143,10 @@ Page({
     this.setData({DD_2_ave:DD_2_ave_str})
     var R_str = R.toFixed(3)
     this.setData({R:R_str})
-    this.setData({Un_x_A:Un_x_A})
-    this.setData({Un_R:Un_R})
+    var Un_x_A_str = Un_x_A.toFixed(3)
+    this.setData({Un_x_A:Un_x_A_str})
+    var Un_R_str = Un_R.toFixed(3)
+    this.setData({Un_R:Un_R_str})
     this.setData({isResult:true})
   },
   /**

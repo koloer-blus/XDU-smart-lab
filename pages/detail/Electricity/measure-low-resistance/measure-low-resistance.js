@@ -75,9 +75,11 @@ Page({
   },
   changeData(e){
       let value = e.detail.value, id = e.currentTarget.id
+      console.log(value)
       if(value === ''){
         return false
       }
+      console.log(value)
       if(id == "table_diameter"){
         let row = e.currentTarget.dataset.row, col = e.currentTarget.dataset.col
         this.setData({

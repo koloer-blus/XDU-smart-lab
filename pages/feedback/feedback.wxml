@@ -27,7 +27,7 @@
     auto-height ></textarea>
     <view class="connection">
       <label class="connection-label" for="connection-input">QQ号(选填)</label>
-      <input class="connection-input" id="connection-input" model:value="{{connection}}"></input>
+      <input class="connection-input" id="connection-input" model:value="{{connection}}" type="number"></input>
     </view>
   </view>
   <button class="calculate-btn" bindtap="toSubmit">提交</button>

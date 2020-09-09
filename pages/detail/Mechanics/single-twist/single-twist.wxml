@@ -5,7 +5,8 @@
     <block wx:for="{{inputList}}" wx:key="*this">
       <view class="input-block">
         <label class="input-lable" for="{{item.id}}">{{item.label}}</label>
-        <input class="input-value" id="{{item.id}}" type="digit" bindblur="changeData" placeholder="{{item.value}}"></input>
+        <input class="input-value" id="{{item.id}}" type="digit" 
+        bindblur="changeData" placeholder="{{item.value}}"></input>
         <text class="input-unit">{{item.unit}}</text>
       </view>
     </block>

@@ -9,7 +9,7 @@
     </view>
   </block>
 
-  <text class="note">约定角度表示格式:23°02' ⇔ 23.02\n请勿输成23.2\n</text>
+  <text class="note">约定角度表示格式:23°02' ⇔ 23.02\n请勿输成23.2 (23°20')\n</text>
   <!-- 测量数据 -->
   
   <view class="table" id="table">
@@ -30,20 +30,20 @@
 
   <button class="calculate-btn" bindtap="calculate">点击计算</button>
   <view class="note" hidden="{{!isOver360}}">
-    <view>两次数据疑似越过360°刻度线,请确认.</view>
+    <view>两次数据疑似越过360°刻度线,已修正</view>
   </view>
   <view class="result-detail" hidden="{{!isResult}}">
-    <view>绿光平均𝛗：{{phi_aver}}</view>
-    <view>绿光𝑑1：{{d1}} x10⁻⁶ 𝑚</view>
-    <view>绿光𝑑2：{{d2}} x10⁻⁶ 𝑚</view>
-    <view>绿光𝑑3：{{d3}} x10⁻⁶ 𝑚</view>
-    <view>绿光平均𝑑_aver：{{d_aver}} x10⁻⁶ 𝑚</view>
-    <view>绿光误差Δ𝑑：{{d_delta}} x10⁻⁹ 𝑚</view>
-    <view>实验结果：{{d_aver}} x10⁻⁶ ±{{d_delta}}x10⁻⁹ 𝑚</view>
-    <view>d的相对误差：{{E_relative}}%</view>
-    <view>黄光:</view>
-    <view>黄光1波长 λ1：{{lambda_y_1}} 𝑛𝑚</view>
-    <view>黄光2波长 λ2：{{lambda_y_2}} 𝑛𝑚</view>
+    <view>绿光𝜑<sub>average</sub>：{{phi_aver}}</view>
+    <view>光栅常数1: 𝑑₁={{d1}} x10⁻⁶ 𝑚</view>
+    <view>光栅常数2: 𝑑₂={{d2}} x10⁻⁶ 𝑚</view>
+    <view>光栅常数3: 𝑑₃={{d3}} x10⁻⁶ 𝑚</view>
+    <view>光栅常数平均: 𝑑<sub>average</sub>={{d_aver}} x10⁻⁶ 𝑚</view>
+    <view>光栅常数相对不确定度：Δ𝑑/𝑑={{Un_d_relative}}</view>
+    <view>光栅常数误差：Δ𝑑={{Un_d}} x10⁻⁹ 𝑚</view>
+    <view>实验结果：𝑑={{d_aver}} x10⁻⁶ ±{{Un_d}}x10⁻⁹ 𝑚</view>
+    <text>\n</text>
+    <view>黄光波长1: 𝜆₁={{lambda_yellow_1}} 𝑛𝑚</view>
+    <view>黄光波长2: 𝜆₂={{lambda_yellow_2}} 𝑛𝑚</view>
   </view>
 
 <feed-back-btn info="光栅特性研究" />
