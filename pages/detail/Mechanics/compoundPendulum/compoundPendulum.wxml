@@ -26,8 +26,12 @@
 			</block>
 		</scroll-view>
 	</view>
-  <button class="calculate-btn" bindtap="calculate">点击计算</button>
-  <view class="result-detail" hidden="{{!isResult}}">
+  <!-- 功能性按钮 -->
+  <view class="fuction-btn" width="100%">
+    <button class="calculate-btn" bindtap="calculate" style="width:40%">点击计算</button>
+    <button class="clearData-btn" bindtap="clearData" style="width:40%">一键清空</button>
+  </view>
+	<view class="result-detail" hidden="{{!isResult}}">
     <view>西安理论重力加速度: 𝘨₀= {{g_lilun}}</view>
     <view>实验测得重力加速度: 𝘨 = {{g_result}}</view>
     <view>绝对误差: Δ𝘨 = {{Un_g}}</view>

@@ -26,7 +26,11 @@
     </block>
   </view>
 
-  <button class="calculate-btn" bindtap="calculate">点击计算</button>
+  <!-- 功能性按钮 -->
+  <view class="fuction-btn" width="100%">
+    <button class="calculate-btn" bindtap="calculate" style="width:40%">点击计算</button>
+    <button class="clearData-btn" bindtap="clearData" style="width:40%">一键清空</button>
+  </view>
 
   <view class="result-detail" hidden="{{!isResult}}">
     <view>λ平均值：{{lambda_aver}} 𝑚𝑚</view>

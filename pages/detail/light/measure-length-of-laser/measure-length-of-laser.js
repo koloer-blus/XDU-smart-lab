@@ -76,6 +76,24 @@ Page({
 
 
 //函数
+clearData(e){
+  for(let i = 1;i<9;i++){
+    for(let j = 1;j<3;j++){
+      this.setData({
+        [`table[${i}][${j}]`]: 0
+      })
+    }
+  }
+  for(let i = 1;i<9;i++){
+    for(let j = 3;j<5;j++){
+      this.setData({
+        [`table[${i}][${j}]`]: '#'
+      })
+    }
+  }
+  
+  this.setData({isResult: false})
+},
   //改变数据
   changeData(e){
       let value = e.detail.value, id = e.currentTarget.id

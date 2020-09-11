@@ -45,6 +45,16 @@ Page({
       ['横向', 0.81,0.785,0.795,'#'],
       ['纵向', 0.778,0.786,0.796,'#'],
     ],
+    table_cycle_zero: [
+      ['振动时间(20次)', '①','②','③','④','⑤','平均值','单次周期'],
+      ['摆盘', 0,0,0,0,0,'#','#'],
+      ['摆盘+圆环',  0,0,0,0,0,'#','#'],
+    ],
+    zero_table_diameter: [
+      ['', '上部', '中部', '下部','平均值'],
+      ['横向', 0,0,0,'#'],
+      ['纵向', 0,0,0,'#'],
+    ],
     d_average:0,
     G : 7.9,  //此处不带10^10,后面在公式中约去了
     J_0:0,
@@ -63,17 +73,18 @@ Page({
       return false
     }
     console.log(id, value)
+
     if (id === "table-cycle") {
       let row = e.currentTarget.dataset.row,
         col = e.currentTarget.dataset.col
       this.setData({
-        [`table1[${row}][${col}]`]: value
+        [`table_cycle[${row}][${col}]`]: value
       })
     } else if (id === "table-diameter") {
       let row = e.currentTarget.dataset.row,
         col = e.currentTarget.dataset.col
       this.setData({
-        [`table2[${row}][${col}]`]: value
+        [`table_diameter[${row}][${col}]`]: value
       })
     } else if (id === 'length') {
       this.setData({
@@ -92,14 +103,51 @@ Page({
         ['inputList[3].value']: value
       })
     }
+    // console.log(this.data.zero_table_diameter)
+    console.log(this.data.inputList)
+
+
   },
 
+  clearData(e){
+    for(let i = 1;i<3;i++){
+      for(let j = 1;j<4;j++){
+        this.setData({
+          [`table_diameter[${i}][${j}]`]: 0
+        })
+      }
+    }
+    for(let i = 1;i<3;i++){
+      for(let j = 4;j<5;j++){
+        this.setData({
+          [`table_diameter[${i}][${j}]`]: '#'
+        })
+      }
+    }
+    for(let i = 1;i<3;i++){
+      for(let j = 1;j<6;j++){
+        this.setData({
+          [`table_cycle[${i}][${j}]`]: 0
+        })
+      }
+    }
+    for(let i = 1;i<3;i++){
+      for(let j = 6;j<8;j++){
+        this.setData({
+          [`table_cycle[${i}][${j}]`]: '#'
+        })
+      }
+    }
+    this.setData({isResult: false})
+
+  },
   calculate() {
     httpReq(behaviorLog.URL, behaviorLog.method, {
       page: this.data.title,
       control: '点击计算',
       openid: wx.getStorageSync('openid') || 'false'
-    })
+    })  
+    console.log(this.data.table_diameter)
 
     var table_cycle = this.data.table_cycle
     var table_diameter = this.data.table_diameter

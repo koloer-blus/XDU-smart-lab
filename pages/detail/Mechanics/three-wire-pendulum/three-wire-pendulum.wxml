@@ -26,8 +26,12 @@
 			</block>
 		</scroll-view>
 	</view>
-  <button class="calculate-btn" bindtap="calculate">点击计算</button>
-  <view class="result-detail" hidden="{{!isResult}}">
+  <!-- 功能性按钮 -->
+  <view class="fuction-btn" width="100%">
+    <button class="calculate-btn" bindtap="calculate" style="width:40%">点击计算</button>
+    <button class="clearData-btn" bindtap="clearData" style="width:40%">一键清空</button>
+  </view>
+	<view class="result-detail" hidden="{{!isResult}}">
     <text class="detail-info">圆盘转动惯量：𝐼₀={{I_0_result}} 𝑔·𝑐𝑚²</text>
     <text class="detail-info">圆盘相对不确定度：Δ𝐼/𝐼₀={{Un_I_0_relative}}</text>
     <text class="detail-info">圆盘不确定度：Δ𝐼₀={{Un_I_0}} 𝑔·𝑐𝑚²</text>

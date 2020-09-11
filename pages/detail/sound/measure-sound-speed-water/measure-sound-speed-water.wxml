@@ -27,8 +27,12 @@
     </block>
   </view>
 
-  <button class="calculate-btn" bindtap="calculate">点击计算</button>
-
+  <!-- 功能性按钮 -->
+  <view class="fuction-btn" width="100%">
+    <button class="calculate-btn" bindtap="calculate" style="width:40%">点击计算</button>
+    <button class="clearData-btn" bindtap="clearData" style="width:40%">一键清空</button>
+  </view>
+    
   <view class="result-detail" hidden="{{!isResult}}">
     <view>当前开尔文温度：𝑇={{temperature_T}} 𝐾.</view>
     <!-- <view>当前理论声速：𝑣₀={{speed_lilun}}𝑚/𝑠.</view> -->

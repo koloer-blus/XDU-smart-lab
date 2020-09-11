@@ -70,6 +70,39 @@ Page({
     lambda_yellow_2:0,   //黄光2 波长
 
   },
+  clearData(e){
+    for(let i = 1;i<6;i++){
+      for(let j = 1;j<5;j++){
+        this.setData({
+          [`table[${i}][${j}]`]: 0
+        })
+      }
+    }
+    for(let i = 1;i<6;i++){
+      for(let j = 5;j<6;j++){
+        this.setData({
+          [`table[${i}][${j}]`]: '#'
+        })
+      }
+    }
+
+    for(let i = 1;i<6;i++){
+      for(let j = 1;j<5;j++){
+        this.setData({
+          [`sec_table[${i}][${j}]`]: 0
+        })
+      }
+    }
+    for(let i = 1;i<6;i++){
+      for(let j = 5;j<6;j++){
+        this.setData({
+          [`sec_table[${i}][${j}]`]: '#'
+        })
+      }
+    }
+    
+    this.setData({isResult: false})
+},
 
   /**
    * 数据监听

@@ -74,6 +74,22 @@ Page({
       })
     }
   },
+  clearData(e){
+    for(let i = 1;i<6;i++){
+        this.setData({
+          [`table[${i}][2]`]: 0
+        })
+    }
+    for(let i = 1;i<6;i++){
+      for(let j = 3;j<7;j++){
+        this.setData({
+          [`table[${i}][${j}]`]: '#'
+        })
+      }
+    }
+    
+    this.setData({isResult: false})
+  },
   calculate() {
     httpReq(behaviorLog.URL, behaviorLog.method, {
       page: this.data.title,

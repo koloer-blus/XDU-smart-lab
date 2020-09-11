@@ -32,10 +32,6 @@ Page({
       ['序号','①','②','③','④','⑤','⑥'],
       ['直径 𝑑/𝑚𝑚',3.958,3.955,3.956,3.951,3.953,3.952],
     ],
-    table_diameter_zero:[
-      ['序号','①','②','③','④','⑤','⑥'],
-      ['直径 𝑑/𝑚𝑚',0,0,0,0,0,0],
-    ],
     //table_length
     table_length:[
       ['序号','①','②','③','④','⑤','⑥','⑦','⑧'],
@@ -70,16 +66,35 @@ Page({
   },
   //函数
   clearData(e){
-    this.setData({table_length:this.data.table_length_zero})
-    this.setData({table_diameter:this.data.table_diameter_zero})
-    var tmp_inputList = this.data.inputList
-    for(let i=0;i<tmp_inputList.length;i++){
-      tmp_inputList[i].value=0
+    for(let i = 1;i<2;i++){
+      for(let j = 1;j<7;j++){
+        this.setData({
+          [`table_diameter[${i}][${j}]`]: 0
+        })
+      }
     }
-    this.setData({inputList:tmp_inputList})
+
+    for(let i = 1;i<4;i++){
+      for(let j = 1;j<9;j++){
+        this.setData({
+          [`table_length[${i}][${j}]`]: 0
+        })
+      }
+    }
+    for(let i = 4;i<7;i++){
+      for(let j = 1;j<9;j++){
+        this.setData({
+          [`table_length[${i}][${j}]`]: '#'
+        })
+      }
+    }
+    this.setData({isResult: false})
   },
   changeData(e){
       let value = e.detail.value, id = e.currentTarget.id
+      if(value===''){
+        return false
+      }
       if(id == "table_diameter"){
         let row = e.currentTarget.dataset.row, col = e.currentTarget.dataset.col
         this.setData({

@@ -44,7 +44,7 @@ Page({
     ],
     //table
     table:[
-      ['ᵢ','𝐿ᵢ/𝑚𝑚','λᵢ/𝑚𝑚'],
+      ['i','𝐿ᵢ/𝑚𝑚','λᵢ/𝑚𝑚'],
       [1,87.00,'#'],
       [2,101.74,'#'],
       [3,125.06,'#'],
@@ -115,6 +115,21 @@ Page({
       console.log(`\t成功写入Un_L `+this.data.inputList[3].value)
     }
   },
+  clearData(e){
+    for(let i = 1;i<11;i++){
+        this.setData({
+          [`table[${i}][1]`]: 0
+        })
+    }
+    for(let i = 1;i<6;i++){
+        this.setData({
+          [`table[${i}][2]`]: '#'
+        })
+    }
+    
+    this.setData({isResult: false})
+  },
+
   calculate(){
     httpReq(behaviorLog.URL , behaviorLog.method, {
       page: this.data.title,

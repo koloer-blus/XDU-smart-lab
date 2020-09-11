@@ -81,6 +81,42 @@ Page({
 
 
   },
+  clearData(e){
+    for(let i = 1;i<12;i++){
+      for(let j = 2;j<7;j++){
+        this.setData({
+          [`table[${i}][${j}]`]: 0
+        })
+      }
+    }
+    for(let i = 1;i<12;i++){
+      this.setData({
+        [`table[${i}][7]`]: '#'
+      })
+    }
+    for(let j = 2;j<7;j++){
+      this.setData({
+        [`table[3][${j}]`]: '#'
+      })
+    }
+    for(let j = 2;j<7;j++){
+      this.setData({
+        [`table[5][${j}]`]: '#'
+      })
+    }
+    for(let j = 2;j<7;j++){
+      this.setData({
+        [`table[7][${j}]`]: '#'
+      })
+    }
+    for(let j = 2;j<7;j++){
+      this.setData({
+        [`table[11][${j}]`]: '#'
+      })
+    }
+    
+    this.setData({isResult: false})
+  },
   calculate() {
     httpReq(behaviorLog.URL, behaviorLog.method, {
       page: this.data.title,

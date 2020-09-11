@@ -6,7 +6,7 @@
     <block wx:for="{{inputList}}" wx:key="*this">
       <view class="input-block">
         <label class="input-lable" for="{{item.id}}">{{item.label}}</label>
-        <input class="input-value" id="{{item.id}}" type="digit" bindfocus="changeData" placeholder="{{item.value}}"></input>
+        <input class="input-value" id="{{item.id}}" type="digit" bindblur="changeData" placeholder="{{item.value}}"></input>
         <text class="input-unit">{{item.unit}}</text>
       </view>
     </block>
@@ -22,7 +22,9 @@
           <input
           class="table-item" placeholder="{{item===0?'':item}}" type="digit"
           wx:if="{{row_index==1&&col_index>0}}" 
-          bindfocus="changeData" id="table_diameter"
+          
+          bindblur="changeData"
+          id="table_diameter"
           data-row="{{row_index}}"
           data-col="{{col_index}}"
           ></input>
@@ -44,7 +46,7 @@
         <view class="td" wx:for="{{row}}" wx:key="*this" wx:for-item="item" wx:for-index="col_index" data-row="{{row_index}}">
           <input
           class="table-item" placeholder="{{item===0?'':item}}" type="digit"
-          wx:if="{{row_index>0&&row_index<4&&col_index>0}}" bindfocus="changeData" id="table_length"
+          wx:if="{{row_index>0&&row_index<4&&col_index>0}}" bindblur="changeData" id="table_length"
           data-row="{{row_index}}"
           data-col="{{col_index}}">
           </input>

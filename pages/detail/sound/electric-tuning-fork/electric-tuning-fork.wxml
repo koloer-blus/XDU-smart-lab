@@ -10,8 +10,8 @@
 		</block>
 	</view>
 	<view class="table">
-		<scroll-view scroll-x style="width: 100%" class="table">
     <text class="table-title">电动音叉振动频率测量数据表</text>
+		<scroll-view scroll-x style="width: 100%" class="table">
 			<block wx:for="{{table}}" wx:key="*this" wx:for-item="table" wx:for-index="row_index">
 				<view class="tr">
 					<view class="td" wx:for="{{table}}" wx:key="*this" wx:item="item" wx:for-index="col_index" data-row="{{row_index}}">
@@ -27,8 +27,12 @@
 			</block>
 		</scroll-view>
 	</view>
-  <button class="calculate-btn" bindtap="calculate">点击计算</button>
-  <view class="result-detail" hidden="{{!isResult}}">
+  <!-- 功能性按钮 -->
+  <view class="fuction-btn" width="100%">
+    <button class="calculate-btn" bindtap="calculate" style="width:40%">点击计算</button>
+    <button class="clearData-btn" bindtap="clearData" style="width:40%">一键清空</button>
+  </view>
+	<view class="result-detail" hidden="{{!isResult}}">
     <view>平均频率: 𝑓<sub>average</sub>={{aveFrequency}} 𝐻𝑧</view>
     <view>频率误差: Δ𝑓={{frequencyDiff}} 𝐻𝑧</view>
     <view>实验结果: 𝑓={{aveFrequency + '±' + frequencyDiff }} 𝐻𝑧</view>

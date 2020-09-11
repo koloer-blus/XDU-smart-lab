@@ -60,6 +60,24 @@ Page({
 
     isResult:false
   },
+  clearData(e){
+    for(let i = 1;i<11;i++){
+      for(let j = 1;j<3;j++){
+        this.setData({
+          [`table[${i}][${j}]`]: 0
+        })
+      }
+    }
+    for(let i = 1;i<11;i++){
+      for(let j = 3;j<6;j++){
+        this.setData({
+          [`table[${i}][${j}]`]: '#'
+        })
+      }
+    }
+    
+    this.setData({isResult: false})
+},
   changeData(e) {
     let input1 = "input1",
       input2 = "input2",
@@ -100,13 +118,19 @@ Page({
       aveFrequency = 0
     var DD_2_cha_sum = 0;     //就是最后一列那玩意
     for (let i = 1; i < table.length; ++i) {
-      let item = (table[i][2] - table[i][1])
-      table[i][3] = item
-      table[i][3] = Math.pow(item,2)
-      this.setData({
-        [`table[${i}][3]`]: Number(item.toFixed(3)),
-        [`table[${i}][4]`]: Number((item * item).toFixed(3)),
-      })
+      if(table[i][2] && table[i][1]){
+        let item = (table[i][2] - table[i][1])
+        table[i][3] = item
+        table[i][3] = Math.pow(item,2)
+        this.setData({
+          [`table[${i}][3]`]: Number(item.toFixed(3)),
+          [`table[${i}][4]`]: Number((item * item).toFixed(3)),
+        })
+      }
+      else{
+        this.setData({['isResult']:false})
+        return
+      }
     }
     for (let i = 1;i<6;++i){
       let item = Number(table[i][4] - table[i+5][4])
