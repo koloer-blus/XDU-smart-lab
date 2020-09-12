@@ -34,6 +34,7 @@ Page({
       placeholeder: '描述一下您的问题或是宝贵意见',
       value: ''
     },
+    suggestionContent: '',
     type: '',
     tiggleInfo: false,
     connection: ''
@@ -63,14 +64,15 @@ Page({
       })
     },3000)
   },
-  toSubmit() {
+  async toSubmit() {
     let data = {
       type: this.data.type,
-      content: this.data.suggestion.value,
+      content: this.data.suggestion.value || this.data.suggestionContent,
       contactInfo: this.data.connection || 'null',
       openid:wx.getStorageSync('openid') || 'null',
       page: this.data.info    
     }
+    console.log(data, this.data)
     for(let item in data) {
       if(data[item] === '') {
           this.setData({
