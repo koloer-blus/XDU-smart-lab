@@ -56,51 +56,54 @@ Page({
         tiggleInfo: true,
         infoMsg: '提交成功'
       })
+      setTimeout(async () => {
+        await this.setData({
+          tiggleInfo: false,
+        })
+        wx.navigateBack({
+          complete: (res) => {
+            console.log('resback', res)
+          },
+        })
+      }, 2000)
     } else {
       this.setData({
         res: res,
         tiggleInfo: true,
-        infoMsg: '请检查网络状态'
+        infoMsg: '服务器开了会小差'
       })
     }
-    setTimeout(async () => {
-      await this.setData({
-        tiggleInfo: false,
-      })
-      wx.navigateBack({
-        complete: (res) => {
-          console.log('resback', res)
-        },
-      })
-    }, 3000)
   },
   async toSubmit() {
+    const that = this
     await this.setData({
       [`suggestion.value`]: this.data.suggestionContent
-    })
-    let data = {
-      type: this.data.type,
-      content: this.data.suggestion.value || this.data.suggestionContent,
-      contactInfo: this.data.connection || 'null',
-      openid: wx.getStorageSync('openid') || 'null',
-      page: this.data.info
-    }
-    for (let item in data) {
-      if (data[item] === '') {
-        console.log(data[item])
-        this.setData({
-          tiggleInfo: true,
-          infoMsg: '信息未补全'
-        })
-        setTimeout(() => {
-          this.setData({
-            tiggleInfo: false,
-          })
-        }, 3000)
-        return false
+    },function() {
+      let data = {
+        type: that.data.type,
+        content: that.data.suggestionContent || that.data.suggestion.value,
+        contactInfo: that.data.connection || 'null',
+        openid: wx.getStorageSync('openid') || 'null',
+        page: that.data.info
       }
-    }
-    httpReq(feedBack.URL, feedBack.method, data, this.change)
+      console.log(data, that.data)
+      for (let item in data) {
+         if (data[item] === '') {
+          console.log(data[item])
+          that.setData({
+            tiggleInfo: true,
+            infoMsg: '信息未补全'
+          })
+          setTimeout(() => {
+            that.setData({
+              tiggleInfo: false,
+            })
+          }, 2000)
+          return false
+        }
+      }
+      httpReq(feedBack.URL, feedBack.method, data, that.change)
+    })
   },
   /**
    * 生命周期函数--监听页面加载

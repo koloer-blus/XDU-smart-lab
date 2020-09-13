@@ -20,7 +20,7 @@
   <view class="form">
     <textarea  class="detail" 
     placeholder="{{suggestion.placeholeder}}" 
-    bindblur="update"
+    bindinput="update"
     model:value="{{suggestionContent}}" 
     show-confirm-bar
     adjust-position
