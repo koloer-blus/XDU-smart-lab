@@ -70,6 +70,9 @@
     <view>𝐽₁理论值: {{J_lilun}} ×10<sup>-4</sup> 𝑘𝑔·𝑚²</view>
     <view>相对误差: 𝐸={{Un_J1_relative}}</view>
 	</view>
+  <view class="note_dark" hidden="{{!isResult}}">
+    数据结果仅供参考,如有差别以实际结果为准。
+  </view>
 
 	<feed-back-btn info="单线扭摆" />
 

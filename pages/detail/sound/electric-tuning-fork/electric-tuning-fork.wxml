@@ -38,6 +38,9 @@
     <view>实验结果: 𝑓={{aveFrequency + '±' + frequencyDiff }} 𝐻𝑧</view>
     <view>相对误差: 𝐸=Δ𝑓/𝑓₀={{rate}} %</view>
   </view>
+  <view class="note_dark" hidden="{{!isResult}}">
+    数据结果仅供参考,如有差别以实际结果为准。
+  </view>
   <feed-back-btn info="电动音叉产生的弦振动的测量" />
 </view>
 

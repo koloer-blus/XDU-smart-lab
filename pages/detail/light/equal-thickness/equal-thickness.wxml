@@ -37,6 +37,9 @@
     <text class="detail-info">R综合不确定度：{{Un_R}} 𝑚𝑚</text>
     <text class="detail-info">曲率半径：𝑅={{R}} 𝑚</text>
   </view>
+  <view class="note_dark" hidden="{{!isResult}}">
+    数据结果仅供参考,如有差别以实际结果为准。
+  </view>
 
 	<feed-back-btn info="光的等厚干涉" />
 </view>

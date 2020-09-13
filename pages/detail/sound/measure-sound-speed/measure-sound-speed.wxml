@@ -46,6 +46,9 @@
     <view>实验结果：𝑣={{speed_result}} ± {{Un_v}}𝑚/𝑠.</view>
     <view>相对误差：𝐸={{speed_wucha_relative}}.</view>
   </view>
+  <view class="note_dark" hidden="{{!isResult}}">
+    数据结果仅供参考,如有差别以实际结果为准。
+  </view>
 
 <feed-back-btn info="声速的测量" />
 </view>

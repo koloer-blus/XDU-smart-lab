@@ -71,7 +71,9 @@
     <text class="detail-info">𝑅ₓ的A类不确定度：{{Un_A_Rx}} ×10⁻³ 𝛀</text>
     <view wx:if="{{Num_data>1}}" class="detail-info">平均电阻率：( {{rho_aver}} ± {{rho_sx}} )×10⁻⁹ 𝛀·𝑀.</view>
   </view>
-  
+  <view class="note_dark" hidden="{{!isResult}}">
+    数据结果仅供参考,如有差别以实际结果为准。
+  </view>
   <feed-back-btn info="低电阻的测量" />
 
   <wizz_footer/>

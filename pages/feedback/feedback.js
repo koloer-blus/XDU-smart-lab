@@ -72,7 +72,7 @@ Page({
           console.log('resback', res)
         },
       })
-    }, 3000)
+    },750)
   },
   async toSubmit() {
     await this.setData({

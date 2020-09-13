@@ -23,7 +23,14 @@
   border: 1rpx solid #ccc;
   margin-top: 26rpx;
 }
-
+.note_dark {
+  width: 100%;
+  text-align: center;
+  line-height: 50rpx;
+  font-size: 30rpx;
+  color: #ff0000;
+  /* 别问为什么红色的命名为dark */
+}
 /* 输入参数区域 */
 .input-block {
   display: flex;
