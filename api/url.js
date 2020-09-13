@@ -12,7 +12,7 @@ module.exports = {
     method: 'POST'
   },
   getId: {
-    URL: getOpenId,
+    URL: baseUrl+getOpenId,
     method: 'GET'
   }
 }

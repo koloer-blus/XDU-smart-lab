@@ -65,6 +65,9 @@ Page({
     },3000)
   },
   async toSubmit() {
+    await this.setData({
+      [`suggestion.value`]:this.data.suggestionContent
+    })
     let data = {
       type: this.data.type,
       content: this.data.suggestion.value || this.data.suggestionContent,
@@ -72,9 +75,9 @@ Page({
       openid:wx.getStorageSync('openid') || 'null',
       page: this.data.info    
     }
-    console.log(data, this.data)
     for(let item in data) {
       if(data[item] === '') {
+          console.log(data[item])
           this.setData({
             tiggleInfo: true,
             infoMsg: '信息未补全'

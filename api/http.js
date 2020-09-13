@@ -8,12 +8,12 @@ function httpRequest(url,method,data, callBack = (res) => {
     header: {
       'content-type': 'application/json'
     },
-    data: data,
+    data: data || {},
     success (res) {
      callBack(res)
     },
     complete (res) {
-      console.log('ok')
+      console.log('complete:',res)
     }
   })
 }
