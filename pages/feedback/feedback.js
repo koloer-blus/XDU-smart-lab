@@ -41,7 +41,7 @@ Page({
   },
   update(e) {
     this.setData({
-      [`suggestion.value`]:e.detail.value
+      [`suggestion.value`]: e.detail.value
     })
   },
   radioChange(e) {
@@ -50,47 +50,57 @@ Page({
     })
   },
   change(res) {
-    console.log('res:',res)
-    if(res.statusCode === 200) {
+    if (res.statusCode === 200) {
       this.setData({
         res: res,
         tiggleInfo: true,
         infoMsg: '提交成功'
       })
-    }
-    setTimeout(() => {
+    } else {
       this.setData({
+        res: res,
+        tiggleInfo: true,
+        infoMsg: '请检查网络状态'
+      })
+    }
+    setTimeout(async () => {
+      await this.setData({
         tiggleInfo: false,
       })
-    },3000)
+      wx.navigateBack({
+        complete: (res) => {
+          console.log('resback', res)
+        },
+      })
+    }, 3000)
   },
   async toSubmit() {
     await this.setData({
-      [`suggestion.value`]:this.data.suggestionContent
+      [`suggestion.value`]: this.data.suggestionContent
     })
     let data = {
       type: this.data.type,
       content: this.data.suggestion.value || this.data.suggestionContent,
       contactInfo: this.data.connection || 'null',
-      openid:wx.getStorageSync('openid') || 'null',
-      page: this.data.info    
+      openid: wx.getStorageSync('openid') || 'null',
+      page: this.data.info
     }
-    for(let item in data) {
-      if(data[item] === '') {
-          console.log(data[item])
+    for (let item in data) {
+      if (data[item] === '') {
+        console.log(data[item])
+        this.setData({
+          tiggleInfo: true,
+          infoMsg: '信息未补全'
+        })
+        setTimeout(() => {
           this.setData({
-            tiggleInfo: true,
-            infoMsg: '信息未补全'
+            tiggleInfo: false,
           })
-          setTimeout(() => {
-            this.setData({
-              tiggleInfo: false,
-            })
-          },3000)
+        }, 3000)
         return false
       }
     }
-    httpReq(feedBack.URL, feedBack.method, data,this.change )
+    httpReq(feedBack.URL, feedBack.method, data, this.change)
   },
   /**
    * 生命周期函数--监听页面加载
