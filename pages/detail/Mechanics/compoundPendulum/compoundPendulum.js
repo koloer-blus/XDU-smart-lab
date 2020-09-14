@@ -64,6 +64,11 @@ Page({
     }
   },
   clearData(e){
+    httpReq(behaviorLog.URL, behaviorLog.method, {
+      page: this.data.title,
+      control: '一键清空',
+      openid:wx.getStorageSync('openid') || 'false'
+    })
     for(let i = 1;i<10;i++){
       for(let j = 1;j<10;j++){
         this.setData({

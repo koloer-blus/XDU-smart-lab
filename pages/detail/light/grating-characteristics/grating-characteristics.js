@@ -39,7 +39,7 @@ Page({
     //   ['绿光3',0,0,0,0,'#'],
     // ],
     table:[
-      ['',"𝜽𝘈","𝜽𝘉","𝜽𝘈'","𝜽𝘉'","𝜑"],
+      ['',"𝜽𝘈⁻¹","𝜽𝘉⁻¹","𝜽𝘈⁺¹","𝜽𝘉⁺¹","𝜑"],
       ['黄₁光',260.35,80.35,240.42,60.39,'#'],
       ['黄₂光',260.31,80.31,240.45,60.41,'#'],
       ["绿光1",260.0,80,241.18,61.14,'#'],
@@ -48,7 +48,7 @@ Page({
     ],
     //下表以秒为单位
     sec_table:[
-      ['',"𝜽𝘈","𝜽𝘉","𝜽𝘈'","𝜽𝘉'","𝜑"],
+      ['',"𝜽𝘈⁻¹","𝜽𝘉⁻¹","𝜽𝘈⁺¹","𝜽𝘉⁺¹","𝜑"],
       ['黄₁光',0,0,0,0,'#'],
       ['黄₂光',0,0,0,0,'#'],
       ["绿光1",0,0,0,0,'#'],
@@ -71,6 +71,11 @@ Page({
 
   },
   clearData(e){
+    httpReq(behaviorLog.URL, behaviorLog.method, {
+      page: this.data.title,
+      control: '一键清空',
+      openid:wx.getStorageSync('openid') || 'false'
+    })
     for(let i = 1;i<6;i++){
       for(let j = 1;j<5;j++){
         this.setData({
@@ -225,13 +230,14 @@ Page({
         }
         console.log(data)
         var Un_phi_A = getUncertainty_A(data)
+        console.log("un_phi_A"+Un_phi_A)
         var Un_phi = getUncertainty(Un_phi_A,Un_YQ)
         console.log("un_phi"+Un_phi)
         // console.log("phi_aver"+phi_aver)
 
         // 绿光d的处理
         d_aver = Number((d1+d2+d3)/3)  //nm
-        Un_d_relative = Number(Number(Un_phi*0.000291) / Math.tan(phi_aver/60*Math.PI/180))
+        Un_d_relative = Number(Number(Un_phi/60*0.000291) / Math.tan(phi_aver/60*Math.PI/180))
         console.log(Un_d_relative)
         Un_d = Un_d_relative * Number(d_aver)
         

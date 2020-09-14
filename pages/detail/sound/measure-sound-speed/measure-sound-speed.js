@@ -44,7 +44,7 @@ Page({
     ],
     //table
     table:[
-      ['ᵢ','𝐿ᵢ/𝑚𝑚','λᵢ/𝑚𝑚'],
+      ['𝑖','𝐿ᵢ/𝑚𝑚','λᵢ/𝑚𝑚'],
       [1,151.50,'#'],
       [2,156.32,'#'],
       [3,161.20,'#'],
@@ -76,6 +76,11 @@ Page({
   },
   //函数
   changeData(e){
+    httpReq(behaviorLog.URL, behaviorLog.method, {
+      page: this.data.title,
+      control: '一键清空',
+      openid:wx.getStorageSync('openid') || 'false'
+    })
     let value = e.detail.value, id = e.currentTarget.id
     console.log(e.currentTarget)
     console.log('来自'+id+'的数据试图写入：')

@@ -56,16 +56,16 @@ Page({
         tiggleInfo: true,
         infoMsg: '提交成功'
       })
-      setTimeout(async () => {
-        await this.setData({
-          tiggleInfo: false,
-        })
-        wx.navigateBack({
-          complete: (res) => {
-            console.log('resback', res)
-          },
-        })
-      }, 2000)
+      // setTimeout(async () => {
+      //   await this.setData({
+      //     tiggleInfo: false,
+      //   })
+      //   wx.navigateBack({
+      //     complete: (res) => {
+      //       console.log('resback', res)
+      //     },
+      //   })
+      // }, 2000)
     } else {
       this.setData({
         res: res,

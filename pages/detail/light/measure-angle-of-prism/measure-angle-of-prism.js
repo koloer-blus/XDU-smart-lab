@@ -26,7 +26,7 @@ Page({
     ],
     //下表为了方便输入而设立
     table:[
-      ['序号',"𝜽𝘈","𝜽𝘉","𝜽𝘈'","𝜽𝘉'",'αᵢ'],
+      ['序号',"𝜽𝘈⁻¹","𝜽𝘉⁻¹","𝜽𝘈⁺¹","𝜽𝘉⁺¹",'αᵢ'],
       ['①',226.44,46.45,105.36,285.37,'#'],
       ['②',224.46,44.44,103.53,283.52,'#'],
       ['③',225.22,45.20,105.07,285.07,'#'],
@@ -42,7 +42,7 @@ Page({
     ],
     //下表以秒为单位
     sec_table:[
-      ['序号',"𝜽𝘈","𝜽𝘉","𝜽𝘈'","𝜽𝘉'",'αᵢ'],
+      ['序号',"𝜽𝘈⁻¹","𝜽𝘉⁻¹","𝜽𝘈⁺¹","𝜽𝘉⁺¹",'αᵢ'],
       ['①',0,0,0,0,'#'],
       ['②',0,0,0,0,'#'],
       ['③',0,0,0,0,'#'],
@@ -68,6 +68,11 @@ Page({
 
   //函数
   clearData(e){
+    httpReq(behaviorLog.URL, behaviorLog.method, {
+      page: this.data.title,
+      control: '一键清空',
+      openid:wx.getStorageSync('openid') || 'false'
+    })
     for(let i = 1;i<5;i++){
       for(let j = 1;j<5;j++){
         this.setData({
@@ -155,7 +160,7 @@ Page({
         let alphaA = Math.abs(sec_table[i][1]-sec_table[i][3])
         let alphaB = Math.abs(sec_table[i][2]-sec_table[i][4])
         //检测是否过360
-        if(alphaA>10800){
+        while(alphaA>10800){
           alphaA = 21600 - alphaA
           isOver360 = true
         }
@@ -294,7 +299,7 @@ Page({
     {
       s += (arguments[i]-avernum)*(arguments[i]-avernum);
     }
-    s = Math.sqrt(s/(n-1))
+    s = Math.sqrt(s/(n-1))*1.2
     //A类不确定度
     var sx = s/Math.sqrt(n)
     console.log("\tSx:平均数:"+avernum+"\tA类不确定度:"+sx)

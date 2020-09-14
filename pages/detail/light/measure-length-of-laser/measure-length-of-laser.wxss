@@ -42,7 +42,7 @@
   text-align: center;
   word-wrap: break-word;
   flex-shrink: 0;
-  line-height: 60rpx;
+  line-height: 100rpx;
   border: 2rpx solid #ccc;
 }
 .td:first-child {

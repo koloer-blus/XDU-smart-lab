@@ -82,6 +82,11 @@ Page({
 
   },
   clearData(e){
+    httpReq(behaviorLog.URL, behaviorLog.method, {
+      page: this.data.title,
+      control: '一键清空',
+      openid:wx.getStorageSync('openid') || 'false'
+    })
     for(let i = 1;i<12;i++){
       for(let j = 2;j<7;j++){
         this.setData({
@@ -202,13 +207,13 @@ Page({
 
     
     /* 不确定度 */
-    var Un_m = 0.5 * 9.8
+    var Un_m = 0.5
     var Un_r = Number(getUncertainty(Un_A_r,1))
     var Un_R = Number(getUncertainty(Un_A_R,1))
     var Un_H = Number(getUncertainty(Un_A_H,1))
     var Un_T_0 = Un_A_T_0
 
-    var Un_I_0_relative = Math.sqrt(Math.pow((Un_m/m_0_below_plate),2)+Math.pow((Un_r/r_above_palte),2)+Math.pow((Un_R/R_below_palte),2)+Math.pow((Un_H/H),2)+2*Math.pow((Un_T_0/T_0),2))
+    var Un_I_0_relative = Math.sqrt(Math.pow((Un_m/m_0_below_plate),2)+Math.pow((Un_r/r_above_palte),2)+Math.pow((Un_R/R_below_palte),2)+Math.pow((Un_H/H),2)+4*Math.pow((Un_T_0/T_0),2))
     var Un_I_0 = Un_I_0_relative * I_0_result
 
     var I_wucha = Math.abs(I_result-I_lilun)

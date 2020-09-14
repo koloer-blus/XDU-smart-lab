@@ -29,7 +29,7 @@ Page({
       id: 'input2'
     }],
     table: [
-      ['级数/𝑘', '左', '右', '𝐷ₘ/𝑚𝑚', '𝐷²ₘ','𝐷²ₘ-𝐷²ₘ₋₅'],
+      ['暗环/𝑘', '𝐷左', '𝐷右', '𝐷ₘ/𝑚𝑚', '𝐷²ₘ','𝐷²ₘ-𝐷²ₘ₋₅'],
       [20, 19.987,27.138,'#','#','#'],
       [19, 20.069,27.061,'#','#','#'],
       [18, 20.153,26.971,'#','#','#'],
@@ -61,6 +61,11 @@ Page({
     isResult:false
   },
   clearData(e){
+    httpReq(behaviorLog.URL, behaviorLog.method, {
+      page: this.data.title,
+      control: '一键清空',
+      openid:wx.getStorageSync('openid') || 'false'
+    })
     for(let i = 1;i<11;i++){
       for(let j = 1;j<3;j++){
         this.setData({
@@ -147,7 +152,7 @@ Page({
     var DD_2_ave = DD_2_cha_sum/5
     // console.log(DD_2_ave)
     var R = DD_2_ave/(4 * 5 * Number(lambda * 0.001)) //乘0.001是单位换算
-    // TODO: 不确定度的计算...
+    // 不确定度的计算...
     var Un_YQ = this.data.inputList[0].value * Math.sqrt(3)
     // 这里的X表示最后一列,但计算的公式很奇怪
     var Un_x_A = 0

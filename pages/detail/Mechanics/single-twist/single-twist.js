@@ -110,6 +110,11 @@ Page({
   },
 
   clearData(e){
+    httpReq(behaviorLog.URL, behaviorLog.method, {
+      page: this.data.title,
+      control: '一键清空',
+      openid:wx.getStorageSync('openid') || 'false'
+    })
     for(let i = 1;i<3;i++){
       for(let j = 1;j<4;j++){
         this.setData({
@@ -188,10 +193,10 @@ Page({
     var pi = 3.1415926
 
     var F = G * pi * Math.pow(d_average,4) / (32*length)
-    var J_0 = (F * Math.pow(T_0,2))/(4*pi)
-    var J = (F * Math.pow(T_1,2))/(4*pi)
+    var J_0 = (F * Math.pow(T_0,2))/(4*pi*pi)
+    var J = (F * Math.pow(T_1,2))/(4*pi*pi)
     var J_result = J-J_0
-    var J_lilun = 0.5 * mass * (Math.pow(R1,2)+Math.pow(R2,2)) * 10e-9
+    var J_lilun = 0.5 * mass * (Math.pow(R1,2)+Math.pow(R2,2)) * 1e-9
     var Un_J1_relative = (Math.abs(J_result-J_lilun)/J_lilun*100).toFixed(2)+" %"
     console.log(d_average)
     d_average = d_average.toFixed(3)
