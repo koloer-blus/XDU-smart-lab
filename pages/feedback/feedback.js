@@ -44,10 +44,35 @@ Page({
       [`suggestion.value`]: e.detail.value
     })
   },
+  promptLeaveContactInfo(){
+    wx.showModal({
+      title: '很抱歉带来了不愉快的体验',
+      content: '恳请您保留实验数据,并留下联系方式。我们会主动联系您,不断优化用户体验。万分感谢!',
+      confirmText: '欣然同意',
+      cancelText: '残忍拒绝',
+      success: function (res) {
+        var infomsg
+        if (res.confirm) {  
+          infomsg = '阿里嘎多!'
+        } else {   
+          infomsg = '开发者难过地流下一滴泪'
+        }
+        wx.showToast({
+          title: infomsg,
+          icon: 'none',    //如果要纯文本，不要icon，将值设为'none'
+          duration: 1000     
+        }) 
+      }
+    })
+    console.log("提示填写联系方式")
+  },
   radioChange(e) {
     this.setData({
       type: e.detail.value
     })
+    if(this.data.type==="数据计算错误"){
+      this.promptLeaveContactInfo()
+    }
   },
   change(res) {
     if (res.statusCode === 200) {

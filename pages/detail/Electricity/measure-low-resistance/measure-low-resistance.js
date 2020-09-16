@@ -6,6 +6,7 @@ const {
   getUncertainty_A,
   getUncertainty,
 } = require('../../../../utils/common')
+const {checkBack} = require('../../../../utils/util')
 
 Page({
 
@@ -228,7 +229,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    checkBack()
   },
 
   /**

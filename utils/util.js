@@ -131,9 +131,27 @@ function singlePendulum(arr) {
   return res 
 }
 
+// 监听返回按键
+function checkBack(){
+  wx.enableAlertBeforeUnload({
+    message: '返回将清空已有数据,是否返回?',
+    success: function (res) {
+      console.log("检测返回")
+      // if (res.confirm) {  
+      //   console.log('点击确认回调')
+      // } else {   
+      //   console.log('点击取消回调')
+
+      // }
+      // console.log('运行')
+    }
+  })
+}
+
 module.exports = {
   electricTuningFork,
   electricTuningForkSum,
   threeWirePendulum,
-  singlePendulum
+  singlePendulum,
+  checkBack
 }
