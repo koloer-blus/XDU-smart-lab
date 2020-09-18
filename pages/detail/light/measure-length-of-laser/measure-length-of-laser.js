@@ -3,7 +3,8 @@ const {
   httpReq
 } = require('../../../../api/http')
 const {
-  behaviorLog
+  behaviorLog,
+  dataLog
 } = require('../../../../api/url')
 const {
   getAverage,
@@ -198,6 +199,38 @@ clearData(e){
     this.setData({["uncertainty_relative"]:u_r})
     this.setData({["isResult"]:true})
     console.log("计算完毕!")
+    this.dataLog()
+  },
+  dataLog(){
+    const str = this.dataLog2str()
+    httpReq(dataLog.URL, dataLog.method, {
+      page: this.data.title,
+      content: str,
+      openid:wx.getStorageSync('openid') || 'false'
+    })
+  },
+  dataLog2str(){
+    var str = ""
+    var inputList = this.data.inputList
+    for (let index = 0; index < inputList.length; index++) {
+      const element = inputList[index];
+      for (const key in element) {
+        str += element[key]
+        str += (key=='id'?';':',')
+      }
+      str+='\n'
+    }
+    var table = this.data.table
+    for(let i = 0;i<table.length;i++){
+      for (let j = 0; j < table[0].length; j++) {
+        const element = table[i][j];
+        str += element
+        str += (j==table[0].length-1)?';':','
+      }
+      str+='\n'
+    }
+    console.log(str)
+    return str
   },
 
   

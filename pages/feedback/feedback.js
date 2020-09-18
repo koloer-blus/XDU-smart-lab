@@ -37,7 +37,8 @@ Page({
     suggestionContent: '',
     type: '',
     tiggleInfo: false,
-    connection: ''
+    connection: '',
+
   },
   update(e) {
     this.setData({
@@ -121,7 +122,6 @@ Page({
         openid: wx.getStorageSync('openid') || 'null',
         page: that.data.info
       }
-      console.log(data, that.data)
       for (let item in data) {
          if (data[item] === '') {
           console.log(data[item])
@@ -140,6 +140,9 @@ Page({
       httpReq(feedBack.URL, feedBack.method, data, that.change)
     })
   },
+
+  
+  
   /**
    * 生命周期函数--监听页面加载
    */

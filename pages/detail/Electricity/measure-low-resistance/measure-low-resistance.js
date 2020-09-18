@@ -1,6 +1,6 @@
 // pages/detail/Electricity/measure-low-resistance/measure-low-resistance.js
 const {httpReq} = require('../../../../api/http')
-const {behaviorLog} = require('../../../../api/url')
+const {behaviorLog,dataLog} = require('../../../../api/url')
 const {
   getAverage,
   getUncertainty_A,
@@ -203,8 +203,47 @@ Page({
       Un_A_d: Un_A_d,
       Un_A_Rx : Un_A_Rx
     })
-    // console.log("计算完毕,ρ="+this.data.rho_aver)
-    // console.log('偏差='+this.data.rho_sx)
+    this.dataLog()
+  },
+
+  dataLog(){
+    const str = this.dataLog2str()
+    httpReq(dataLog.URL, dataLog.method, {
+      page: this.data.title,
+      content: str,
+      openid:wx.getStorageSync('openid') || 'false'
+    })
+  },
+  dataLog2str(){
+    var str = ""
+    var inputList = this.data.inputList
+    for (let index = 0; index < inputList.length; index++) {
+      const element = inputList[index];
+      for (const key in element) {
+        str += element[key]
+        str += (key=='id'?';':',')
+      }
+      str+='\n'
+    }
+    var table = this.data.table_diameter
+    for(let i = 0;i<table.length;i++){
+      for (let j = 0; j < table[0].length; j++) {
+        const element = table[i][j];
+        str += element
+        str += (j==table[0].length-1)?';':','
+      }
+      str+='\n'
+    }
+    table = this.data.table_length
+    for(let i = 0;i<table.length;i++){
+      for (let j = 0; j < table[0].length; j++) {
+        const element = table[i][j];
+        str += element
+        str += (j==table[0].length-1)?';':','
+      }
+      str+='\n'
+    }
+    return str
   },
 
   /**
@@ -229,7 +268,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    checkBack()
+    
+    
   },
 
   /**

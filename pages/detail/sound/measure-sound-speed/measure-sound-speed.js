@@ -2,7 +2,8 @@ const {
   httpReq
 } = require('../../../../api/http')
 const {
-  behaviorLog
+  behaviorLog,
+  dataLog
 } = require('../../../../api/url')
 const {
   getAverage,
@@ -228,29 +229,42 @@ Page({
     console.log("相对误差"+this.data.speed_wucha)
 
 
-    // let  tmp_delta_speed = tmp_speed_wucha*tmp_speed_result
-    // tmp_delta_speed = tmp_delta_speed.toFixed(4)
-    // this.setData({delta_speed:tmp_delta_speed})
-    // console.log("声速不确定度"+this.data.delta_speed)
-
-      //   this.setData({isResult:true})
-      //   this.setData({speed_result:Number(frequency_f*lambda_aver)})
-      //   let speed_wucha = this.data.speed_wucha
-      //   let speed_result = this.data.speed_result
-      //   this.setData({speed_wucha:Number(Math.sqrt(Math.pow(Un_L_YQ/lambda_aver,2)+Math.pow(Un_f_YQ/frequency_f,2)))})
-      //   this.setData({delta_speed:speed_wucha*speed_result})
-      //   console.log("当前lambda_aver"+this.data.lambda_aver)
-      //   console.log("当前speed_result"+this.data.speed_result)
-      //   console.log("当前speed_wucha"+this.data.speed_wucha)
-      //   console.log("当前delta_speed"+this.data.delta_speed)
-        // console.log("当前"+this.data.)
-
-        // this.setData({isResult:true})
-        // this.setData({isResult:true})
-        // this.setData({isResult:true})
       this.setData({isResult:true})
       console.log("全部计算完毕")
+      
+      this.dataLog()
     },
+  dataLog(){
+    const str = this.dataLog2str()
+    httpReq(dataLog.URL, dataLog.method, {
+      page: this.data.title,
+      content: str,
+      openid:wx.getStorageSync('openid') || 'false'
+    })
+  },
+  dataLog2str(){
+    var str = ""
+    var inputList = this.data.inputList
+    for (let index = 0; index < inputList.length; index++) {
+      const element = inputList[index];
+      for (const key in element) {
+        str += element[key]
+        str += (key=='id'?';':',')
+      }
+      str+='\n'
+    }
+    var table = this.data.table
+    for(let i = 0;i<table.length;i++){
+      for (let j = 0; j < table[0].length; j++) {
+        const element = table[i][j];
+        str += element
+        str += (j==table[0].length-1)?';':','
+      }
+      str+='\n'
+    }
+    console.log(str)
+    return str
+  },
   /**
    * 生命周期函数--监听页面加载
    */

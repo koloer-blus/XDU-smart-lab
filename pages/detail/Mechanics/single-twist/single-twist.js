@@ -2,7 +2,8 @@ const {
   httpReq
 } = require('../../../../api/http')
 const {
-  behaviorLog
+  behaviorLog,
+  dataLog
 } = require('../../../../api/url')
 Page({
   /**
@@ -213,6 +214,48 @@ Page({
     this.setData({J_lilun:J_lilun})
     this.setData({Un_J1_relative:Un_J1_relative})
     this.setData({isResult:true})
+    
+    this.dataLog()
+  },
+  dataLog(){
+    const str = this.dataLog2str()
+    httpReq(dataLog.URL, dataLog.method, {
+      page: this.data.title,
+      content: str,
+      openid:wx.getStorageSync('openid') || 'false'
+    })
+  },
+  dataLog2str(){
+    var str = ""
+    var inputList = this.data.inputList
+    for (let index = 0; index < inputList.length; index++) {
+      const element = inputList[index];
+      for (const key in element) {
+        str += element[key]
+        str += (key=='id'?';':',')
+      }
+      str+='\n'
+    }
+    var table = this.data.table_cycle
+    for(let i = 0;i<table.length;i++){
+      for (let j = 0; j < table[0].length; j++) {
+        const element = table[i][j];
+        str += element
+        str += (j==table[0].length-1)?';':','
+      }
+      str+='\n'
+    }
+    var table = this.data.table_diameter
+    for(let i = 0;i<table.length;i++){
+      for (let j = 0; j < table[0].length; j++) {
+        const element = table[i][j];
+        str += element
+        str += (j==table[0].length-1)?';':','
+      }
+      str+='\n'
+    }
+    console.log(str)
+    return str
   },
   /**
    * 生命周期函数--监听页面加载
