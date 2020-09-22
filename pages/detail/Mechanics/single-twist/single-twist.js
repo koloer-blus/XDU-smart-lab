@@ -13,43 +13,54 @@ Page({
     title: '单线扭摆实验',
     inputList: [{
         label: '长度：𝑙=',
-        value: 543.2,
+        value: 538.5,
         unit: ' 𝑚𝑚',
         id: 'length'
       },
       {
         label: '圆环质量:𝑚=',
-        value: 475,
+        value: 485,
         unit: ' 𝑔',
         id: 'mass'
       },
       {
         label: '𝑅₁=',
-        value: 9.96,
+        value: 50.1,
         unit: ' 𝑚𝑚',
         id: 'R1'
       },
       {
         label: '𝑅₂=',
-        value: 11.98,
+        value: 60.05,
         unit: ' 𝑚𝑚',
         id: 'R2'
       }
     ],
+    /*  这是学妹的数据 但是貌似有点点问题
     table_cycle: [
       ['振动时间(20次)', '①','②','③','④','⑤','平均值','单次周期'],
-      ['摆盘', 48.65,48.93,49.87,48.75,48.84,'#','#'],
-      ['摆盘+圆环', 80.31,79.72,79.59,80.06,80.08,'#','#'],
+      ['摆盘𝑇₀', 46.37,46.5,46.34,46.53,46.62,'#','#'],
+      ['摆盘+圆环𝑇', 76.28,76.16,76.22,76.09,76.16,'#','#'],
     ],
     table_diameter: [
       ['', '上部', '中部', '下部','平均值'],
-      ['横向', 0.81,0.785,0.795,'#'],
-      ['纵向', 0.778,0.786,0.796,'#'],
+      ['横向', 1.002,1.005,1.019,'#'],
+      ['纵向', 1.045,1.027,1.085,'#'],
+    ], */
+    table_cycle: [
+      ['振动时间(20次)', '①','②','③','④','⑤','平均值','单次周期'],
+      ['摆盘𝑇₀', 47.56,47.87,47.59,47.81,47.72,'#','#'],
+      ['摆盘+圆环𝑇',78.35,78.41,78.5,78.38,78.63,'#','#'],
+    ],
+    table_diameter: [
+      ['', '上部', '中部', '下部','平均值'],
+      ['横向', 0.792,0.803,0.802,'#'],
+      ['纵向', 0.811,0.793,0.791,'#'],
     ],
     table_cycle_zero: [
       ['振动时间(20次)', '①','②','③','④','⑤','平均值','单次周期'],
-      ['摆盘', 0,0,0,0,0,'#','#'],
-      ['摆盘+圆环',  0,0,0,0,0,'#','#'],
+      ['摆盘𝑇₀', 0,0,0,0,0,'#','#'],
+      ['摆盘+圆环𝑇',  0,0,0,0,0,'#','#'],
     ],
     zero_table_diameter: [
       ['', '上部', '中部', '下部','平均值'],
@@ -191,26 +202,31 @@ Page({
     var R1 = this.data.inputList[2].value
     var R2 = this.data.inputList[3].value
     var G = this.data.G
-    var pi = 3.1415926
-
-    var F = G * pi * Math.pow(d_average,4) / (32*length)
+    var pi = Math.PI
+    console.log('d:'+d_average)
+    console.log('G:'+G)
+    console.log('l:'+length)
+    var F = G * pi * Math.pow(d_average,4) / (32*length) * 10
     var J_0 = (F * Math.pow(T_0,2))/(4*pi*pi)
     var J = (F * Math.pow(T_1,2))/(4*pi*pi)
-    var J_result = J-J_0
+    var J_result = (J-J_0)
     var J_lilun = 0.5 * mass * (Math.pow(R1,2)+Math.pow(R2,2)) * 1e-9
+    console.log("F"+F)
+    console.log("J_result"+J_result)
+    console.log("J_lilun"+J_lilun)
     var Un_J1_relative = (Math.abs(J_result-J_lilun)/J_lilun*100).toFixed(2)+" %"
     console.log(d_average)
-    d_average = d_average.toFixed(3)
+    d_average = d_average.toFixed(4)
     this.setData({d_average:d_average})
-    F = (F*10000).toFixed(4)
+    F = (F*1000).toFixed(4)
     this.setData({F:F})
-    J_0 = (J_0*10000).toFixed(4)
+    J_0 = (J_0*1000).toFixed(4)
     this.setData({J_0:J_0})
-    J = (J*10000).toFixed(4)
+    J = (J*1000).toFixed(4)
     this.setData({J:J})
-    J_result = (J_result*10000).toFixed(4)
+    J_result = (J_result*1000).toFixed(4)
     this.setData({J_result:J_result})
-    J_lilun = (J_lilun*10000).toFixed(4)
+    J_lilun = (J_lilun*1000).toFixed(4)
     this.setData({J_lilun:J_lilun})
     this.setData({Un_J1_relative:Un_J1_relative})
     this.setData({isResult:true})

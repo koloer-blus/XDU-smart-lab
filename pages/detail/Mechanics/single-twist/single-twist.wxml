@@ -63,11 +63,11 @@
   <!-- 结果 -->
   <view class="result-detail" hidden="{{!isResult}}">
     <view>直径: 𝑑={{d_average}} 𝑚𝑚</view>
-    <view>扭转模量: 𝐹={{F}} ×10<sup>-4</sup> 𝑁·𝑚⁴</view>
-    <view>摆盘转动惯量: 𝐽₀={{J_0}} ×10<sup>-4</sup> 𝑘𝑔·𝑚²</view>
-    <view>摆+环转动惯量: 𝐽={{J}} ×10<sup>-4</sup> 𝑘𝑔·𝑚²</view>
-    <view>圆环转动惯量: 𝐽₁={{J_result}} ×10<sup>-4</sup> 𝑘𝑔·𝑚²</view>
-    <view>𝐽₁理论值: {{J_lilun}} ×10<sup>-4</sup> 𝑘𝑔·𝑚²</view>
+    <view>扭转模量: 𝐹={{F}} ×10<sup>-3</sup> 𝑁·𝑚⁴</view>
+    <view>摆盘转动惯量: 𝐽₀={{J_0}} ×10<sup>-3</sup> 𝑘𝑔·𝑚²</view>
+    <view>摆+环转动惯量: 𝐽={{J}} ×10<sup>-3</sup> 𝑘𝑔·𝑚²</view>
+    <view>圆环转动惯量: 𝐽₁={{J_result}} ×10<sup>-3</sup> 𝑘𝑔·𝑚²</view>
+    <view>𝐽₁理论值: {{J_lilun}} ×10<sup>-3</sup> 𝑘𝑔·𝑚²</view>
     <view>相对误差: 𝐸={{Un_J1_relative}}</view>
 	</view>
   <view class="note_dark" hidden="{{!isResult}}">

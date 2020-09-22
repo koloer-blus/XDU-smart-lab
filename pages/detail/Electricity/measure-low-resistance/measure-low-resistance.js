@@ -6,7 +6,7 @@ const {
   getUncertainty_A,
   getUncertainty,
 } = require('../../../../utils/common')
-const {checkBack} = require('../../../../utils/util')
+// const {checkBack} = require('../../../../utils/util')
 
 Page({
 
