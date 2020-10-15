@@ -15,6 +15,7 @@ Page({
    */
   data: {
     title: '光栅光谱的测量',
+    imgArr:[],
     inputList:[{
       label:'绿色谱线波长 𝜆= ',
       value:546.1,
@@ -442,6 +443,20 @@ Page({
 //   return sx
 // },
 
+  /* 预览图片 */
+  previewImg:function(e){
+    console.log(e.currentTarget.dataset.index);
+    var index = e.currentTarget.dataset.index;
+    var imgArr = this.data.imgArr;
+    wx.previewImage({
+      current: imgArr[index],     //当前图片地址
+      urls: imgArr,               //所有要预览的图片的地址集合 数组形式
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
+  },
+  
   /**
    * 生命周期函数--监听页面加载
    */

@@ -2,7 +2,7 @@ const baseUrl = 'https://smartlab.backend.117503445.top'
 const feedBack = '/api/feedback'
 const behaviorLog = '/api/BehaviorLog'
 const dataLog = '/api/DataLog'
-const getOpenId = '/wechat/openid'
+const getOpenId = '/api/wechat/openid'
 module.exports = {
   feedBack: {
     URL: feedBack,

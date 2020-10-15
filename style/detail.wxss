@@ -201,3 +201,19 @@ sub{
   vertical-align:text-bottom;
   font-style: oblique;
 }
+
+/* 公式图片 */
+.imgList{
+  width: 92%;
+  margin: 18rpx auto; 
+  box-sizing: border-box;
+  display: block;
+  padding: 10rpx;
+}
+.imgList .imgList-li{
+  width: 92%;
+  padding: 20rpx;
+}
+.imgList .imgList-li .img{
+  
+}

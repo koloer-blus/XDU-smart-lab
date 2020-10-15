@@ -18,6 +18,7 @@ Page({
    */
   data: {
     title: '三棱镜顶角的测量',
+    imgArr:[],
     inputList:[{
       label:'仪器不确定度Δ𝘉= ',
       value:1,
@@ -28,10 +29,10 @@ Page({
     //下表为了方便输入而设立
     table:[
       ['序号',"𝜽𝘈⁻¹","𝜽𝘉⁻¹","𝜽𝘈⁺¹","𝜽𝘉⁺¹",'αᵢ'],
-      ['①',226.44,46.45,105.36,285.37,'#'],
-      ['②',224.46,44.44,103.53,283.52,'#'],
-      ['③',225.22,45.20,105.07,285.07,'#'],
-      ['④',218.30,38.30,40.00,278.30,'#'],
+      ['①',298.2,118,178.14,358.14,'#'],
+      ['②',279.5,99.44,160.2,340.2,'#'],
+      ['③',278.07,98.01,158.14,338.15,'#'],
+      ['④',304.14,124.20,183.47,3.47,'#'],
     ],
     //备份空白表格
     table_zero:[
@@ -145,7 +146,7 @@ Page({
       openid:wx.getStorageSync('openid') || 'false'
     })
     let uncertainty_A 
-    let uncertainty_B = this.data.inputList[0].value
+    let uncertainty_B = Number(this.data.inputList[0].value)/Math.sqrt(3)
     let uncertainty_all
 
     let table = this.data.table
@@ -339,6 +340,20 @@ Page({
     return sx
   },
 
+  /* 预览图片 */
+  previewImg:function(e){
+    console.log(e.currentTarget.dataset.index);
+    var index = e.currentTarget.dataset.index;
+    var imgArr = this.data.imgArr;
+    wx.previewImage({
+      current: imgArr[index],     //当前图片地址
+      urls: imgArr,               //所有要预览的图片的地址集合 数组形式
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
+  },
+  
   /**
    * 生命周期函数--监听页面加载
    */

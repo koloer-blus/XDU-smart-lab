@@ -14,6 +14,7 @@ Page({
    */
   data: {
     title: '平凸透镜曲率半径的测量',
+    imgArr:[],
     // 光的等厚干涉
     inputList: [{
       label: '𝚫仪=',
@@ -206,6 +207,20 @@ Page({
       str+='\n'
     }
     return str
+  },
+
+  /* 预览图片 */
+  previewImg:function(e){
+    console.log(e.currentTarget.dataset.index);
+    var index = e.currentTarget.dataset.index;
+    var imgArr = this.data.imgArr;
+    wx.previewImage({
+      current: imgArr[index],     //当前图片地址
+      urls: imgArr,               //所有要预览的图片的地址集合 数组形式
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
   },
   /**
    * 生命周期函数--监听页面加载

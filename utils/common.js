@@ -43,6 +43,7 @@ function getUncertainty(Uncertainty_A, Uncertainty_YQ) {
   return re.toFixed(6)
 }
 
+
 /* ---------------------------- */
 module.exports = {
   getAverage,

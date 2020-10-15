@@ -16,6 +16,12 @@ Page({
   data: {
     //R1&R3
     title: '低电阻的测量',
+    imgArr:[
+      'https://my-pic-bed-1302358960.cos.ap-nanjing.myqcloud.com/Blog/202010/12/formula-measure-low-resistance.png',
+      'https://my-pic-bed-1302358960.cos.ap-nanjing.myqcloud.com/Blog/202010/12/MommyTalk1602486529412.jpg',
+      'https://s1.ax1x.com/2020/10/15/0TrwwV.jpg'
+    ],
+
     inputList:[{
       label:'𝑅₁= ',
       value:'1000',
@@ -52,6 +58,7 @@ Page({
       ['𝑅ₓ/×10⁻³ 𝛀','#','#','#','#','#','#','#','#'],
       ['𝛒 /×10⁻⁸ 𝛀·𝑀','#','#','#','#','#','#','#','#']
     ],
+
     //参数
     diameter_aver:0,  //直径平均值
     Un_d:0,           //直径误差
@@ -244,6 +251,20 @@ Page({
       str+='\n'
     }
     return str
+  },
+
+  /* 预览图片 */
+  previewImg:function(e){
+    console.log(e.currentTarget.dataset.index);
+    var index = e.currentTarget.dataset.index;
+    var imgArr = this.data.imgArr;
+    wx.previewImage({
+      current: imgArr[index],     //当前图片地址
+      urls: imgArr,               //所有要预览的图片的地址集合 数组形式
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
   },
 
   /**

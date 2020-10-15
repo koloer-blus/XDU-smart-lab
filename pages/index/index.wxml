@@ -1,10 +1,11 @@
 <view class="experiment-home">
 
-	<!-- 单线扭摆实验 -->
+	<!-- 单线扭摆实验(注:本在第一个) -->
 	<view class="single-twist experiment-itme" bindtap="toDetail"
 		data-url="/pages/detail/Mechanics/single-twist/single-twist">
 		<text class="name" >单线扭摆实验</text>
 	</view>
+	
 
 	<!--复摆测量重力加速度  -->
 	<!-- 重力加速度的测量 -->
@@ -51,6 +52,9 @@
 		<text class="name" >平凸透镜曲率半径的测量</text>
 	</view>
 	
+
+	
+
 	<!-- 迈克尔逊干涉仪测激光波长 -->
 	<!-- 激光波长的测量 -->
 	<view class="measure-length-of-laser experiment-itme" bindtap="toDetail"
