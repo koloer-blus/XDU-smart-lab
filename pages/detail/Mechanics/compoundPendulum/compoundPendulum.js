@@ -10,13 +10,16 @@ const {
   behaviorLog,
   dataLog
 } = require('../../../../api/url')
+var formulaFile = require("../../../../src/formulaLink.js")
 Page({
   /**
    * 页面的初始数据
    */
   data: {
     title: '重力加速度的测量',
-    imgArr:[],
+    imgArr:[
+      formulaFile.formulaLink.重力加速度的测量
+    ],
     // 复摆测量重力加速度
     inputList: [{
       label: '质心位置=',

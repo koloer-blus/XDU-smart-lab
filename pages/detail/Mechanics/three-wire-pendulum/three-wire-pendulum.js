@@ -13,13 +13,16 @@ const {
   getUncertainty_A,
   getUncertainty,
 } = require('../../../../utils/common')
+var formulaFile = require("../../../../src/formulaLink.js")
 Page({
   /**
    * 页面的初始数据
    */
   data: {
     title: '刚体转动惯量的测量',
-    imgArr:[],
+    imgArr:[
+      formulaFile.formulaLink.刚体转动惯量的测量
+    ],
     inputList: [{
         label: '下盘质量𝑚₀=',
         value: '360',

@@ -11,6 +11,7 @@ const {
   getUncertainty_A,
   getUncertainty,
 } = require('../../../../utils/common')
+var formulaFile = require("../../../../src/formulaLink.js")
 Page({
 
   /**
@@ -18,7 +19,9 @@ Page({
    */
   data: {
     title: '三棱镜顶角的测量',
-    imgArr:[],
+    imgArr:[
+      formulaFile.formulaLink.三棱镜顶角的测量
+    ],
     inputList:[{
       label:'仪器不确定度Δ𝘉= ',
       value:1,

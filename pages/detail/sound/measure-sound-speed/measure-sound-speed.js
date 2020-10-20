@@ -11,6 +11,7 @@ const {
   getUncertainty,
 } = require('../../../../utils/common')
 // pages/detail/sound/measure-sound-speed/measure-sound-speed.js
+var formulaFile = require("../../../../src/formulaLink.js")
 Page({
 
   /**
@@ -18,7 +19,9 @@ Page({
    */
   data: {
     title: '空气中声速的测量',
-    imgArr:[],
+    imgArr:[
+      formulaFile.formulaLink.空气中声速的测量
+    ],
     inputList:[{
         label:'室温𝑡= ',
         value:'21',

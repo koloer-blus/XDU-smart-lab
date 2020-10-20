@@ -11,6 +11,7 @@ const {
   getUncertainty_A,
   getUncertainty,
 } = require('../../../../utils/common')
+var formulaFile = require("../../../../src/formulaLink.js")
 Page({
 
   /**
@@ -18,7 +19,9 @@ Page({
    */
   data: {
     title: '水中声速的测量',
-    imgArr:[],
+    imgArr:[
+      formulaFile.formulaLink.水中声速的测量
+    ],
     inputList:[{
         label:'室温𝑡= ',
         value:'27.9',

@@ -8,13 +8,16 @@ const {
   getUncertainty_A,
   getUncertainty,
 } = require('../../../../utils/common')
+var formulaFile = require("../../../../src/formulaLink.js")
 Page({
   /**
    * 页面的初始数据
    */
   data: {
     title: '平凸透镜曲率半径的测量',
-    imgArr:[],
+    imgArr:[
+      formulaFile.formulaLink.平凸透镜曲率半径的测量
+    ],
     // 光的等厚干涉
     inputList: [{
       label: '𝚫仪=',

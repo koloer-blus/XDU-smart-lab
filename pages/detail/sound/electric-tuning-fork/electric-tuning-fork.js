@@ -10,13 +10,16 @@ const {
   behaviorLog,
   dataLog
 } = require('../../../../api/url')
+var formulaFile = require("../../../../src/formulaLink.js")
 Page({
   /**
    * 页面的初始数据
    */
   data: {
     title: '音叉振动频率的测量',
-    imgArr:[],
+    imgArr:[
+      formulaFile.formulaLink.音叉振动频率的测量
+    ],
     inputList: [{
         label: '弦线密度𝝆=',
         value: '0.00356',

@@ -7,6 +7,7 @@ const {
   getUncertainty_A,
   getUncertainty,
 } = require('../../../../utils/common')
+var formulaFile = require("../../../../src/formulaLink.js")
 // pages/detail/Light/grating-characteristics/grating-characteristics.js
 Page({
 
@@ -15,7 +16,9 @@ Page({
    */
   data: {
     title: '光栅光谱的测量',
-    imgArr:[],
+    imgArr:[
+      formulaFile.formulaLink.光栅光谱的测量
+    ],
     inputList:[{
       label:'绿色谱线波长 𝜆= ',
       value:546.1,

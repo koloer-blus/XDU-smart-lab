@@ -6,6 +6,7 @@ const {
   getUncertainty_A,
   getUncertainty,
 } = require('../../../../utils/common')
+var formulaFile = require("../../../../src/formulaLink.js")
 // const {checkBack} = require('../../../../utils/util')
 
 Page({
@@ -17,9 +18,7 @@ Page({
     //R1&R3
     title: '低电阻的测量',
     imgArr:[
-      'https://my-pic-bed-1302358960.cos.ap-nanjing.myqcloud.com/Blog/202010/12/formula-measure-low-resistance.png',
-      'https://my-pic-bed-1302358960.cos.ap-nanjing.myqcloud.com/Blog/202010/12/MommyTalk1602486529412.jpg',
-      'https://s1.ax1x.com/2020/10/15/0TrwwV.jpg'
+      formulaFile.formulaLink.低电阻的测量
     ],
 
     inputList:[{

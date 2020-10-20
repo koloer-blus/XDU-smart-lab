@@ -11,6 +11,7 @@ const {
   getUncertainty_A,
   getUncertainty,
 } = require('../../../../utils/common')
+var formulaFile = require("../../../../src/formulaLink.js")
 Page({
 
   /**
@@ -18,7 +19,9 @@ Page({
    */
   data: {
     title: '激光波长的测量',
-    imgArr:[],
+    imgArr:[
+      formulaFile.formulaLink.激光波长的测量
+    ],
     inputList:[{
       label:'仪器不确定度Δ仪= ',
       value:0.0001,

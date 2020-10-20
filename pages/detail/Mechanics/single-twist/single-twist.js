@@ -5,13 +5,16 @@ const {
   behaviorLog,
   dataLog
 } = require('../../../../api/url')
+var formulaFile = require("../../../../src/formulaLink.js")
 Page({
   /**
    * 页面的初始数据
    */
   data: {
     title: '单线扭摆实验',
-    imgArr:[],
+    imgArr:[
+      formulaFile.formulaLink.单线扭摆实验
+    ],
     inputList: [{
         label: '长度：𝑙=',
         value: 538.5,

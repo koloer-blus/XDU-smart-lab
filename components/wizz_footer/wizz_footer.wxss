@@ -5,7 +5,7 @@
   margin: 0 auto;
   /* height: 30rpx; */
   line-height: 50rpx;
-  /* margin-bottom: 30rpx; */
+  margin-bottom: 40rpx;
 }
 .footer text {
   font-size: 28rpx;

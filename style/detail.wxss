@@ -212,7 +212,7 @@ sub{
 }
 .imgList .imgList-li{
   width: 92%;
-  padding: 20rpx;
+  /* padding: 20rpx; */
 }
 .imgList .imgList-li .img{
   
