@@ -16,7 +16,8 @@
     "pages/feedback/feedback",
     "pages/wizzInfo/wizzInfo",
     "pages/detail/sound/measure-sound-speed-water/measure-sound-speed-water",
-    "components/Function_button/Function_button"
+    "components/Function_button/Function_button",
+    "pages/bulletinInfo/bulletinInfo"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -26,4 +27,5 @@
   },
   "sitemapLocation": "sitemap.json",
   "style": "v2"
+
 }

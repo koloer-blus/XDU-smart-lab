@@ -1,6 +1,7 @@
+<bulletinBar/>
 <view class="experiment-home">
 
-	<!-- 单线扭摆实验(注:本在第一个) -->
+	<!-- 单线扭摆实验 -->
 	<view class="single-twist experiment-itme" bindtap="toDetail"
 		data-url="/pages/detail/Mechanics/single-twist/single-twist">
 		<text class="name" >单线扭摆实验</text>

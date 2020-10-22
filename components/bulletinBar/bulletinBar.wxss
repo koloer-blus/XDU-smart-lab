@@ -1,0 +1,74 @@
+/* components/bulletinBar/bulletinBar.wxss */
+/* 公告start */
+
+.Bar{
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin: 10rpx auto;
+  background:rgb(255, 255, 255);
+  border-radius:6px;
+  padding: 7rpx 10rpx;
+  height: 50rpx;  
+  border:2rpx solid #aaa ;
+  border-radius: 12rpx;
+}
+.Bar icon{
+  display: flex;
+  margin-right: 10rpx;
+}
+
+.swiper-notice {
+  font-size: 28rpx;
+  color:    #fa6016;
+}
+
+
+.swiper-icon {
+  display: flex;
+  margin-right: 10rpx;
+}
+
+.swiper-container {
+  margin-left: 10rpx;
+  width: 400rpx;
+  height: 30rpx;
+}
+
+.swiper-item {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  font-size: 28rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  letter-spacing: 2rpx;
+}
+/* 公告end */
+
+/* icon strat */
+@font-face {
+  font-family: 'iconfont';  /* project id 2149989 */
+  src: url('//at.alicdn.com/t/font_2149989_9zbulr27gup.eot');
+  src: url('//at.alicdn.com/t/font_2149989_9zbulr27gup.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_2149989_9zbulr27gup.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_2149989_9zbulr27gup.woff') format('woff'),
+  url('//at.alicdn.com/t/font_2149989_9zbulr27gup.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_2149989_9zbulr27gup.svg#iconfont') format('svg');
+}
+.iconfont {
+  font-family: "iconfont";
+  font-size: .16rem;
+  font-style: normal;
+  color: #9e9595;
+}
+.icon-gonggao:before { 
+  content: "\e630";
+  font-size: 28rpx;
+  color: rgb(252, 101, 0);
+}
+/* icon end */
