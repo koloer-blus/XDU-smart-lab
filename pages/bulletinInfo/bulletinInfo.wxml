@@ -1,2 +1,5 @@
 <!--pages/bulletinInfo/bulletinInfo.wxml-->
-<text>里头还么得写好,你着啥子急噢</text>
+<view class="bulletinInfo">
+	<text class="title">{{title}}</text>
+  <image class='img' src='{{imageUrl}}'mode='widthFix'></image>
+</view>

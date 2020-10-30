@@ -5,14 +5,22 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    title:'',
+    imageUrl:'',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log('跳转至公告详情页,传入参数如下:')
+    options=JSON.parse(decodeURIComponent(options.options));
+    var title = options.title;
+    var imageUrl = options.imageUrl;
+    this.setData({
+      title:title,
+      imageUrl:imageUrl
+    })
   },
 
   /**

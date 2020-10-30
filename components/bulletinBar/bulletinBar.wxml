@@ -1,17 +1,15 @@
 <!--components/bulletinBar/bulletinBar.wxml-->
 <view class="Bar">
-  <icon class="iconfont icon-gonggao"/>
-  <text>公告：</text> 
-  <swiper class='swiper-container' 
-        autoplay="true" vertical='true' circular='true'
-        interval="{{interval}}" duration="{{duration}}">
-        <block wx:for='{{msgList}}' wx:key="*this">
-        <navigator url='/pages/bulletinInfo/bulletinInfo?title={{item.url}}' open-type='navigate'>
-            <swiper-item>
-                <view class='swiper-item'>{{item.title}}</view>
-            </swiper-item>
-        </navigator>
-    </block>
-  </swiper>
+	<icon class="iconfont icon-gonggao" />
+	<text>公告：</text>
+	<swiper class='swiper-container' autoplay="true" vertical='true' circular='true' interval="{{interval}}" duration="{{duration}}">
+		<block wx:for='{{msgList}}' wx:key="*this">
+			<swiper-item>
+				<view class='swiper-item' bindtap="toBulletinInfo" data-id='{{item.id}}'>
+					{{item.title}}
+				</view>
+			</swiper-item>
+		</block>
+	</swiper>
 
 </view>

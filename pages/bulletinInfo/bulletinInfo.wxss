@@ -1,1 +1,15 @@
 /* pages/bulletinInfo/bulletinInfo.wxss */
+.title {
+  display: block;
+  /* box-sizing: border-box; */
+  width: 100%;
+  text-align: center;
+  /* height: 44rpx; */
+  font-size: 22pt;
+  font-weight: normal;
+}
+.img{
+  width: 100%;
+  margin: 18rpx auto; 
+  box-sizing: border-box;
+}

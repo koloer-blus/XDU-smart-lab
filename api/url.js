@@ -3,7 +3,8 @@ const feedBack = '/api/feedback'
 const behaviorLog = '/api/BehaviorLog'
 const dataLog = '/api/DataLog'
 const getOpenId = '/api/wechat/openid'
-module.exports = {
+const getBulletin = '/api/Bulletin'
+module.exports = {  
   feedBack: {
     URL: feedBack,
     method: 'POST'
@@ -19,5 +20,9 @@ module.exports = {
   getId: {
     URL: getOpenId,
     method: 'GET'
+  },
+  getBulletinAll:{
+    URL: getBulletin,
+    method:'GET'
   }
 }
