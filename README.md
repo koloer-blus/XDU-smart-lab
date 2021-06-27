@@ -1,7 +1,10 @@
 # XDU-smart-lab
 > 🎛️XDU物理实验助手--微信小程序
 
-<div align="center"><img src="https://z3.ax1x.com/2021/06/27/RYOVhj.png" alt="RYOVhj.png" border="0" /></div>
+<div align="center">
+  <img src="https://z3.ax1x.com/2021/06/27/RYOVhj.png" alt="RYOVhj.png" border="0" />
+  <img src="https://z3.ax1x.com/2021/06/27/RYX3sP.png" alt="RYX3sP.png" border="0" />
+</div>
 
 ## 效果展示
 
