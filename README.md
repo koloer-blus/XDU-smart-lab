@@ -7,7 +7,7 @@
 </div>
 
 <div align="center">
-  <img src="https://z3.ax1x.com/2021/07/03/R2EIaQ.jpg" alt="R2EIaQ.jpg" border="0" />
+  <img src="https://z3.ax1x.com/2021/07/03/R2EIaQ.jpg" alt="R2EIaQ.jpg" border="0" width = "72%"  />
 </div>
 
 ## 效果展示
